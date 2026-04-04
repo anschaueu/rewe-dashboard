@@ -156,13 +156,13 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <div class="tab" data-t="sh" data-i18n="tab_shopping">Lista Compras</div>
 <div class="tab" data-t="pr" data-i18n="tab_products">Produtos</div>
 <div class="tab" data-t="st" data-i18n="tab_stores">Filiais</div>
-<div class="tab" data-t="kp">KPIs</div>
+<div class="tab" data-t="kp" data-i18n="tab_kpis">KPIs</div>
 <div class="tab" data-t="tl" data-i18n="tab_receipts">Recibos</div>
 <div class="tab" data-t="rp" data-i18n="tab_report">Relatório</div>
 <div class="tab" data-t="tr" data-i18n="tab_trends">Tendências</div>
 <div class="tab" data-t="bi" data-i18n="tab_basket">Cesta Base</div>
 <div class="tab" data-t="ex" data-i18n="tab_export">Exportar</div>
-<div class="tab" data-t="up">Upload</div>
+<div class="tab" data-t="up" data-i18n="tab_upload">Upload</div>
 </div>
 
 <!-- OVERVIEW -->
@@ -174,8 +174,8 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <div class="cd"><div class="lb" data-i18n="purchases">Compras</div><div class="vl">165</div><div class="dt" data-i18n="items_count">2785 itens</div></div>
 <div class="cd"><div class="lb" data-i18n="products">Produtos</div><div class="vl">712</div></div>
 <div class="cd" id="mostBoughtCard"><div class="lb" data-i18n="most_bought">Mais Comprado</div><div style="display:flex;align-items:center;gap:6px"><img id="mostBoughtImg" src="" style="width:28px;height:28px;border-radius:4px;object-fit:contain;display:none"><div class="vl sm">PROTEINPUDD. SCH</div></div><div class="dt">314x</div></div>
-<div class="cd tip" data-tip="Projeção anual com base no ritmo atual"><div class="lb" data-i18n="annual_forecast">Projeção Anual</div><div class="vl sm">&euro;4,700.64</div><div class="dt">&euro;12.88/dia</div></div>
-<div class="cd tip" data-tip="Intervalo médio entre compras"><div class="lb" data-i18n="shop_frequency">Freq. Compras</div><div class="vl sm" data-i18n="every_4d">a cada 4d</div><div class="dt" data-i18n="max_gap">max 87d sem ir</div></div>
+<div class="cd tip" data-tip-i18n="tip_forecast" data-tip="Projeção anual com base no ritmo atual"><div class="lb" data-i18n="annual_forecast">Projeção Anual</div><div class="vl sm">&euro;4,700.64</div><div class="dt">&euro;12.88<span data-i18n="per_day">/dia</span></div></div>
+<div class="cd tip" data-tip-i18n="tip_frequency" data-tip="Intervalo médio entre compras"><div class="lb" data-i18n="shop_frequency">Freq. Compras</div><div class="vl sm" data-i18n="every_4d">a cada 4d</div><div class="dt" data-i18n="max_gap">max 87d sem ir</div></div>
 </div>
 
 <div class="sec"><h2 data-i18n="monthly_spending">Gasto Mensal</h2>
@@ -201,9 +201,9 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <div class="sec"><h2 data-i18n="tab_products">Produtos</h2>
 <div class="ctrl"><input class="sb" id="sB" data-i18n-placeholder="search" placeholder="Buscar..."><select class="fl" id="cF"><option value="" data-i18n="all_cats">Todas cat.</option></select><select class="fl" id="sfF"><option value="" data-i18n="all_stores">Todas filiais</option><option value="5626">Q6</option><option value="5526">S6</option></select></div>
 <div style="overflow-x:auto"><table id="pT"><thead><tr>
-<th data-s="n">Produto</th><th data-s="cat">Cat.</th><th data-s="tb">Compras</th><th data-s="af">Freq.</th>
-<th data-s="ts">Total</th><th data-s="lp">Preço</th><th data-s="mn">Min</th><th data-s="mx">Max</th>
-<th data-s="var">Var.</th><th>T.</th></tr></thead><tbody id="pB"></tbody></table></div>
+<th data-s="n" data-i18n="th_product">Produto</th><th data-s="cat" data-i18n="th_cat">Cat.</th><th data-s="tb" data-i18n="th_purchases">Compras</th><th data-s="af" data-i18n="th_freq">Freq.</th>
+<th data-s="ts" data-i18n="th_total">Total</th><th data-s="lp" data-i18n="th_price">Preço</th><th data-s="mn" data-i18n="th_min">Min</th><th data-s="mx" data-i18n="th_max">Max</th>
+<th data-s="var" data-i18n="th_var">Var.</th><th data-i18n="th_trend">T.</th></tr></thead><tbody id="pB"></tbody></table></div>
 <div class="pg" id="pg"></div></div>
 </div>
 
@@ -219,10 +219,10 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <div class="cd"><div class="lb" data-i18n="simulated_basket">Cesta Simulada</div><div class="vl sm">-2.6%</div><div class="dt">S6 vs Q6</div></div>
 </div></div>
 <div class="sec"><h2 data-i18n="price_comparison">Comparativo Preços</h2>
-<div class="ctrl"><input class="sb" id="scB" placeholder="Buscar..."><select class="fl" id="scF">
-<option value="">Todos</option><option value="cq">Mais barato Q6</option><option value="cs">Mais barato S6</option>
-<option value="eq">Exclusivo Q6</option><option value="es">Exclusivo S6</option><option value="bo">Ambas filiais</option></select></div>
-<div style="overflow-x:auto"><table><thead><tr><th>Produto</th><th>Cat.</th><th>Q6 Média</th><th>Q6 #</th><th>S6 Média</th><th>S6 #</th><th>Dif.</th><th>Onde</th></tr></thead>
+<div class="ctrl"><input class="sb" id="scB" data-i18n-placeholder="search" placeholder="Buscar..."><select class="fl" id="scF">
+<option value="" data-i18n="filter_all_stores">Todos</option><option value="cq" data-i18n="filter_cheaper_q6">Mais barato Q6</option><option value="cs" data-i18n="filter_cheaper_s6">Mais barato S6</option>
+<option value="eq" data-i18n="filter_exclusive_q6">Exclusivo Q6</option><option value="es" data-i18n="filter_exclusive_s6">Exclusivo S6</option><option value="bo" data-i18n="filter_both_stores">Ambas filiais</option></select></div>
+<div style="overflow-x:auto"><table><thead><tr><th data-i18n="th_product">Produto</th><th data-i18n="th_cat">Cat.</th><th data-i18n="th_q6_avg">Q6 Média</th><th data-i18n="th_q6_count">Q6 #</th><th data-i18n="th_s6_avg">S6 Média</th><th data-i18n="th_s6_count">S6 #</th><th data-i18n="th_diff">Dif.</th><th data-i18n="th_where">Onde</th></tr></thead>
 <tbody id="cpB"></tbody></table></div><div class="pg" id="cpP"></div></div>
 </div>
 
@@ -235,7 +235,7 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 </div>
 <div class="sec"><h2 data-i18n="distribution">Distribuição</h2>
 <div class="kbar" id="kB"></div>
-<div style="display:flex;gap:12px;margin-top:6px;font-size:10px;flex-wrap:wrap"><span style="color:#d32f2f">Subiram: 75</span><span style="color:#666">Estáveis: 165</span><span style="color:#2e7d32">Caíram: 57</span></div></div>
+<div id="kpiLabels" style="display:flex;gap:12px;margin-top:6px;font-size:10px;flex-wrap:wrap"><span style="color:#d32f2f"><span data-i18n="kpi_increased">Subiram</span>: 75</span><span style="color:#666"><span data-i18n="kpi_stable">Estáveis</span>: 165</span><span style="color:#2e7d32"><span data-i18n="kpi_decreased">Caíram</span>: 57</span></div></div>
 <div class="g2">
 <div class="sec"><h2 data-i18n="cat_variation">Variação por Categoria</h2><div class="cb cbs"><canvas id="chKC"></canvas></div></div>
 <div class="sec"><h2 data-i18n="cat_breakdown">Repartição por Categoria</h2><div class="cb cbs"><canvas id="chKP"></canvas></div></div>
@@ -245,13 +245,13 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <div class="sec"><h2 data-i18n="not_bought_60">Sem Comprar +60 dias</h2><ul class="al" id="iAl"></ul></div>
 </div>
 <div class="sec"><h2 data-i18n="last_purchase_alerts">Alertas da Última Compra</h2>
-<p style="font-size:11px;color:#888;margin-bottom:8px">Produtos que mudaram de preço na última compra vs compra anterior.</p>
+<p style="font-size:11px;color:#888;margin-bottom:8px" data-i18n="last_purchase_desc">Produtos que mudaram de preço na última compra vs compra anterior.</p>
 <ul class="al" id="paLast"></ul></div>
 <div class="sec"><h2 data-i18n="volatile_products">Produtos Mais Voláteis</h2>
-<p style="font-size:11px;color:#888;margin-bottom:8px">Maior diferença entre preço mínimo e máximo.</p>
+<p style="font-size:11px;color:#888;margin-bottom:8px" data-i18n="volatile_desc">Maior diferença entre preço mínimo e máximo.</p>
 <ul class="al" id="volList"></ul></div>
 <div class="sec"><h2 data-i18n="product_discovery">Descoberta de Produtos</h2>
-<p style="font-size:11px;color:#888;margin-bottom:8px">Quantos produtos novos você experimentou a cada mês.</p>
+<p style="font-size:11px;color:#888;margin-bottom:8px" data-i18n="discovery_desc">Quantos produtos novos você experimentou a cada mês.</p>
 <div class="cb cbs"><canvas id="chDisc"></canvas></div></div>
 </div>
 
@@ -259,9 +259,9 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <div class="tc" id="t-sh">
 <div class="sec">
 <h2 data-i18n="shopping_cart">Carrinho de Mercado</h2>
-<p style="font-size:11px;color:#888;margin-bottom:10px">Digite em português, alemão ou inglês. Produtos do seu histórico têm prioridade.</p>
+<p style="font-size:11px;color:#888;margin-bottom:10px" data-i18n="cart_search_desc">Digite em português, alemão ou inglês. Produtos do seu histórico têm prioridade.</p>
 <div class="acw">
-<input class="sb" id="acIn" placeholder="Ex: manteiga, butter, Butter, chicken, queijo..." autocomplete="off" style="width:100%">
+<input class="sb" id="acIn" data-i18n-placeholder="cart_search_placeholder" placeholder="Ex: manteiga, butter, Butter, chicken, queijo..." autocomplete="off" style="width:100%">
 <div class="acdd" id="acDd"></div>
 </div>
 <div class="actg" id="acTg"></div>
@@ -287,7 +287,7 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <!-- RECEIPTS TIMELINE -->
 <div class="tc" id="t-tl">
 <div class="sec"><h2 data-i18n="receipt_timeline">Timeline de Recibos</h2>
-<div class="ctrl"><select class="fl" id="tlSt"><option value="">Todas filiais</option><option value="5626">Q6</option><option value="5526">S6</option></select></div>
+<div class="ctrl"><select class="fl" id="tlSt"><option value="" data-i18n="all_stores">Todas filiais</option><option value="5626">Q6</option><option value="5526">S6</option></select></div>
 <ul class="rl" id="rlL"></ul></div>
 </div>
 
@@ -304,10 +304,10 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <!-- TRENDS -->
 <div class="tc" id="t-tr">
 <div class="cards">
-<div class="cd"><div class="lb" data-i18n="personal_inflation">Inflação Pessoal</div><div class="vl">+0.4%</div><div class="dt">sua cesta base</div></div>
+<div class="cd"><div class="lb" data-i18n="personal_inflation">Inflação Pessoal</div><div class="vl">+0.4%</div><div class="dt" data-i18n="your_basket_base">sua cesta base</div></div>
 <div class="cd"><div class="lb" data-i18n="official_inflation">Inflação Oficial</div><div class="vl sm" style="color:#2196f3">+1.9%</div><div class="dt" data-i18n="food_germany">alimentos Alemanha</div></div>
-<div class="cd"><div class="lb" data-i18n="last_3_purchases">Últimas 3 Compras</div><div class="vl sm">&euro;87.69</div><div class="dt">ticket médio</div></div>
-<div class="cd"><div class="lb" data-i18n="vs_avg">vs Média Geral</div><div class="vl sm">+75.0%</div><div class="dt">&euro;50.11 média</div></div>
+<div class="cd"><div class="lb" data-i18n="last_3_purchases">Últimas 3 Compras</div><div class="vl sm">&euro;87.69</div><div class="dt" data-i18n="avg_ticket">ticket médio</div></div>
+<div class="cd"><div class="lb" data-i18n="vs_avg">vs Média Geral</div><div class="vl sm">+75.0%</div><div class="dt">&euro;50.11 <span data-i18n="avg_amount">média</span></div></div>
 </div>
 <div class="sec"><h2 data-i18n="inflation_vs">Inflação: Sua Cesta vs Oficial</h2>
 <p style="font-size:11px;color:#888;margin-bottom:10px" data-i18n="inflation_desc">Comparação da variação de preço da sua cesta base (20 produtos mais comprados) com o índice oficial de preços de alimentos na Alemanha (Destatis). Base = 100 no primeiro mês completo.</p>
@@ -342,11 +342,11 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <!-- EXPORT -->
 <div class="tc" id="t-ex">
 <div class="sec"><h2 data-i18n="export_data">Exportar Dados</h2>
-<p style="font-size:12px;color:#888;margin-bottom:14px">Baixe seus dados em formato CSV para usar no Excel, Google Sheets, etc.</p>
-<button onclick="expCSV('products')" style="padding:10px 20px;background:#cc0000;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px">Exportar Produtos (CSV)</button>
-<button onclick="expCSV('receipts')" style="padding:10px 20px;background:#cc0000;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px">Exportar Recibos (CSV)</button>
-<button onclick="expCSV('prices')" style="padding:10px 20px;background:#cc0000;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px">Exportar Histórico Preços (CSV)</button>
-<button onclick="expJSON()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px">Exportar Tudo (JSON)</button>
+<p style="font-size:12px;color:#888;margin-bottom:14px" data-i18n="export_desc">Baixe seus dados em formato CSV para usar no Excel, Google Sheets, etc.</p>
+<button onclick="expCSV('products')" style="padding:10px 20px;background:#cc0000;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px" data-i18n="export_products">Exportar Produtos (CSV)</button>
+<button onclick="expCSV('receipts')" style="padding:10px 20px;background:#cc0000;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px" data-i18n="export_receipts">Exportar Recibos (CSV)</button>
+<button onclick="expCSV('prices')" style="padding:10px 20px;background:#cc0000;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px" data-i18n="export_prices">Exportar Histórico Preços (CSV)</button>
+<button onclick="expJSON()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px" data-i18n="export_all">Exportar Tudo (JSON)</button>
 </div>
 <div class="sec"><h2 data-i18n="quick_stats">Estatísticas Rápidas</h2>
 <div id="quickStats" style="font-size:12px;line-height:1.8"></div></div>
@@ -355,11 +355,11 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <!-- UPLOAD -->
 <div class="tc" id="t-up">
 <div class="sec"><h2 data-i18n="upload_ebons">Upload de Novos eBons</h2>
-<p style="font-size:12px;color:#888;margin-bottom:14px">Coloque os novos PDFs na pasta <code>pdfs/</code> e rode os comandos abaixo. O parser detecta automaticamente duplicatas pelo nome do arquivo.</p>
-<div class="ua" id="uA"><div style="font-size:36px;color:#ccc;margin-bottom:6px">&#128196;</div><div style="font-size:13px;color:#888">Arraste PDFs ou clique</div><input type="file" id="fI" multiple accept=".pdf"></div>
+<p style="font-size:12px;color:#888;margin-bottom:14px" data-i18n="upload_desc">Coloque os novos PDFs na pasta pdfs/ e rode os comandos abaixo. O parser detecta automaticamente duplicatas pelo nome do arquivo.</p>
+<div class="ua" id="uA"><div style="font-size:36px;color:#ccc;margin-bottom:6px">&#128196;</div><div style="font-size:13px;color:#888" data-i18n="upload_drop">Arraste PDFs ou clique</div><input type="file" id="fI" multiple accept=".pdf"></div>
 <div id="uS" style="margin-top:10px;font-size:12px"></div>
 <div style="margin-top:14px;background:#f8f8f8;padding:12px;border-radius:8px;font-size:12px">
-<strong>Comandos:</strong><br>
+<strong data-i18n="upload_commands">Comandos</strong>:<br>
 <code style="background:#fff;padding:2px 6px;border-radius:4px">python3 rewe_parser.py && python3 build_report.py</code>
 </div></div>
 </div>
@@ -399,6 +399,25 @@ stable:'Estáveis',increased:'Subiram',decreased:'Caíram',distribution:'Distrib
 shopping_cart:'Carrinho de Mercado',your_cart:'Seu Carrinho',copy:'Copiar',clear:'Limpar',copy_text:'Copiar texto',items:'itens',cart_empty:'Carrinho vazio. Busque produtos acima.',restock_suggestions:'Sugestões de Recompra',restock_desc:'Produtos recorrentes. Vermelho = atrasado, amarelo = em breve. Clique para adicionar.',
 overdue:'atrasado',soon:'em breve',on_track:'em dia',every:'a cada',days:'d',times_bought:'x comprado',
 receipt_timeline:'Timeline de Recibos',analysis_report:'Relatório de Análise',
+tab_kpis:'KPIs',tab_upload:'Upload',
+tip_forecast:'Projeção anual com base no ritmo atual',tip_frequency:'Intervalo médio entre compras',
+per_day:'/dia',your_basket_base:'sua cesta base',avg_ticket:'ticket médio',avg_amount:'média',
+th_product:'Produto',th_cat:'Cat.',th_purchases:'Compras',th_freq:'Freq.',th_total:'Total',th_price:'Preço',th_min:'Min',th_max:'Max',th_var:'Var.',th_trend:'T.',
+th_q6_avg:'Q6 Média',th_q6_count:'Q6 #',th_s6_avg:'S6 Média',th_s6_count:'S6 #',th_diff:'Dif.',th_where:'Onde',
+filter_all_stores:'Todos',filter_cheaper_q6:'Mais barato Q6',filter_cheaper_s6:'Mais barato S6',filter_exclusive_q6:'Exclusivo Q6',filter_exclusive_s6:'Exclusivo S6',filter_both_stores:'Ambas filiais',
+kpi_increased:'Subiram',kpi_stable:'Estáveis',kpi_decreased:'Caíram',
+last_purchase_desc:'Produtos que mudaram de preço na última compra vs compra anterior.',
+volatile_desc:'Maior diferença entre preço mínimo e máximo.',
+discovery_desc:'Quantos produtos novos você experimentou a cada mês.',
+cart_search_desc:'Digite em português, alemão ou inglês. Produtos do seu histórico têm prioridade.',
+cart_search_placeholder:'Ex: manteiga, butter, Butter, chicken, queijo...',
+search_rewe:'Buscar',search_rewe_ext:'na loja',searching_at_rewe:'Buscando no REWE...',open_rewe_search:'Abrir busca no site da REWE',
+add_manually_title:'Adicionar manualmente',no_image_price:'Sem imagem ou preço',
+not_in_history_msg:'Este produto não está no seu histórico. Deseja adicionar ao carrinho?',yes_add_btn:'Sim, adicionar',no_btn:'Não',
+export_desc:'Baixe seus dados em formato CSV para usar no Excel, Google Sheets, etc.',
+upload_desc:'Coloque os novos PDFs na pasta pdfs/ e rode os comandos abaixo. O parser detecta automaticamente duplicatas pelo nome do arquivo.',
+upload_drop:'Arraste PDFs ou clique',upload_commands:'Comandos',upload_selected:'PDFs selecionados. Copie para pdfs/ e rode:',upload_none:'Nenhum PDF.',
+change_qr:'Trocar QR',
 personal_inflation:'Inflação Pessoal',official_inflation:'Inflação Oficial',last_3_purchases:'Últimas 3 Compras',vs_avg:'vs Média Geral',
 inflation_vs:'Inflação: Sua Cesta vs Oficial',rising_prices:'Preços em Alta',falling_prices:'Preços em Queda',reconsider_products:'Produtos para Reconsiderar',cat_trends:'Tendência por Categoria',
 basket_index:'Índice da Cesta Base',monthly_cat_evolution:'Evolução Mensal por Categoria',
@@ -437,6 +456,25 @@ stable:'Stable',increased:'Increased',decreased:'Decreased',distribution:'Distri
 shopping_cart:'Shopping Cart',your_cart:'Your Cart',copy:'Copy',clear:'Clear',copy_text:'Copy text',items:'items',cart_empty:'Cart is empty. Search for products above.',restock_suggestions:'Restock Suggestions',restock_desc:'Recurring products. Red = overdue, yellow = coming up. Click to add to cart.',
 overdue:'overdue',soon:'soon',on_track:'on track',every:'every',days:'d',times_bought:'x bought',
 receipt_timeline:'Receipt Timeline',analysis_report:'Analysis Report',
+tab_kpis:'KPIs',tab_upload:'Upload',
+tip_forecast:'Annual projection based on current pace',tip_frequency:'Average gap between purchases',
+per_day:'/day',your_basket_base:'your basket',avg_ticket:'avg. receipt',avg_amount:'average',
+th_product:'Product',th_cat:'Cat.',th_purchases:'Purchases',th_freq:'Freq.',th_total:'Total',th_price:'Price',th_min:'Min',th_max:'Max',th_var:'Var.',th_trend:'T.',
+th_q6_avg:'Q6 Avg',th_q6_count:'Q6 #',th_s6_avg:'S6 Avg',th_s6_count:'S6 #',th_diff:'Diff.',th_where:'Where',
+filter_all_stores:'All',filter_cheaper_q6:'Cheaper at Q6',filter_cheaper_s6:'Cheaper at S6',filter_exclusive_q6:'Exclusive Q6',filter_exclusive_s6:'Exclusive S6',filter_both_stores:'Both stores',
+kpi_increased:'Increased',kpi_stable:'Stable',kpi_decreased:'Decreased',
+last_purchase_desc:'Products with price changes in the last purchase vs previous.',
+volatile_desc:'Biggest difference between min and max price.',
+discovery_desc:'How many new products you tried each month.',
+cart_search_desc:'Type in Portuguese, German or English. Products from your history are prioritized.',
+cart_search_placeholder:'e.g. butter, Butter, chicken, cheese...',
+search_rewe:'Search',search_rewe_ext:'in store',searching_at_rewe:'Searching REWE...',open_rewe_search:'Open search on REWE website',
+add_manually_title:'Add manually',no_image_price:'No image or price',
+not_in_history_msg:'This product is not in your history. Add to cart?',yes_add_btn:'Yes, add',no_btn:'No',
+export_desc:'Download your data as CSV for Excel, Google Sheets, etc.',
+upload_desc:'Place the new PDFs in the pdfs/ folder and run the commands below. The parser automatically detects duplicates.',
+upload_drop:'Drop PDFs or click',upload_commands:'Commands',upload_selected:'PDFs selected. Copy to pdfs/ and run:',upload_none:'No PDF.',
+change_qr:'Change QR',
 personal_inflation:'Personal Inflation',official_inflation:'Official Inflation',last_3_purchases:'Last 3 Purchases',vs_avg:'vs Overall Avg',
 inflation_vs:'Inflation: Your Basket vs Official',rising_prices:'Rising Prices',falling_prices:'Falling Prices',reconsider_products:'Products to Reconsider',cat_trends:'Category Trends',
 basket_index:'Basket Index',monthly_cat_evolution:'Monthly Category Trends',
@@ -475,6 +513,25 @@ stable:'Stabil',increased:'Gestiegen',decreased:'Gesunken',distribution:'Verteil
 shopping_cart:'Einkaufswagen',your_cart:'Dein Einkaufswagen',copy:'Kopieren',clear:'Leeren',copy_text:'Text kopieren',items:'Artikel',cart_empty:'Einkaufswagen leer. Suche Produkte oben.',restock_suggestions:'Nachkauf-Vorschläge',restock_desc:'Wiederkehrende Produkte. Rot = überfällig, gelb = bald fällig. Klicken zum Hinzufügen.',
 overdue:'überfällig',soon:'bald',on_track:'aktuell',every:'alle',days:'T',times_bought:'x gekauft',
 receipt_timeline:'Kassenbon-Verlauf',analysis_report:'Analysebericht',
+tab_kpis:'KPIs',tab_upload:'Upload',
+tip_forecast:'Jahresprognose basierend auf dem aktuellen Tempo',tip_frequency:'Durchschnittlicher Abstand zwischen Einkäufen',
+per_day:'/Tag',your_basket_base:'dein Warenkorb',avg_ticket:'Ø Bon',avg_amount:'Durchschnitt',
+th_product:'Produkt',th_cat:'Kat.',th_purchases:'Einkäufe',th_freq:'Freq.',th_total:'Gesamt',th_price:'Preis',th_min:'Min',th_max:'Max',th_var:'Var.',th_trend:'T.',
+th_q6_avg:'Q6 Ø',th_q6_count:'Q6 #',th_s6_avg:'S6 Ø',th_s6_count:'S6 #',th_diff:'Diff.',th_where:'Wo',
+filter_all_stores:'Alle',filter_cheaper_q6:'Günstiger Q6',filter_cheaper_s6:'Günstiger S6',filter_exclusive_q6:'Exklusiv Q6',filter_exclusive_s6:'Exklusiv S6',filter_both_stores:'Beide Filialen',
+kpi_increased:'Gestiegen',kpi_stable:'Stabil',kpi_decreased:'Gesunken',
+last_purchase_desc:'Produkte mit Preisänderung beim letzten Einkauf.',
+volatile_desc:'Größter Unterschied zwischen Min- und Max-Preis.',
+discovery_desc:'Wie viele neue Produkte du pro Monat entdeckt hast.',
+cart_search_desc:'Auf Portugiesisch, Deutsch oder Englisch eingeben. Produkte aus deinem Verlauf werden bevorzugt.',
+cart_search_placeholder:'z.B. Butter, Milch, Hähnchen, Käse...',
+search_rewe:'Suchen',search_rewe_ext:'im Laden',searching_at_rewe:'Suche bei REWE...',open_rewe_search:'Suche auf REWE-Website öffnen',
+add_manually_title:'Manuell hinzufügen',no_image_price:'Kein Bild oder Preis',
+not_in_history_msg:'Dieses Produkt ist nicht in deinem Verlauf. Zum Warenkorb hinzufügen?',yes_add_btn:'Ja, hinzufügen',no_btn:'Nein',
+export_desc:'Lade deine Daten als CSV für Excel, Google Sheets, etc. herunter.',
+upload_desc:'Lege die neuen PDFs im Ordner pdfs/ ab und führe die Befehle unten aus. Der Parser erkennt Duplikate automatisch.',
+upload_drop:'PDFs hierher ziehen oder klicken',upload_commands:'Befehle',upload_selected:'PDFs ausgewählt. Kopiere nach pdfs/ und führe aus:',upload_none:'Keine PDF.',
+change_qr:'QR ändern',
 personal_inflation:'Persönliche Inflation',official_inflation:'Offizielle Inflation',last_3_purchases:'Letzte 3 Einkäufe',vs_avg:'vs Gesamtdurchschnitt',
 inflation_vs:'Inflation: Dein Warenkorb vs Offiziell',rising_prices:'Steigende Preise',falling_prices:'Sinkende Preise',reconsider_products:'Produkte zum Überdenken',cat_trends:'Kategorie-Trends',
 basket_index:'Warenkorb-Index',monthly_cat_evolution:'Monatliche Kategorieentwicklung',
@@ -507,6 +564,7 @@ curLang=lang;localStorage.setItem('rLang',lang);
 document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.textContent.trim().toLowerCase()===lang)});
 document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');const v=t(k);if(v)el.textContent=v});
 document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const k=el.getAttribute('data-i18n-placeholder');el.placeholder=t(k)});
+document.querySelectorAll('[data-tip-i18n]').forEach(el=>{const k=el.getAttribute('data-tip-i18n');el.setAttribute('data-tip',t(k))});
 // Re-render dynamic content
 if(typeof renderCart==='function')renderCart();
 if(typeof updBudget==='function')updBudget();
@@ -671,7 +729,7 @@ const tags=(p.tg||[]).filter(t=>t.includes(ql)).slice(0,3).map(t=>`<span class="
 (p.tg||[]).filter(t=>!t.includes(ql)).slice(0,2).map(t=>`<span class="atg">${t}</span>`).join('');
 return`<div class="aci" onclick="addToCart('${p.n.replace(/'/g,"\\'")}')">${im}<div class="aif"><div class="anm">${p.n}</div><div class="adc">${dc}</div><div class="afq">${p.tb}x ${t('times_bought_lbl')} &middot; ${tc(p.cat)} ${tags?'&middot; '+tags:''}</div></div><div class="apr">\u20ac${p.lp.toFixed(2)}${u}</div></div>`}).join('');
 if(q.length>=2){
-html+=`<div class="aapi" onclick="searchRewe('${q.replace(/'/g,"\\'")}')" title="Buscar na REWE"><span class="rewe">REWE</span> <span class="ext">Buscar "${q}" na loja \u2192</span></div>`;
+html+=`<div class="aapi" onclick="searchRewe('${q.replace(/'/g,"\\'")}')" title="${t('search_rewe')}"><span class="rewe">REWE</span> <span class="ext">${t('search_rewe')} "${q}" ${t('search_rewe_ext')} \u2192</span></div>`;
 }
 acDd.innerHTML=html;acDd.classList.add('show')}
 
@@ -715,7 +773,7 @@ saveCart()}
 
 async function searchRewe(q){
 const cf=document.getElementById('acCf');
-acDd.innerHTML='<div class="srld">Buscando no REWE...</div>';
+acDd.innerHTML=`<div class="srld">${t('searching_at_rewe')}</div>`;
 try{
 const resp=await fetch(`https://www.rewe.de/shop/api/products?search=${encodeURIComponent(q)}&page=1&objectsPerPage=5`,{
 headers:{'User-Agent':'Mozilla/5.0','Accept':'application/json'}
@@ -740,15 +798,15 @@ acDd.classList.add('show');
 }else throw new Error('empty');
 }catch(e){
 // CORS or error - fallback to opening REWE website
-acDd.innerHTML=`<div class="aapi" onclick="window.open('https://shop.rewe.de/productList?search=${encodeURIComponent(q)}','_blank')"><span class="rewe">REWE</span> <span class="ext">Abrir busca no site da REWE \u2192</span></div>
-<div class="aci" onclick="addToCart('${q.replace(/'/g,"\\'")}')" style="border-top:1px solid #eee"><div class="ani">+</div><div class="aif"><div class="anm">Adicionar "${q}" manualmente</div><div class="adc">Sem imagem ou preço</div></div></div>`;
+acDd.innerHTML=`<div class="aapi" onclick="window.open('https://shop.rewe.de/productList?search=${encodeURIComponent(q)}','_blank')"><span class="rewe">REWE</span> <span class="ext">${t('open_rewe_search')} \u2192</span></div>
+<div class="aci" onclick="addToCart('${q.replace(/'/g,"\\'")}')" style="border-top:1px solid #eee"><div class="ani">+</div><div class="aif"><div class="anm">${t('add_manually_title')} "${q}"</div><div class="adc">${t('no_image_price')}</div></div></div>`;
 acDd.classList.add('show');
 }}
 
 function confirmApi(el){
 const nm=el.dataset.name,img=el.dataset.img,pr=parseFloat(el.dataset.price)||0;
 const cf=document.getElementById('acCf');
-cf.innerHTML=`${img?`<img src="${img}">`:''}<div class="ccif"><div class="ccnm">${nm}</div><div class="ccdsc">Este produto não está no seu histórico. Deseja adicionar ao carrinho?</div></div><button class="ccyes" onclick="doAddApi('${nm.replace(/'/g,"\\'")}','${img}')">Sim, adicionar</button><button class="ccno" onclick="this.parentElement.classList.remove('show')">Não</button>`;
+cf.innerHTML=`${img?`<img src="${img}">`:''}<div class="ccif"><div class="ccnm">${nm}</div><div class="ccdsc">${t('not_in_history_msg')}</div></div><button class="ccyes" onclick="doAddApi('${nm.replace(/'/g,"\\'")}','${img}')">${t('yes_add_btn')}</button><button class="ccno" onclick="this.parentElement.classList.remove('show')">${t('no_btn')}</button>`;
 cf.classList.add('show');acDd.classList.remove('show')}
 
 function doAddApi(nm,img){
@@ -992,7 +1050,7 @@ ua.ondragover=e=>{e.preventDefault();ua.classList.add('dg')};ua.ondragleave=()=>
 ua.ondrop=e=>{e.preventDefault();ua.classList.remove('dg');hF(e.dataTransfer.files)};
 fi.onchange=e=>hF(e.target.files);
 function hF(files){const pdfs=Array.from(files).filter(f=>f.name.endsWith('.pdf'));
-document.getElementById('uS').innerHTML=pdfs.length?`<strong>${pdfs.length}</strong> PDFs selecionados. Copie para <code>pdfs/</code> e rode:<br><code>python3 rewe_parser.py && python3 build_report.py</code>`:`<span style="color:#d32f2f">Nenhum PDF.</span>`}
+document.getElementById('uS').innerHTML=pdfs.length?`<strong>${pdfs.length}</strong> ${t('upload_selected')}<br><code>python3 rewe_parser.py && python3 build_report.py</code>`:`<span style="color:#d32f2f">${t('upload_none')}</span>`}
 
 // Most bought product image
 if(tS[0]&&tS[0].iu){const mbi=document.getElementById('mostBoughtImg');if(mbi){mbi.src=tS[0].iu;mbi.style.display='block'}}
@@ -1005,7 +1063,7 @@ const saved=localStorage.getItem('rQR');
 if(saved){
 qc.innerHTML='';qc.style.background='#fff';
 const img=document.createElement('img');img.src=saved;img.style.width='100%';img.style.borderRadius='8px';qc.appendChild(img);
-ul.style.display='inline-block';ul.querySelector('span').textContent=curLang==='de'?'QR ändern':curLang==='en'?'Change QR':'Trocar QR';
+ul.style.display='inline-block';ul.querySelector('span').textContent=t('change_qr');
 return}
 const img=new Image();
 img.onload=()=>{qc.innerHTML='';qc.style.background='#fff';img.style.width='100%';img.style.borderRadius='8px';qc.appendChild(img);
