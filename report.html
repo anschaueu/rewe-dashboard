@@ -374,7 +374,11 @@ body{padding-bottom:80px}
 <button class="qr-close" onclick="document.getElementById('qrModal').classList.remove('show')">&times;</button>
 <h3>REWE Bonus</h3>
 <p data-i18n="qr_scan">Escaneie no caixa para acumular pontos</p>
-<div id="qrContent" style="width:220px;height:220px;margin:0 auto;background:#f5f5f5;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#999;font-size:12px">QR Code</div>
+<div id="qrContent" style="width:260px;max-width:90%;margin:0 auto;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#999;font-size:12px;flex-direction:column;gap:8px">QR Code</div>
+<label id="qrUploadLabel" style="display:none;margin-top:12px;padding:8px 16px;background:#f5f5f5;border-radius:8px;cursor:pointer;font-size:11px;color:#666">
+&#128247; <span data-i18n="qr_upload">Carregar QR Code</span>
+<input type="file" accept="image/*" id="qrUpload" style="display:none" onchange="saveQrImage(this)">
+</label>
 </div>
 </div>
 
@@ -868,17 +872,33 @@ document.getElementById('uS').innerHTML=pdfs.length?`<strong>${pdfs.length}</str
 // Most bought product image
 if(tS[0]&&tS[0].iu){const mbi=document.getElementById('mostBoughtImg');if(mbi){mbi.src=tS[0].iu;mbi.style.display='block'}}
 
-// QR Code - generate inline using embedded QR library
-(()=>{const qc=document.getElementById('qrContent');
-// Minimal QR code generator (numeric/alphanumeric)
-// Try loading external image first, fallback to a visible placeholder card
+// QR Code - load from localStorage, file, or show upload
+function loadQr(){
+const qc=document.getElementById('qrContent');
+const ul=document.getElementById('qrUploadLabel');
+const saved=localStorage.getItem('rQR');
+if(saved){
+qc.innerHTML='';qc.style.background='#fff';
+const img=document.createElement('img');img.src=saved;img.style.width='100%';img.style.borderRadius='8px';qc.appendChild(img);
+ul.style.display='inline-block';ul.querySelector('span').textContent=curLang==='de'?'QR ändern':curLang==='en'?'Change QR':'Trocar QR';
+return}
 const img=new Image();
-img.onload=()=>{qc.innerHTML='';qc.style.background='#fff';img.style.width='200px';img.style.height='200px';img.style.borderRadius='8px';qc.appendChild(img)};
+img.onload=()=>{qc.innerHTML='';qc.style.background='#fff';img.style.width='100%';img.style.borderRadius='8px';qc.appendChild(img);
+// Convert to base64 and save
+const c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;c.getContext('2d').drawImage(img,0,0);
+try{localStorage.setItem('rQR',c.toDataURL('image/png'))}catch(e){}
+ul.style.display='inline-block'};
 img.onerror=()=>{
-// Generate a stylized REWE Bonus card as placeholder
-qc.style.background='linear-gradient(135deg,#cc0000,#990000)';qc.style.color='#fff';qc.style.flexDirection='column';qc.style.gap='8px';qc.style.padding='20px';
-qc.innerHTML='<div style="font-size:28px;font-weight:800;letter-spacing:-1px">REWE</div><div style="font-size:11px;opacity:.8;letter-spacing:2px">BONUS CARD</div><svg viewBox="0 0 120 120" width="100" height="100" style="margin:4px auto"><rect width="120" height="120" rx="6" fill="white"/><rect x="10" y="10" width="30" height="30" rx="3" fill="#cc0000"/><rect x="80" y="10" width="30" height="30" rx="3" fill="#cc0000"/><rect x="10" y="80" width="30" height="30" rx="3" fill="#cc0000"/><rect x="15" y="15" width="20" height="20" rx="2" fill="white"/><rect x="85" y="15" width="20" height="20" rx="2" fill="white"/><rect x="15" y="85" width="20" height="20" rx="2" fill="white"/><rect x="20" y="20" width="10" height="10" fill="#cc0000"/><rect x="90" y="20" width="10" height="10" fill="#cc0000"/><rect x="20" y="90" width="10" height="10" fill="#cc0000"/><rect x="50" y="10" width="5" height="5" fill="#cc0000"/><rect x="60" y="10" width="5" height="5" fill="#cc0000"/><rect x="50" y="20" width="5" height="5" fill="#cc0000"/><rect x="55" y="25" width="5" height="5" fill="#cc0000"/><rect x="65" y="20" width="5" height="5" fill="#cc0000"/><rect x="50" y="50" width="5" height="5" fill="#cc0000"/><rect x="55" y="55" width="5" height="5" fill="#cc0000"/><rect x="60" y="60" width="5" height="5" fill="#cc0000"/><rect x="65" y="50" width="5" height="5" fill="#cc0000"/><rect x="50" y="65" width="5" height="5" fill="#cc0000"/><rect x="80" y="50" width="5" height="5" fill="#cc0000"/><rect x="90" y="55" width="5" height="5" fill="#cc0000"/><rect x="85" y="65" width="5" height="5" fill="#cc0000"/><rect x="100" y="60" width="5" height="5" fill="#cc0000"/><rect x="80" y="80" width="5" height="5" fill="#cc0000"/><rect x="90" y="85" width="5" height="5" fill="#cc0000"/><rect x="85" y="95" width="5" height="5" fill="#cc0000"/><rect x="95" y="90" width="5" height="5" fill="#cc0000"/><rect x="105" y="80" width="5" height="5" fill="#cc0000"/><rect x="100" y="100" width="10" height="10" fill="#cc0000"/></svg><div style="font-size:9px;opacity:.7">Coloque rewe_bonus_qr.png na raiz do site</div>'};
-img.src='rewe_bonus_qr.png'})();
+qc.style.background='#f9f9f9';qc.style.padding='24px';qc.style.minHeight='200px';
+qc.innerHTML='<svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#ccc" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="3" height="3"/><line x1="21" y1="14" x2="21" y2="17"/><line x1="17" y1="21" x2="21" y2="21"/></svg><div style="font-size:12px;color:#999;margin-top:4px">'+(curLang==='de'?'Lade deinen REWE Bonus QR Code hoch':curLang==='en'?'Upload your REWE Bonus QR code':'Carregue seu QR Code do REWE Bonus')+'</div>';
+ul.style.display='inline-block'};
+img.src='rewe_bonus_qr.png'}
+function saveQrImage(input){
+if(!input.files||!input.files[0])return;
+const reader=new FileReader();
+reader.onload=e=>{localStorage.setItem('rQR',e.target.result);loadQr()};
+reader.readAsDataURL(input.files[0])}
+loadQr();
 
 // Init language on load
 setLang(curLang);
