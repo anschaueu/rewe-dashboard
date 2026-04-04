@@ -1,0 +1,50 @@
+plugins = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "/Users/gustavoanschau/Documents/Claude/Rewe/wix-hosting"
+publishOrigin = "default"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Frame-Options = "SAMEORIGIN"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Cache-Control = "no-cache"
+
+[[headers]]
+for = "/report.html"
+
+[headers.values]
+Cache-Control = "no-store"
+
+[[redirects]]
+from = "/"
+to = "/login.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

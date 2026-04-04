@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>REWE Dashboard - Login</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -44,7 +45,7 @@ input[type=password]:focus{border-color:#ff6b6b}
 // Default password hash: "rewe2024" -> change this to your preferred password
 // To generate a new hash, run in browser console:
 // crypto.subtle.digest('SHA-256', new TextEncoder().encode('YOUR_PASSWORD')).then(h=>console.log([...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('')))
-const HASH = 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'; // "123"
+const HASH = '47798d12ae31ce5a6d9c9dddec7bc9f2a27fffa424b7f2a154fa0e26690972de'; // "billy"
 
 async function sha256(str) {
     const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
