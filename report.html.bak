@@ -2,18 +2,9 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<meta name="googlebot" content="noindex, nofollow">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="REWE">
-<meta name="theme-color" content="#cc0000">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23cc0000'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Arial,sans-serif' font-weight='900' font-size='40' fill='white'%3ER%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23cc0000'/%3E%3Ctext x='90' y='128' text-anchor='middle' font-family='Arial,sans-serif' font-weight='900' font-size='110' fill='white'%3ER%3C/text%3E%3C/svg%3E">
-<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22REWE%20Dashboard%22%2C%22short_name%22%3A%22REWE%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f5f5f5%22%2C%22theme_color%22%3A%22%23cc0000%22%7D">
 <title>REWE eBon Dashboard</title>
-<script>if(!document.cookie.split(';').some(c=>c.trim().startsWith('rAuth=')))window.location.href='login.html';</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -105,32 +96,13 @@ tr:hover{background:#fff5f5;cursor:pointer}tr.sel{background:#ffe0e0}
 .cconf button{padding:6px 12px;border-radius:6px;border:none;cursor:pointer;font-size:11px;font-weight:600;margin-left:4px}.cconf .ccyes{background:#cc0000;color:#fff}.cconf .ccno{background:#eee;color:#666}
 .aapi{padding:10px 12px;text-align:center;cursor:pointer;font-size:12px;font-weight:600;border-top:1px solid #eee;display:flex;align-items:center;justify-content:center;gap:6px}.aapi:hover{background:#f5f5f5}.aapi .rewe{color:#cc0000}.aapi .ext{color:#2196f3}
 .srld{text-align:center;padding:8px;font-size:11px;color:#888}
-/* Language toggle */
-.lang-toggle{display:flex;gap:2px;margin-left:auto}
-.lang-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;transition:all .15s;letter-spacing:.3px}
-.lang-btn:hover{background:rgba(255,255,255,.25);color:#fff}
-.lang-btn.active{background:#fff;color:#cc0000;border-color:#fff}
-.hdr-top{display:flex;align-items:center;gap:12px}
-.hdr-top h1{flex:1}
-/* QR FAB */
-.qr-fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#cc0000;color:#fff;border:none;box-shadow:0 4px 16px rgba(204,0,0,.4);cursor:pointer;z-index:999;display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform .2s,box-shadow .2s}
-.qr-fab:hover{transform:scale(1.08);box-shadow:0 6px 20px rgba(204,0,0,.5)}
-.qr-fab:active{transform:scale(.95)}
-.qr-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
-.qr-modal.show{display:flex}
-.qr-modal-inner{background:#fff;border-radius:16px;padding:28px;text-align:center;max-width:320px;width:90%;position:relative;animation:fadeIn .3s ease}
-.qr-modal-inner h3{font-size:16px;color:#cc0000;margin-bottom:4px}
-.qr-modal-inner p{font-size:11px;color:#888;margin-bottom:16px}
-.qr-modal-inner img,.qr-modal-inner svg{width:220px;height:220px;margin:0 auto;display:block}
-.qr-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:22px;color:#999;cursor:pointer;padding:4px}
-.qr-close:hover{color:#333}
+/* Dark mode disabled for now */
 /* Print */
 @media print{.tabs,.ctrl,button,.ua,.pg,.acw,.actg,.cconf,#syncSt{display:none!important}.tc{display:block!important;page-break-inside:avoid}.hdr{background:#cc0000!important;-webkit-print-color-adjust:exact}body{font-size:11px}}
-/* Responsive - Mobile First */
-body{padding-bottom:80px}
+/* Responsive */
 @media(max-width:900px){.g2{grid-template-columns:1fr}.cards{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.ctn{padding:6px}.sec{padding:12px}.tab{padding:10px 12px;font-size:10px;min-height:44px;display:flex;align-items:center}.cd .vl{font-size:16px}.cd .lb{font-size:9px}.pd.vis{flex-direction:column}.cards{grid-template-columns:repeat(2,1fr)}table{font-size:9px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}th,td{padding:5px 4px;white-space:nowrap}.pc img,.pc .ni{width:22px;height:22px}.cb{height:220px}.cbs{height:200px}.g2{gap:8px}.hdr h1{font-size:16px}.hdr .sub{font-size:10px}.sl li{padding:8px 6px;gap:6px;min-height:44px}.sl img{width:28px;height:28px}.ctit{padding:10px 8px;gap:8px}.ctit img{width:36px;height:36px}.ctit .cqt button{width:32px;height:32px;font-size:16px}.ctit input[type=checkbox]{width:22px!important;height:22px!important}.aci{padding:10px 12px;gap:8px;min-height:44px}.aci img{width:36px;height:36px}.tabs{gap:0;position:relative}.tabs::after{content:'';position:absolute;right:0;top:0;bottom:0;width:24px;background:linear-gradient(90deg,transparent,#fff);pointer-events:none}.acdd{max-height:280px}.hdr-top{flex-wrap:wrap}.lang-toggle{margin-top:4px}.qr-fab{bottom:16px;right:16px;width:50px;height:50px;font-size:20px}}
-@media(max-width:380px){.cards{grid-template-columns:1fr}.cd{padding:10px}.cd .vl{font-size:14px}.tab{padding:8px 10px;font-size:9px}}
+@media(max-width:600px){.ctn{padding:6px}.sec{padding:10px}.tab{padding:8px 10px;font-size:10px}.cd .vl{font-size:16px}.cd .lb{font-size:9px}.pd.vis{flex-direction:column}.cards{grid-template-columns:repeat(2,1fr)}table{font-size:9px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}th,td{padding:5px 4px;white-space:nowrap}.pc img,.pc .ni{width:22px;height:22px}.cb{height:220px}.cbs{height:200px}.g2{gap:8px}.hdr h1{font-size:16px}.hdr .sub{font-size:10px}.sl li{padding:6px 4px;gap:6px}.sl img{width:28px;height:28px}.ctit{padding:8px;gap:6px}.ctit img{width:32px;height:32px}.aci{padding:8px 10px;gap:8px}.aci img{width:32px;height:32px}.tabs{gap:0}.acdd{max-height:280px}}
+@media(max-width:380px){.cards{grid-template-columns:1fr 1fr}.cd{padding:10px}.cd .vl{font-size:14px}.tab{padding:6px 8px;font-size:9px}}
 /* Animations */
 .tc{animation:fadeIn .3s ease}.cd{transition:transform .2s}.cd:hover{transform:translateY(-2px)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -145,60 +117,59 @@ body{padding-bottom:80px}
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 </head>
 <body>
-<div class="hdr"><div class="hdr-top"><h1>REWE eBon Dashboard</h1><div class="lang-toggle"><button class="lang-btn active" onclick="setLang('pt')">PT</button><button class="lang-btn" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('de')">DE</button></div></div>
-<div class="sub"><span data-i18n="header_sub">01.07.2024 - 04.04.2026 &middot; 165 compras &middot; 712 produtos &middot; 21 meses</span></div></div>
+<div class="hdr"><h1>REWE eBon Dashboard</h1>
+<div class="sub">01.07.2024 - 04.04.2026 &middot; 165 compras &middot; 712 produtos &middot; 21 meses</div></div>
 <div class="ctn">
 <div class="tabs">
-<div class="tab on" data-t="ov" data-i18n="tab_overview">Visão Geral</div>
-<div class="tab" data-t="sh" data-i18n="tab_shopping">Lista Compras</div>
-<div class="tab" data-t="pr" data-i18n="tab_products">Produtos</div>
-<div class="tab" data-t="st" data-i18n="tab_stores">Filiais</div>
+<div class="tab on" data-t="ov">Visão Geral</div>
+<div class="tab" data-t="pr">Produtos</div>
+<div class="tab" data-t="st">Filiais</div>
 <div class="tab" data-t="kp">KPIs</div>
-<div class="tab" data-t="tl" data-i18n="tab_receipts">Recibos</div>
-<div class="tab" data-t="rp" data-i18n="tab_report">Relatório</div>
-<div class="tab" data-t="tr" data-i18n="tab_trends">Tendências</div>
-<div class="tab" data-t="bi" data-i18n="tab_basket">Cesta Base</div>
-<div class="tab" data-t="ex" data-i18n="tab_export">Exportar</div>
+<div class="tab" data-t="sh">Lista Compras</div>
+<div class="tab" data-t="tl">Recibos</div>
+<div class="tab" data-t="rp">Relatório</div>
+<div class="tab" data-t="tr">Tendências</div>
+<div class="tab" data-t="bi">Cesta Base</div>
+<div class="tab" data-t="ex">Exportar</div>
 <div class="tab" data-t="up">Upload</div>
 </div>
 
 <!-- OVERVIEW -->
 <div class="tc on" id="t-ov">
 <div class="cards">
-<div class="cd"><div class="lb" data-i18n="total_spent">Total Gasto</div><div class="vl">&euro;8,267.97</div></div>
-<div class="cd"><div class="lb" data-i18n="monthly_avg">Média Mensal</div><div class="vl">&euro;393.71</div></div>
-<div class="cd"><div class="lb" data-i18n="avg_receipt">Ticket Médio</div><div class="vl">&euro;50.11</div></div>
-<div class="cd"><div class="lb" data-i18n="purchases">Compras</div><div class="vl">165</div><div class="dt" data-i18n="items_count">2785 itens</div></div>
-<div class="cd"><div class="lb" data-i18n="products">Produtos</div><div class="vl">712</div></div>
-<div class="cd" id="mostBoughtCard"><div class="lb" data-i18n="most_bought">Mais Comprado</div><div style="display:flex;align-items:center;gap:6px"><img id="mostBoughtImg" src="" style="width:28px;height:28px;border-radius:4px;object-fit:contain;display:none"><div class="vl sm">PROTEINPUDD. SCH</div></div><div class="dt">314x</div></div>
-<div class="cd tip" data-tip="Projeção anual com base no ritmo atual"><div class="lb" data-i18n="annual_forecast">Projeção Anual</div><div class="vl sm">&euro;4,700.64</div><div class="dt">&euro;12.88/dia</div></div>
-<div class="cd tip" data-tip="Intervalo médio entre compras"><div class="lb" data-i18n="shop_frequency">Freq. Compras</div><div class="vl sm" data-i18n="every_4d">a cada 4d</div><div class="dt" data-i18n="max_gap">max 87d sem ir</div></div>
+<div class="cd"><div class="lb">Total Gasto</div><div class="vl">&euro;8,267.97</div></div>
+<div class="cd"><div class="lb">Média Mensal</div><div class="vl">&euro;393.71</div></div>
+<div class="cd"><div class="lb">Ticket Médio</div><div class="vl">&euro;50.11</div></div>
+<div class="cd"><div class="lb">Compras</div><div class="vl">165</div><div class="dt">2785 itens</div></div>
+<div class="cd"><div class="lb">Produtos</div><div class="vl">712</div></div>
+<div class="cd"><div class="lb">Mais Comprado</div><div class="vl sm">PROTEINPUDD. SCH</div><div class="dt">314x</div></div>
+<div class="cd tip" data-tip="Projeção anual com base no ritmo atual"><div class="lb">Projeção Anual</div><div class="vl sm">&euro;4,700.64</div><div class="dt">&euro;12.88/dia</div></div>
+<div class="cd tip" data-tip="Intervalo médio entre compras"><div class="lb">Freq. Compras</div><div class="vl sm">a cada 4d</div><div class="dt">max 87d sem ir</div></div>
 </div>
 
-<div class="sec"><h2 data-i18n="monthly_budget">Orçamento Mensal</h2>
-<p style="font-size:10px;color:#888;margin-bottom:6px" data-i18n="budget_desc">Meta baseada na sua média: &euro;393.71/mês. Edite o valor abaixo.</p>
-<div class="ctrl"><label style="font-size:11px;color:#666" data-i18n="budget_label">Meta: &euro;</label><input class="sb" id="budgetIn" type="number" value="394" style="width:65px" max="9999" onchange="updBudget()">
-<select class="fl" id="budgetPeriod" onchange="updBudget()" style="font-size:11px"><option value="all" data-i18n="filter_all">Todo período</option><option value="2026" data-i18n="filter_2026">2026</option><option value="2025" data-i18n="filter_2025">2025</option><option value="6m" data-i18n="filter_6m">Últimos 6 meses</option><option value="3m" data-i18n="filter_3m">Últimos 3 meses</option></select></div>
+<div class="sec"><h2>Orçamento Mensal</h2>
+<p style="font-size:10px;color:#888;margin-bottom:6px">Meta baseada na sua média: &euro;393.71/mês. Edite o valor abaixo.</p>
+<div class="ctrl"><label style="font-size:11px;color:#666">Meta: &euro;</label><input class="sb" id="budgetIn" type="number" value="394" style="width:80px" onchange="updBudget()"></div>
 <div id="budgetBars"></div></div>
 
-<div class="sec"><h2 data-i18n="monthly_spending">Gasto Mensal</h2><div style="font-size:10px;color:#888;margin:-6px 0 8px" data-i18n="line_avg">Linha = média &euro;393.71</div><div class="cb"><canvas id="chM"></canvas></div></div>
+<div class="sec"><h2>Gasto Mensal</h2><div style="font-size:10px;color:#888;margin:-6px 0 8px">Linha = média &euro;393.71</div><div class="cb"><canvas id="chM"></canvas></div></div>
 <div class="g2">
-<div class="sec"><h2 data-i18n="categories">Categorias</h2><div class="cb cbs"><canvas id="chC"></canvas></div></div>
-<div class="sec"><h2 data-i18n="day_of_week">Dia da Semana</h2><div class="cb cbs"><canvas id="chW"></canvas></div></div>
+<div class="sec"><h2>Categorias</h2><div class="cb cbs"><canvas id="chC"></canvas></div></div>
+<div class="sec"><h2>Dia da Semana</h2><div class="cb cbs"><canvas id="chW"></canvas></div></div>
 </div>
 <div class="g2">
-<div class="sec"><h2 data-i18n="top10_spending">Top 10 Gasto</h2><ol class="tl" id="topL"></ol></div>
-<div class="sec"><h2 data-i18n="cat_ranking">Ranking Categorias</h2><div class="cb cbs"><canvas id="chCB"></canvas></div></div>
+<div class="sec"><h2>Top 10 Gasto</h2><ol class="tl" id="topL"></ol></div>
+<div class="sec"><h2>Ranking Categorias</h2><div class="cb cbs"><canvas id="chCB"></canvas></div></div>
 </div>
 </div>
 
 <!-- PRODUCTS -->
 <div class="tc" id="t-pr">
-<div class="sec"><h2 data-i18n="details">Detalhe</h2>
+<div class="sec"><h2>Detalhe</h2>
 <div class="pd" id="pDet"><img id="dI"><div class="inf"><h3 id="dN"></h3><div class="fn" id="dF"></div><div class="sts" id="dS"></div><div class="pch"><canvas id="pCh"></canvas></div></div></div>
-<div id="noS" style="color:#999;font-style:italic;padding:20px;text-align:center;font-size:12px" data-i18n="click_product">Clique em um produto abaixo</div></div>
-<div class="sec"><h2 data-i18n="tab_products">Produtos</h2>
-<div class="ctrl"><input class="sb" id="sB" data-i18n-placeholder="search" placeholder="Buscar..."><select class="fl" id="cF"><option value="" data-i18n="all_cats">Todas cat.</option></select><select class="fl" id="sfF"><option value="" data-i18n="all_stores">Todas filiais</option><option value="5626">Q6</option><option value="5526">S6</option></select></div>
+<div id="noS" style="color:#999;font-style:italic;padding:20px;text-align:center;font-size:12px">Clique em um produto abaixo</div></div>
+<div class="sec"><h2>Produtos</h2>
+<div class="ctrl"><input class="sb" id="sB" placeholder="Buscar..."><select class="fl" id="cF"><option value="">Todas cat.</option></select><select class="fl" id="sfF"><option value="">Todas filiais</option><option value="5626">Q6</option><option value="5526">S6</option></select></div>
 <div style="overflow-x:auto"><table id="pT"><thead><tr>
 <th data-s="n">Produto</th><th data-s="cat">Cat.</th><th data-s="tb">Compras</th><th data-s="af">Freq.</th>
 <th data-s="ts">Total</th><th data-s="lp">Preço</th><th data-s="mn">Min</th><th data-s="mx">Max</th>
@@ -209,15 +180,15 @@ body{padding-bottom:80px}
 <!-- STORES -->
 <div class="tc" id="t-st">
 <div class="cards" id="stC"></div>
-<div class="sec"><h2 data-i18n="q6_vs_s6">Q6 vs S6 - Resumo</h2>
+<div class="sec"><h2>Q6 vs S6 - Resumo</h2>
 <div class="cards" style="margin-bottom:0">
-<div class="cd"><div class="lb" data-i18n="common_products">Produtos em Comum</div><div class="vl">149</div></div>
-<div class="cd"><div class="lb" data-i18n="q6_cheaper">Q6 Mais Barato</div><div class="vl" style="color:#cc0000">35</div></div>
-<div class="cd"><div class="lb" data-i18n="s6_cheaper">S6 Mais Barato</div><div class="vl" style="color:#2196f3">41</div></div>
-<div class="cd"><div class="lb" data-i18n="same_price">Mesmo Preço</div><div class="vl" style="color:#666">73</div></div>
-<div class="cd"><div class="lb" data-i18n="simulated_basket">Cesta Simulada</div><div class="vl sm">-2.6%</div><div class="dt">S6 vs Q6</div></div>
+<div class="cd"><div class="lb">Produtos em Comum</div><div class="vl">149</div></div>
+<div class="cd"><div class="lb">Q6 Mais Barato</div><div class="vl" style="color:#cc0000">35</div></div>
+<div class="cd"><div class="lb">S6 Mais Barato</div><div class="vl" style="color:#2196f3">41</div></div>
+<div class="cd"><div class="lb">Mesmo Preço</div><div class="vl" style="color:#666">73</div></div>
+<div class="cd"><div class="lb">Cesta Simulada</div><div class="vl sm">-2.6%</div><div class="dt">S6 vs Q6</div></div>
 </div></div>
-<div class="sec"><h2 data-i18n="price_comparison">Comparativo Preços</h2>
+<div class="sec"><h2>Comparativo Preços</h2>
 <div class="ctrl"><input class="sb" id="scB" placeholder="Buscar..."><select class="fl" id="scF">
 <option value="">Todos</option><option value="cq">Mais barato Q6</option><option value="cs">Mais barato S6</option>
 <option value="eq">Exclusivo Q6</option><option value="es">Exclusivo S6</option><option value="bo">Ambas filiais</option></select></div>
@@ -228,28 +199,28 @@ body{padding-bottom:80px}
 <!-- KPIs -->
 <div class="tc" id="t-kp">
 <div class="cards">
-<div class="cd"><div class="lb" data-i18n="stable">Estáveis</div><div class="vl" style="color:#666">165</div></div>
-<div class="cd"><div class="lb" data-i18n="increased">Subiram</div><div class="vl" style="color:#d32f2f">75</div></div>
-<div class="cd"><div class="lb" data-i18n="decreased">Caíram</div><div class="vl" style="color:#2e7d32">57</div></div>
+<div class="cd"><div class="lb">Estáveis</div><div class="vl" style="color:#666">165</div></div>
+<div class="cd"><div class="lb">Subiram</div><div class="vl" style="color:#d32f2f">75</div></div>
+<div class="cd"><div class="lb">Caíram</div><div class="vl" style="color:#2e7d32">57</div></div>
 </div>
-<div class="sec"><h2 data-i18n="distribution">Distribuição</h2>
+<div class="sec"><h2>Distribuição</h2>
 <div class="kbar" id="kB"></div>
 <div style="display:flex;gap:12px;margin-top:6px;font-size:10px;flex-wrap:wrap"><span style="color:#d32f2f">Subiram: 75</span><span style="color:#666">Estáveis: 165</span><span style="color:#2e7d32">Caíram: 57</span></div></div>
 <div class="g2">
-<div class="sec"><h2 data-i18n="cat_variation">Variação por Categoria</h2><div class="cb cbs"><canvas id="chKC"></canvas></div></div>
-<div class="sec"><h2 data-i18n="cat_breakdown">Repartição por Categoria</h2><div class="cb cbs"><canvas id="chKP"></canvas></div></div>
+<div class="sec"><h2>Variação por Categoria</h2><div class="cb cbs"><canvas id="chKC"></canvas></div></div>
+<div class="sec"><h2>Repartição por Categoria</h2><div class="cb cbs"><canvas id="chKP"></canvas></div></div>
 </div>
 <div class="g2">
-<div class="sec"><h2 data-i18n="biggest_increases">Maiores Aumentos (+10%)</h2><ul class="al" id="pAl"></ul></div>
-<div class="sec"><h2 data-i18n="not_bought_60">Sem Comprar +60 dias</h2><ul class="al" id="iAl"></ul></div>
+<div class="sec"><h2>Maiores Aumentos (+10%)</h2><ul class="al" id="pAl"></ul></div>
+<div class="sec"><h2>Sem Comprar +60 dias</h2><ul class="al" id="iAl"></ul></div>
 </div>
-<div class="sec"><h2 data-i18n="last_purchase_alerts">Alertas da Última Compra</h2>
+<div class="sec"><h2>Alertas da Última Compra</h2>
 <p style="font-size:11px;color:#888;margin-bottom:8px">Produtos que mudaram de preço na última compra vs compra anterior.</p>
 <ul class="al" id="paLast"></ul></div>
-<div class="sec"><h2 data-i18n="volatile_products">Produtos Mais Voláteis</h2>
+<div class="sec"><h2>Produtos Mais Voláteis</h2>
 <p style="font-size:11px;color:#888;margin-bottom:8px">Maior diferença entre preço mínimo e máximo.</p>
 <ul class="al" id="volList"></ul></div>
-<div class="sec"><h2 data-i18n="product_discovery">Descoberta de Produtos</h2>
+<div class="sec"><h2>Descoberta de Produtos</h2>
 <p style="font-size:11px;color:#888;margin-bottom:8px">Quantos produtos novos você experimentou a cada mês.</p>
 <div class="cb cbs"><canvas id="chDisc"></canvas></div></div>
 </div>
@@ -257,7 +228,7 @@ body{padding-bottom:80px}
 <!-- SHOPPING LIST -->
 <div class="tc" id="t-sh">
 <div class="sec">
-<h2 data-i18n="shopping_cart">Carrinho de Mercado</h2>
+<h2>Carrinho de Mercado</h2>
 <p style="font-size:11px;color:#888;margin-bottom:10px">Digite em português, alemão ou inglês. Produtos do seu histórico têm prioridade.</p>
 <div class="acw">
 <input class="sb" id="acIn" placeholder="Ex: manteiga, butter, Butter, chicken, queijo..." autocomplete="off" style="width:100%">
@@ -267,25 +238,27 @@ body{padding-bottom:80px}
 <div class="cconf" id="acCf"></div>
 <div style="margin-top:14px">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-<h3 style="font-size:13px;color:#444" data-i18n="your_cart">Seu Carrinho</h3>
+<h3 style="font-size:13px;color:#444">Seu Carrinho</h3>
 <div style="display:flex;gap:6px">
-<button onclick="cpCart()" style="padding:5px 12px;background:#fff;color:#666;border:1px solid #ddd;border-radius:7px;cursor:pointer;font-size:11px">&#128203; <span data-i18n="copy">Copiar</span></button>
-<button onclick="clrCart()" style="padding:5px 12px;background:#fff;color:#cc0000;border:1px solid #fcc;border-radius:7px;cursor:pointer;font-size:11px">&#128465; <span data-i18n="clear">Limpar</span></button>
+<button onclick="syncNotes()" style="padding:5px 12px;background:#fff;color:#f57c00;border:1px solid #ffe0b2;border-radius:7px;cursor:pointer;font-size:11px">&#9998; Apple Notes</button>
+<button onclick="importNotes()" style="padding:5px 12px;background:#fff;color:#2196f3;border:1px solid #bbdefb;border-radius:7px;cursor:pointer;font-size:11px">&#8595; Importar Notes</button>
+<button onclick="cpCart()" style="padding:5px 12px;background:#fff;color:#666;border:1px solid #ddd;border-radius:7px;cursor:pointer;font-size:11px">Copiar</button>
+<button onclick="clrCart()" style="padding:5px 12px;background:#fff;color:#cc0000;border:1px solid #fcc;border-radius:7px;cursor:pointer;font-size:11px">Limpar</button>
 </div></div>
 <div id="cartL"></div>
-<div class="ctot" id="cartT" style="display:none"><div class="ctl"><span id="cartC">0</span> <span data-i18n="items">itens</span></div><div class="ctv" id="cartV">&euro;0.00</div></div>
+<div class="ctot" id="cartT" style="display:none"><div class="ctl"><span id="cartC">0</span> itens</div><div class="ctv" id="cartV">&euro;0.00</div></div>
 <div id="syncSt" style="display:none;padding:8px 12px;margin-top:6px;border-radius:8px;font-size:11px"></div>
 </div></div>
 
 <div class="sec">
-<h2 data-i18n="restock_suggestions">Sugestões de Recompra</h2>
-<p style="font-size:11px;color:#888;margin-bottom:10px"><span data-i18n="restock_desc">Produtos recorrentes. Vermelho = atrasado, amarelo = em breve. Clique para adicionar ao carrinho.</span></p>
+<h2>Sugestões de Recompra</h2>
+<p style="font-size:11px;color:#888;margin-bottom:10px">Produtos recorrentes. Vermelho = atrasado, amarelo = em breve. Clique para adicionar ao carrinho.</p>
 <ul class="sl" id="shL"></ul></div>
 </div>
 
 <!-- RECEIPTS TIMELINE -->
 <div class="tc" id="t-tl">
-<div class="sec"><h2 data-i18n="receipt_timeline">Timeline de Recibos</h2>
+<div class="sec"><h2>Timeline de Recibos</h2>
 <div class="ctrl"><select class="fl" id="tlSt"><option value="">Todas filiais</option><option value="5626">Q6</option><option value="5526">S6</option></select></div>
 <ul class="rl" id="rlL"></ul></div>
 </div>
@@ -294,8 +267,8 @@ body{padding-bottom:80px}
 <div class="tc" id="t-rp">
 <div class="sec" style="max-width:800px">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-<h2 data-i18n="analysis_report">Relatório de Análise</h2>
-<button onclick="cpReport()" style="padding:6px 14px;background:#fff;border:1px solid #ddd;border-radius:7px;cursor:pointer;font-size:11px;color:#666">&#128203; <span data-i18n="copy_text">Copiar texto</span></button>
+<h2>Relatório de Análise</h2>
+<button onclick="cpReport()" style="padding:6px 14px;background:#fff;border:1px solid #ddd;border-radius:7px;cursor:pointer;font-size:11px;color:#666">Copiar texto</button>
 </div>
 <div id="rpC" style="font-size:13px;line-height:1.8;color:#333"></div>
 </div></div>
@@ -303,57 +276,57 @@ body{padding-bottom:80px}
 <!-- TRENDS -->
 <div class="tc" id="t-tr">
 <div class="cards">
-<div class="cd"><div class="lb" data-i18n="personal_inflation">Inflação Pessoal</div><div class="vl">+0.4%</div><div class="dt">sua cesta base</div></div>
-<div class="cd"><div class="lb" data-i18n="official_inflation">Inflação Oficial</div><div class="vl sm" style="color:#2196f3">+1.9%</div><div class="dt">alimentos Alemanha</div></div>
-<div class="cd"><div class="lb" data-i18n="last_3_purchases">Últimas 3 Compras</div><div class="vl sm">&euro;87.69</div><div class="dt">ticket médio</div></div>
-<div class="cd"><div class="lb" data-i18n="vs_avg">vs Média Geral</div><div class="vl sm">+75.0%</div><div class="dt">&euro;50.11 média</div></div>
+<div class="cd"><div class="lb">Inflação Pessoal</div><div class="vl">+0.4%</div><div class="dt">sua cesta base</div></div>
+<div class="cd"><div class="lb">Inflação Oficial</div><div class="vl sm" style="color:#2196f3">+1.9%</div><div class="dt">alimentos Alemanha</div></div>
+<div class="cd"><div class="lb">Últimas 3 Compras</div><div class="vl sm">&euro;87.69</div><div class="dt">ticket médio</div></div>
+<div class="cd"><div class="lb">vs Média Geral</div><div class="vl sm">+75.0%</div><div class="dt">&euro;50.11 média</div></div>
 </div>
-<div class="sec"><h2 data-i18n="inflation_vs">Inflação: Sua Cesta vs Oficial</h2>
+<div class="sec"><h2>Inflação: Sua Cesta vs Oficial</h2>
 <p style="font-size:11px;color:#888;margin-bottom:10px">Comparação da variação de preço da sua cesta base (20 produtos mais comprados) com o índice oficial de preços de alimentos na Alemanha (Destatis). Base = 100 no primeiro mês completo.</p>
 <div class="cb"><canvas id="chInf"></canvas></div></div>
 
 <div class="g2">
-<div class="sec"><h2 data-i18n="rising_prices">Preços em Alta</h2>
+<div class="sec"><h2>Preços em Alta</h2>
 <p style="font-size:11px;color:#888;margin-bottom:8px">Produtos cujo preço recente está acima da média histórica. Considere alternativas.</p>
 <ul class="al" id="trUp"></ul></div>
-<div class="sec"><h2 data-i18n="falling_prices">Preços em Queda</h2>
+<div class="sec"><h2>Preços em Queda</h2>
 <p style="font-size:11px;color:#888;margin-bottom:8px">Boas oportunidades: preço recente abaixo da média histórica.</p>
 <ul class="al" id="trDn"></ul></div>
 </div>
 
-<div class="sec"><h2 data-i18n="reconsider_products">Produtos para Reconsiderar</h2>
+<div class="sec"><h2>Produtos para Reconsiderar</h2>
 <p style="font-size:11px;color:#888;margin-bottom:8px">Alto gasto total + aumento significativo de preço. Vale buscar alternativas ou marcas diferentes.</p>
 <ul class="al" id="trRec"></ul></div>
 
-<div class="sec"><h2 data-i18n="cat_trends">Tendência por Categoria</h2>
+<div class="sec"><h2>Tendência por Categoria</h2>
 <p style="font-size:11px;color:#888;margin-bottom:8px">Variação do gasto nos últimos 3 meses vs 3 meses anteriores.</p>
 <div class="cb"><canvas id="chCT"></canvas></div></div>
 </div>
 
 <!-- BASKET INDEX -->
 <div class="tc" id="t-bi">
-<div class="sec"><h2 data-i18n="basket_index">Índice da Cesta Base</h2>
+<div class="sec"><h2>Índice da Cesta Base</h2>
 <p style="font-size:11px;color:#888;margin-bottom:10px">Custo dos seus 20 produtos mais comprados ao longo do tempo. Exibido apenas a partir do mês em que todos os 20 produtos já tinham sido comprados pelo menos uma vez, para evitar distorções.</p>
 <div class="cb"><canvas id="chBI"></canvas></div></div>
-<div class="sec"><h2 data-i18n="monthly_cat_evolution">Evolução Mensal por Categoria</h2><div class="cb"><canvas id="chCE"></canvas></div></div>
+<div class="sec"><h2>Evolução Mensal por Categoria</h2><div class="cb"><canvas id="chCE"></canvas></div></div>
 </div>
 
 <!-- EXPORT -->
 <div class="tc" id="t-ex">
-<div class="sec"><h2 data-i18n="export_data">Exportar Dados</h2>
+<div class="sec"><h2>Exportar Dados</h2>
 <p style="font-size:12px;color:#888;margin-bottom:14px">Baixe seus dados em formato CSV para usar no Excel, Google Sheets, etc.</p>
 <button onclick="expCSV('products')" style="padding:10px 20px;background:#cc0000;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px">Exportar Produtos (CSV)</button>
 <button onclick="expCSV('receipts')" style="padding:10px 20px;background:#cc0000;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px">Exportar Recibos (CSV)</button>
 <button onclick="expCSV('prices')" style="padding:10px 20px;background:#cc0000;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px">Exportar Histórico Preços (CSV)</button>
 <button onclick="expJSON()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin:4px">Exportar Tudo (JSON)</button>
 </div>
-<div class="sec"><h2 data-i18n="quick_stats">Estatísticas Rápidas</h2>
+<div class="sec"><h2>Estatísticas Rápidas</h2>
 <div id="quickStats" style="font-size:12px;line-height:1.8"></div></div>
 </div>
 
 <!-- UPLOAD -->
 <div class="tc" id="t-up">
-<div class="sec"><h2 data-i18n="upload_ebons">Upload de Novos eBons</h2>
+<div class="sec"><h2>Upload de Novos eBons</h2>
 <p style="font-size:12px;color:#888;margin-bottom:14px">Coloque os novos PDFs na pasta <code>pdfs/</code> e rode os comandos abaixo. O parser detecta automaticamente duplicatas pelo nome do arquivo.</p>
 <div class="ua" id="uA"><div style="font-size:36px;color:#ccc;margin-bottom:6px">&#128196;</div><div style="font-size:13px;color:#888">Arraste PDFs ou clique</div><input type="file" id="fI" multiple accept=".pdf"></div>
 <div id="uS" style="margin-top:10px;font-size:12px"></div>
@@ -364,105 +337,7 @@ body{padding-bottom:80px}
 </div>
 
 </div>
-
-<!-- QR Code FAB -->
-<button class="qr-fab" onclick="document.getElementById('qrModal').classList.add('show')" aria-label="REWE Bonus QR">
-<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="3" height="3"/><line x1="21" y1="14" x2="21" y2="17"/><line x1="17" y1="21" x2="21" y2="21"/></svg>
-</button>
-<div class="qr-modal" id="qrModal" onclick="if(event.target===this)this.classList.remove('show')">
-<div class="qr-modal-inner">
-<button class="qr-close" onclick="document.getElementById('qrModal').classList.remove('show')">&times;</button>
-<h3>REWE Bonus</h3>
-<p data-i18n="qr_scan">Escaneie no caixa para acumular pontos</p>
-<div id="qrContent" style="width:220px;height:220px;margin:0 auto;background:#f5f5f5;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#999;font-size:12px">QR Code</div>
-</div>
-</div>
-
 <script>
-// ====== i18n System ======
-const LANG={
-pt:{
-tab_overview:'Visão Geral',tab_shopping:'Lista Compras',tab_products:'Produtos',tab_stores:'Filiais',tab_receipts:'Recibos',tab_report:'Relatório',tab_trends:'Tendências',tab_basket:'Cesta Base',tab_export:'Exportar',
-header_sub:'01.07.2024 - 04.04.2026 \u00b7 165 compras \u00b7 712 produtos \u00b7 21 meses',
-total_spent:'Total Gasto',monthly_avg:'Média Mensal',avg_receipt:'Ticket Médio',purchases:'Compras',products:'Produtos',most_bought:'Mais Comprado',annual_forecast:'Projeção Anual',shop_frequency:'Freq. Compras',every_4d:'a cada 4d',max_gap:'max 87d sem ir',items_count:'2785 itens',
-monthly_budget:'Orçamento Mensal',budget_desc:'Meta baseada na sua média: \u20ac393.71/mês. Edite abaixo.',budget_label:'Meta: \u20ac',
-filter_all:'Todo período',filter_2026:'2026',filter_2025:'2025',filter_6m:'Últimos 6 meses',filter_3m:'Últimos 3 meses',
-monthly_spending:'Gasto Mensal',line_avg:'Linha = média \u20ac393.71',categories:'Categorias',day_of_week:'Dia da Semana',top10_spending:'Top 10 Gasto',cat_ranking:'Ranking Categorias',
-details:'Detalhe',click_product:'Clique em um produto abaixo',search:'Buscar...',all_cats:'Todas cat.',all_stores:'Todas filiais',
-q6_vs_s6:'Q6 vs S6 - Resumo',common_products:'Produtos em Comum',q6_cheaper:'Q6 Mais Barato',s6_cheaper:'S6 Mais Barato',same_price:'Mesmo Preço',simulated_basket:'Cesta Simulada',price_comparison:'Comparativo Preços',
-stable:'Estáveis',increased:'Subiram',decreased:'Caíram',distribution:'Distribuição',cat_variation:'Variação por Categoria',cat_breakdown:'Repartição por Categoria',biggest_increases:'Maiores Aumentos (+10%)',not_bought_60:'Sem Comprar +60 dias',last_purchase_alerts:'Alertas da Última Compra',volatile_products:'Produtos Mais Voláteis',product_discovery:'Descoberta de Produtos',
-shopping_cart:'Carrinho de Mercado',your_cart:'Seu Carrinho',copy:'Copiar',clear:'Limpar',copy_text:'Copiar texto',items:'itens',cart_empty:'Carrinho vazio. Busque produtos acima.',restock_suggestions:'Sugestões de Recompra',restock_desc:'Produtos recorrentes. Vermelho = atrasado, amarelo = em breve. Clique para adicionar.',
-overdue:'atrasado',soon:'em breve',on_track:'em dia',every:'a cada',days:'d',times_bought:'x comprado',
-receipt_timeline:'Timeline de Recibos',analysis_report:'Relatório de Análise',
-personal_inflation:'Inflação Pessoal',official_inflation:'Inflação Oficial',last_3_purchases:'Últimas 3 Compras',vs_avg:'vs Média Geral',
-inflation_vs:'Inflação: Sua Cesta vs Oficial',rising_prices:'Preços em Alta',falling_prices:'Preços em Queda',reconsider_products:'Produtos para Reconsiderar',cat_trends:'Tendência por Categoria',
-basket_index:'Índice da Cesta Base',monthly_cat_evolution:'Evolução Mensal por Categoria',
-export_data:'Exportar Dados',quick_stats:'Estatísticas Rápidas',upload_ebons:'Upload de Novos eBons',
-qr_scan:'Escaneie no caixa para acumular pontos',
-clear_cart_confirm:'Limpar carrinho?',cart_copied:'Carrinho copiado!',report_copied:'Relatório copiado!',
-synced:'Sincronizado em tempo real',searching_rewe:'Buscando no REWE...',open_rewe:'Abrir busca no site da REWE',add_manual:'Adicionar manualmente',not_in_history:'Este produto não está no seu histórico. Deseja adicionar?',yes_add:'Sim, adicionar',no_btn:'Não',
-export_products:'Exportar Produtos (CSV)',export_receipts:'Exportar Recibos (CSV)',export_prices:'Exportar Histórico Preços (CSV)',export_all:'Exportar Tudo (JSON)',
-spent:'Gasto',avg_line:'Média',visits:'Visitas',ticket:'Ticket',new_products:'Novos produtos',your_basket:'Sua Cesta',official_food:'Inflação Oficial (Alimentos DE)',basket_cost:'Custo Cesta Base',variation:'Variação %',
-},
-en:{
-tab_overview:'Overview',tab_shopping:'Shopping List',tab_products:'Products',tab_stores:'Stores',tab_receipts:'Receipts',tab_report:'Report',tab_trends:'Trends',tab_basket:'Basket Index',tab_export:'Export',
-header_sub:'07/01/2024 - 04/04/2026 \u00b7 165 purchases \u00b7 712 products \u00b7 21 months',
-total_spent:'Total Spent',monthly_avg:'Monthly Average',avg_receipt:'Avg. Receipt',purchases:'Purchases',products:'Products',most_bought:'Most Bought',annual_forecast:'Annual Forecast',shop_frequency:'Shop Frequency',every_4d:'every 4d',max_gap:'max 87d gap',items_count:'2785 items',
-monthly_budget:'Monthly Budget',budget_desc:'Target based on your average: \u20ac393.71/month. Edit below.',budget_label:'Target: \u20ac',
-filter_all:'All time',filter_2026:'2026',filter_2025:'2025',filter_6m:'Last 6 months',filter_3m:'Last 3 months',
-monthly_spending:'Monthly Spending',line_avg:'Line = avg \u20ac393.71',categories:'Categories',day_of_week:'Day of Week',top10_spending:'Top 10 Spending',cat_ranking:'Category Ranking',
-details:'Details',click_product:'Click a product below',search:'Search...',all_cats:'All categories',all_stores:'All stores',
-q6_vs_s6:'Q6 vs S6 - Summary',common_products:'Common Products',q6_cheaper:'Q6 Cheaper',s6_cheaper:'S6 Cheaper',same_price:'Same Price',simulated_basket:'Simulated Basket',price_comparison:'Price Comparison',
-stable:'Stable',increased:'Increased',decreased:'Decreased',distribution:'Distribution',cat_variation:'Variation by Category',cat_breakdown:'Breakdown by Category',biggest_increases:'Biggest Increases (+10%)',not_bought_60:'Not Bought in 60+ Days',last_purchase_alerts:'Last Purchase Alerts',volatile_products:'Most Volatile Products',product_discovery:'Product Discovery',
-shopping_cart:'Shopping Cart',your_cart:'Your Cart',copy:'Copy',clear:'Clear',copy_text:'Copy text',items:'items',cart_empty:'Cart is empty. Search for products above.',restock_suggestions:'Restock Suggestions',restock_desc:'Recurring products. Red = overdue, yellow = coming up. Click to add to cart.',
-overdue:'overdue',soon:'soon',on_track:'on track',every:'every',days:'d',times_bought:'x bought',
-receipt_timeline:'Receipt Timeline',analysis_report:'Analysis Report',
-personal_inflation:'Personal Inflation',official_inflation:'Official Inflation',last_3_purchases:'Last 3 Purchases',vs_avg:'vs Overall Avg',
-inflation_vs:'Inflation: Your Basket vs Official',rising_prices:'Rising Prices',falling_prices:'Falling Prices',reconsider_products:'Products to Reconsider',cat_trends:'Category Trends',
-basket_index:'Basket Index',monthly_cat_evolution:'Monthly Category Trends',
-export_data:'Export Data',quick_stats:'Quick Stats',upload_ebons:'Upload New eBons',
-qr_scan:'Scan at checkout to earn points',
-clear_cart_confirm:'Clear cart?',cart_copied:'Cart copied!',report_copied:'Report copied!',
-synced:'Synced in real time',searching_rewe:'Searching REWE...',open_rewe:'Open search on REWE website',add_manual:'Add manually',not_in_history:'This product is not in your history. Add to cart?',yes_add:'Yes, add',no_btn:'No',
-export_products:'Export Products (CSV)',export_receipts:'Export Receipts (CSV)',export_prices:'Export Price History (CSV)',export_all:'Export All (JSON)',
-spent:'Spent',avg_line:'Average',visits:'Visits',ticket:'Ticket',new_products:'New products',your_basket:'Your Basket',official_food:'Official Inflation (Food DE)',basket_cost:'Basket Cost',variation:'Variation %',
-},
-de:{
-tab_overview:'Übersicht',tab_shopping:'Einkaufsliste',tab_products:'Produkte',tab_stores:'Filialen',tab_receipts:'Belege',tab_report:'Bericht',tab_trends:'Trends',tab_basket:'Warenkorb-Index',tab_export:'Exportieren',
-header_sub:'01.07.2024 - 04.04.2026 \u00b7 165 Einkäufe \u00b7 712 Produkte \u00b7 21 Monate',
-total_spent:'Gesamtausgaben',monthly_avg:'Monatsdurchschnitt',avg_receipt:'Ø Einkauf',purchases:'Einkäufe',products:'Produkte',most_bought:'Meistgekauft',annual_forecast:'Jahresprognose',shop_frequency:'Einkaufsrhythmus',every_4d:'alle 4 Tage',max_gap:'max 87T Pause',items_count:'2785 Artikel',
-monthly_budget:'Monatsbudget',budget_desc:'Ziel basierend auf deinem Durchschnitt: \u20ac393.71/Monat. Anpassen:',budget_label:'Ziel: \u20ac',
-filter_all:'Gesamtzeitraum',filter_2026:'2026',filter_2025:'2025',filter_6m:'Letzte 6 Monate',filter_3m:'Letzte 3 Monate',
-monthly_spending:'Monatsausgaben',line_avg:'Linie = Ø \u20ac393.71',categories:'Kategorien',day_of_week:'Wochentag',top10_spending:'Top 10 Ausgaben',cat_ranking:'Kategorie-Ranking',
-details:'Details',click_product:'Klicke auf ein Produkt',search:'Suchen...',all_cats:'Alle Kategorien',all_stores:'Alle Filialen',
-q6_vs_s6:'Q6 vs S6 - Zusammenfassung',common_products:'Gemeinsame Produkte',q6_cheaper:'Q6 günstiger',s6_cheaper:'S6 günstiger',same_price:'Gleicher Preis',simulated_basket:'Simulierter Warenkorb',price_comparison:'Preisvergleich',
-stable:'Stabil',increased:'Gestiegen',decreased:'Gesunken',distribution:'Verteilung',cat_variation:'Variation nach Kategorie',cat_breakdown:'Aufschlüsselung nach Kategorie',biggest_increases:'Größte Preiserhöhungen (+10%)',not_bought_60:'Seit 60+ Tagen nicht gekauft',last_purchase_alerts:'Hinweise letzter Einkauf',volatile_products:'Volatilste Produkte',product_discovery:'Neue Produkte entdeckt',
-shopping_cart:'Einkaufswagen',your_cart:'Dein Einkaufswagen',copy:'Kopieren',clear:'Leeren',copy_text:'Text kopieren',items:'Artikel',cart_empty:'Einkaufswagen leer. Suche Produkte oben.',restock_suggestions:'Nachkauf-Vorschläge',restock_desc:'Wiederkehrende Produkte. Rot = überfällig, gelb = bald fällig. Klicken zum Hinzufügen.',
-overdue:'überfällig',soon:'bald',on_track:'aktuell',every:'alle',days:'T',times_bought:'x gekauft',
-receipt_timeline:'Kassenbon-Verlauf',analysis_report:'Analysebericht',
-personal_inflation:'Persönliche Inflation',official_inflation:'Offizielle Inflation',last_3_purchases:'Letzte 3 Einkäufe',vs_avg:'vs Gesamtdurchschnitt',
-inflation_vs:'Inflation: Dein Warenkorb vs Offiziell',rising_prices:'Steigende Preise',falling_prices:'Sinkende Preise',reconsider_products:'Produkte zum Überdenken',cat_trends:'Kategorie-Trends',
-basket_index:'Warenkorb-Index',monthly_cat_evolution:'Monatliche Kategorieentwicklung',
-export_data:'Daten exportieren',quick_stats:'Kurzstatistik',upload_ebons:'Neue eBons hochladen',
-qr_scan:'An der Kasse scannen für Bonuspunkte',
-clear_cart_confirm:'Einkaufswagen leeren?',cart_copied:'Einkaufswagen kopiert!',report_copied:'Bericht kopiert!',
-synced:'In Echtzeit synchronisiert',searching_rewe:'Suche bei REWE...',open_rewe:'Suche auf der REWE-Website öffnen',add_manual:'Manuell hinzufügen',not_in_history:'Dieses Produkt ist nicht in deinem Verlauf. Zum Einkaufswagen hinzufügen?',yes_add:'Ja, hinzufügen',no_btn:'Nein',
-export_products:'Produkte exportieren (CSV)',export_receipts:'Belege exportieren (CSV)',export_prices:'Preisverlauf exportieren (CSV)',export_all:'Alles exportieren (JSON)',
-spent:'Ausgaben',avg_line:'Durchschnitt',visits:'Besuche',ticket:'Bon',new_products:'Neue Produkte',your_basket:'Dein Warenkorb',official_food:'Offizielle Inflation (Lebensmittel DE)',basket_cost:'Warenkorbkosten',variation:'Veränderung %',
-}};
-let curLang=localStorage.getItem('rLang')||'pt';
-function t(key){return (LANG[curLang]||LANG.pt)[key]||(LANG.pt)[key]||key}
-function setLang(lang){
-curLang=lang;localStorage.setItem('rLang',lang);
-document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.textContent.trim().toLowerCase()===lang)});
-document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');const v=t(k);if(v)el.textContent=v});
-document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const k=el.getAttribute('data-i18n-placeholder');el.placeholder=t(k)});
-// Re-render dynamic content
-if(typeof renderCart==='function')renderCart();
-if(typeof updBudget==='function')updBudget();
-}
-// ====== End i18n ======
-
 const fbApp=firebase.initializeApp({apiKey:"AIzaSyBERY390wjQD4CCGwgz1pAfw48-jjsKTX8",authDomain:"rewe-dashboard.firebaseapp.com",projectId:"rewe-dashboard",databaseURL:"https://rewe-dashboard-default-rtdb.europe-west1.firebasedatabase.app",storageBucket:"rewe-dashboard.firebasestorage.app",messagingSenderId:"517022269032",appId:"1:517022269032:web:0daa0155e7d404f5cc45dd"});
 const fbDb=firebase.database();
 const fbCart=fbDb.ref('cart/items');
@@ -479,7 +354,7 @@ const shD=[{"n": "PIZZATEIG M.SA.", "cat": "Congelados & Prontos", "af": 23.8, "
 const rL=[{"date": "01.07.2024", "date_sort": "2024-07-01", "total": 32.69, "store": "REWE Q6", "store_id": "5626", "num_items": 7, "products": ["IRISCHE BUTTER", "BANDNUDELN CHAMP", "PENNE GORGONZOLA", "INGWER GEMAHLEN", "ROTES THAI CURRY", "KOKOSMILCH", "TEMPO FEUCHT NF"]}, {"date": "09.07.2024", "date_sort": "2024-07-09", "total": 40.15, "store": "REWE Q6", "store_id": "5626", "num_items": 10, "products": ["EXQUISA BALANCE", "BIO RAEUCHERLACH", "ZWIEBEL ROT BIO", "EIER FH WEISS", "SPRUEHSAHNE 30%", "CURLY POMMES", "CHOCOLATE CHIPS", "THOMY LES SAUCES", "SWEET&SOUR SAUCE", "KEX FARMER COOKI"]}, {"date": "17.07.2024", "date_sort": "2024-07-17", "total": 8.27, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["CHOCOLATE CHIPS", "COOKIES CH. CHIP", "FRET CLASSIC MIN"]}, {"date": "22.07.2024", "date_sort": "2024-07-22", "total": 67.78, "store": "REWE Q6", "store_id": "5626", "num_items": 15, "products": ["SALSICCIA TRUEFF", "RAUECHERLACHS", "PROTEIN MEAL BAN", "FRUCHTQUARK", "PROTEINMOUSSE", "TIRAMISU", "HAEHN. SCHNITZEL", "HAEHN.FILETSTEAK", "MINI BLAETTERT.", "CEVPCICI", "TAGLIAT.WILLDLA.", "PENNE GORGONZOLA", "CURLY POMMES", "PASSIERTE TOMAT.", "ERDBEER JOGHURT"]}, {"date": "02.08.2024", "date_sort": "2024-08-02", "total": 82.01, "store": "REWE Q6", "store_id": "5626", "num_items": 21, "products": ["HA-HERZEN", "HA-GESCHNETZELTE", "CABANOSSI", "GRANA PADANO", "BUTTER BRIOCHE", "MINI GNOCCHI", "RAUECHERLACHS", "SAUCE TOSKANA", "PROTEIN MEAL CHO", "CREMEFINE 15%", "PROTEINPUDD. SCH", "CHOC FUD.BROWNIE", "NUTELLA TUB", "BRATKARTOFFEL", "AMERIC. PANCAKE", "GEFLUEGEL PASTE", "TOMATENMARK", "GARLIC HERB", "FRET CLASSIC MIN", "TEMPO FEUCHT", "Ben + Jerrys"]}, {"date": "03.08.2024", "date_sort": "2024-08-03", "total": 17.16, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["SB-LACHSFILET", "KAROTTE BIO", "LORBEERBLAETTER"]}, {"date": "20.08.2024", "date_sort": "2024-08-20", "total": 48.62, "store": "REWE Q6", "store_id": "5626", "num_items": 7, "products": ["PROSCIUTTO CRUDO", "5 GITTER-BROTE", "PROTEIN MEAL CHO", "ALPENJODSALZ+F", "CHEESE SAUCE", "FITZ-RITTER RIES", "FITZ-RITTER SAUV"]}, {"date": "12.09.2024", "date_sort": "2024-09-12", "total": 40.42, "store": "REWE Q6", "store_id": "5626", "num_items": 6, "products": ["SB-LACHSFILET", "LE GRUYERE SCHB", "GARNELE MARIN.", "CEVPCICI", "BUTTERCROISSANTS", "SCHOKO BONS CRIS"]}, {"date": "14.09.2024", "date_sort": "2024-09-14", "total": 12.45, "store": "REWE S6", "store_id": "5526", "num_items": 4, "products": ["FR.SCHLAGSAHNE", "TRIOLADE", "FINISH SALZ", "HSB ZB"]}, {"date": "17.09.2024", "date_sort": "2024-09-17", "total": 21.23, "store": "REWE Q6", "store_id": "5626", "num_items": 5, "products": ["COPPA", "BUTTER BRIOCHE", "BIO DIN.EIWAFFEL", "HAEHN.FILETSTEAK", "KARTOFFELTASCHEN"]}, {"date": "18.09.2024", "date_sort": "2024-09-18", "total": 26.17, "store": "REWE Q6", "store_id": "5626", "num_items": 5, "products": ["SB-LACHSFILET", "SAINT AGUR", "BIRNE BUNT", "NUTELLA TUB", "FISCH FOND"]}, {"date": "23.09.2024", "date_sort": "2024-09-23", "total": 30.9, "store": "REWE Q6", "store_id": "5626", "num_items": 8, "products": ["EXQUISA SAHNIGE", "TORTELLONI PARM.", "CHAMPIGNONS BR", "JA! SCHLAGSAHNE", "TIRAMISU", "HAEHN.FILETSTEAK", "HAEHN. SCHNITZEL", "RINDER FOND"]}, {"date": "04.10.2024", "date_sort": "2024-10-04", "total": 69.69, "store": "REWE S6", "store_id": "5526", "num_items": 15, "products": ["PROSCIUTTO CRUDO", "TRUEFFEL KAESE", "SAUCE EDELPILZE", "NESTLE MILCHMAED", "HAEHN. SCHNITZEL", "ZWIEBEL-DUO", "RISOTTO U PAELLA", "SESAM WEISS", "MELATONIN SPRAY", "SESAMOEL", "UMAMI PASTE", "TRIOLADE", "VISS DESINF. FL.", "VISS SCHEU.CITR.", "TEMPO FEUCHT NF"]}, {"date": "30.12.2024", "date_sort": "2024-12-30", "total": 42.09, "store": "REWE Q6", "store_id": "5626", "num_items": 8, "products": ["EIER BH M-L", "PIZZA MARGH.", "ABSOLUT VODKA", "R.BULL SUGARFREE", "RED BULL DOSE", "ZAHNCREME ORIGIN", "STUECKSEIFE", "TEMPO DUO FEUCHT"]}, {"date": "02.01.2025", "date_sort": "2025-01-02", "total": 1.24, "store": "REWE Berlin", "store_id": "5899", "num_items": 1, "products": ["VOLVIC NATURELLE"]}, {"date": "04.01.2025", "date_sort": "2025-01-04", "total": 10.42, "store": "REWE S6", "store_id": "5526", "num_items": 6, "products": ["DIE FEINEN KART.", "SALAT WILDKR.", "GLASNUDELN", "SATE SAUCE", "TORTILLA CHIPS", "LAGERBIER HELL"]}, {"date": "08.01.2025", "date_sort": "2025-01-08", "total": 65.68, "store": "REWE S6", "store_id": "5526", "num_items": 11, "products": ["SB-LACHSFILET", "BIO LACHSFILET", "PARMIGIANO REG.", "TRUEFFEL KAESE", "CHAMP. BRAUN BIO", "HAEHN. SCHNITZEL", "HAEHN. SCHNITZEL", "TRIOLADE", "PERWOLL RENEW", "LENOR WEICHSP.", "ULTIMATE PLUS"]}, {"date": "13.01.2025", "date_sort": "2025-01-13", "total": 26.53, "store": "REWE S6", "store_id": "5526", "num_items": 6, "products": ["PROSCIUTTO CRUDO", "GEFL.WIENER", "TIRAMISU", "WS ORCHIDEE+VAN.", "FINISH SALZ", "ANTIKAL SPRUEHFL"]}, {"date": "17.01.2025", "date_sort": "2025-01-17", "total": 34.19, "store": "REWE Q6", "store_id": "5626", "num_items": 9, "products": ["BUTTER BRIOCHE", "EIER BH M-L", "BIO SAHNE 30%", "HEINZ TK 1170", "HEINZ MAYONNAISE", "TRIOLADE", "BUENO 6ER WHITE", "SEIFE CREAM BAR", "TEMPO DUO FEUCHT"]}, {"date": "18.01.2025", "date_sort": "2025-01-18", "total": 18.66, "store": "REWE Lindenhof", "store_id": "0250", "num_items": 3, "products": ["PROSCIUTTO CRUDO", "NUTELLA +75G", "MAXPRO COBALT DR"]}, {"date": "21.01.2025", "date_sort": "2025-01-21", "total": 35.99, "store": "REWE S6", "store_id": "5526", "num_items": 6, "products": ["CEVPCICI", "BROTAUFSTRICH", "OREO", "TRIOLADE", "HARIBO GOLDBAER", "GOLDBAEREN MINIS"]}, {"date": "23.01.2025", "date_sort": "2025-01-23", "total": 7.75, "store": "REWE S6", "store_id": "5526", "num_items": 3, "products": ["LIMETTE", "ZWIEBEL-DUO", "WC-ENTE GEL CIT."]}, {"date": "22.02.2025", "date_sort": "2025-02-22", "total": 57.11, "store": "REWE S6", "store_id": "5526", "num_items": 16, "products": ["RD-HACKFLEISCH", "PROSCIUTTO CRUDO", "PUTENBRUST", "JA! GOUDA JUNG", "AMERICAN SANDW.", "BUTTER BRIOCHE", "RAUECHERLACHS", "GIRASOLI PECOR.", "SAUCE EDELPILZE", "ORANGENSAFT O.FR", "APFEL ROT", "INGWER BIO", "ZWIEBEL ROT", "HAEHN.FILETSTEAK", "SAUCE HOLL.LIG", "THOMY LES SAUCES"]}, {"date": "24.02.2025", "date_sort": "2025-02-24", "total": 37.37, "store": "REWE S6", "store_id": "5526", "num_items": 10, "products": ["PROSCIUTTO CRUDO", "GRANA PADDANO", "H-MILCH 3,5%", "NESTLE MILCHMAED", "BIO SAHNE 30%", "CANNELL. 4 KAESE", "TOMATENMARK", "TOM STUECKIG B.O", "TOMATO FRITO", "VIERKANTREIBE"]}, {"date": "26.02.2025", "date_sort": "2025-02-26", "total": 6.21, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["EXQUISA SAHNIGE", "ORANGE", "GER.ORANGENSCH."]}, {"date": "01.03.2025", "date_sort": "2025-03-01", "total": 61.4, "store": "REWE Q6", "store_id": "5626", "num_items": 20, "products": ["BURGER BL. ANGUS", "HA-BRUSTFILET", "RFW DUROC SCHIN.", "BRIOCHE BUNS 4ER", "SALAT CRISPY MIX", "SALATGURKE", "ZAZIKI", "BIO SAHNE 30%", "CREMEFINE 15%", "YOPRO ERDB.-HIMB", "HAEHN.FILETSTEAK", "PFANNENGYROS", "PIZZA MARGH.", "FEINSTER ZUCKER", "SHEBA ESSENCE", "GOURMET PERLE", "GOURMET PERLE", "PURINA ONE ADULT", "SHEBA ESSENCE", "GOURMET PERLE"]}, {"date": "06.03.2025", "date_sort": "2025-03-06", "total": 107.25, "store": "REWE S6", "store_id": "5526", "num_items": 26, "products": ["PROSCIUTTO CRUDO", "GRANA PADANO", "BUTTER BRIOCHE", "KNOBLAUCH BIO", "JA! MARKENBUTTER", "H-MILCH 3,5%", "NESTLE MILCHMAED", "BIO SAHNE 30%", "TIRAMISU", "HAEHN. SCHNITZEL", "CEVPCICI", "SAUCE HOLL.LIG", "HEINZ MAYONNAISE", "TOMATENKETCHUP", "NUTELLA", "FLOTTE BIENE", "KINDER BUENO 10", "SOM.APPLE 0,33", "ULTRA OR.SPUELM.", "REINIGER PULVER", "VISS SCHEU.CITR.", "VISS BAD & DUSCH", "SEIFE", "NATURAL SKIN", "RPP TASCHE REWE", "MUELLSAECKE 240L"]}, {"date": "07.03.2025", "date_sort": "2025-03-07", "total": 9.76, "store": "REWE Q6", "store_id": "5626", "num_items": 4, "products": ["EIER FH RES 10ER", "TAGLIATELLE", "BONNE MAMAN ERD.", "TOM STUECKIG B.O"]}, {"date": "14.03.2025", "date_sort": "2025-03-14", "total": 63.49, "store": "REWE S6", "store_id": "5526", "num_items": 13, "products": ["HA-MINISTEAKS", "PROSCIUTTO CRUDO", "RD-SAFTGULASCH", "RD-FLEISCH+MEERR", "SW-GESCHNETZELT.", "PU-GESCHN.+CHAMP", "EIER FH RES 10ER", "BIO SAHNE 30%", "BUENO 6ER WHITE", "WS ORCHIDEE+VAN.", "GOURMET PERLE85G", "PURINA ONE ADULT", "TOPFREINIGER"]}, {"date": "17.03.2025", "date_sort": "2025-03-17", "total": 30.78, "store": "REWE Q6", "store_id": "5626", "num_items": 9, "products": ["SB-LACHSFILET", "MOZZAR.DI BUFALA", "EIER BH M-L", "TIRAMISU", "MOUSSE AU CHOCO", "THOMY LES SAUCES", "LES SAUCES KAESE", "CURRY MANGO SAUC", "TEMPO DUO FEUCHT"]}, {"date": "22.03.2025", "date_sort": "2025-03-22", "total": 94.72, "store": "REWE S6", "store_id": "5526", "num_items": 22, "products": ["RD-HACKFLEISCH", "PROSCIUTTO CRUDO", "LENDENTOPF", "RD-SAFTGULASCH", "KOENIGSB.KLOPSE", "ZIEGENKAES-SPECK", "EXQUISA FITLINE", "OBST/GEMUESE", "BIO SAHNE 30%", "BLATT-SPINAT", "KOENIGSGEM.TK", "APFELROTKOHL", "CROISSANT 4ER", "9 WEIZEN BROETCH", "TOBLERONE", "NOISETTE", "DOVE DUSCHE", "NATURAL SKIN", "ZEWA W&W EXTRA", "ONE SENSITIVE", "PURINA ONE ADULT", "GOURMET PERLE85G"]}, {"date": "25.03.2025", "date_sort": "2025-03-25", "total": 20.85, "store": "REWE Q6", "store_id": "5626", "num_items": 7, "products": ["MOZZAR.DI BUFALA", "ORANGENSAFT O.FR", "PFLAUME", "CROISSANT 4ER", "DELIKATESS SENF", "REAL CREME", "GR. PAPIERTASCHE"]}, {"date": "29.03.2025", "date_sort": "2025-03-29", "total": 38.57, "store": "REWE Q6", "store_id": "5626", "num_items": 12, "products": ["PROSCIUTTO CRUDO", "RFW TRUEFFELTR.", "EXQUISA FITLINE", "BUTTER BRIOCHE", "KONDENSMILCH", "8 LACHS STAEB.", "BLUMENKOHL TK", "GNOCCHI PATATE", "FUSILLI NO.98", "HAGELSALZ", "NUTELLA +75G", "TOMATO FRITO"]}, {"date": "31.03.2025", "date_sort": "2025-03-31", "total": 5.37, "store": "REWE Q6", "store_id": "5626", "num_items": 2, "products": ["JA ! BRIESPITZE", "MOUSSE AU CHOCO"]}, {"date": "03.04.2025", "date_sort": "2025-04-03", "total": 2.99, "store": "REWE S6", "store_id": "5526", "num_items": 1, "products": ["PIZZA MARGH."]}, {"date": "03.04.2025", "date_sort": "2025-04-03", "total": 74.22, "store": "REWE Q6", "store_id": "5626", "num_items": 20, "products": ["RD-HACKFLEISCH", "RFW DUROC SCHIN.", "JA ! BRIESPITZE", "MOZZAR.DI BUFALA", "EXQUISA FITLINE", "GOUDA GER. 48%", "EMMENTALER GER.", "GRANA PADANO", "GRANA PADANO", "PARMIGIANO REG.", "TRUEFFEL KAESE", "EIER FH WEISS", "H-MILCH GVO-FREI", "TIRAMISU", "HAEHN.FILETSTEAK", "NOISETTE", "TRUEFFELSPITZEN", "OXI ACTIONPULVER", "TEMPO DUO FEUCHT", "SERV. CHAMPAGNER"]}, {"date": "07.04.2025", "date_sort": "2025-04-07", "total": 47.72, "store": "REWE S6", "store_id": "5526", "num_items": 10, "products": ["JA!-RUMPSTEAK", "JA!-RUMPSTEAK", "PU-GESCHN.+CHAMP", "KARTOFFELN", "HAEHN. SCHNITZEL", "MAR. PUTENFILETS", "GARNELE MARIN.", "CROISSANT 4ER", "THOMY LES SAUCES", "SAUCE HOLL.LIG"]}, {"date": "10.04.2025", "date_sort": "2025-04-10", "total": 41.8, "store": "REWE Q6", "store_id": "5626", "num_items": 10, "products": ["SB-LACHSFILET", "SMOOTHIE YELLOW", "MANDARINE", "SALATGURKE", "CROISSANT 4ER", "TYRRELLS TRUFFLE", "CRISPY RIEGEL", "DUPLO MILCHCREME", "NATURAL SKIN", "TEMPO TASCHENT."]}, {"date": "11.04.2025", "date_sort": "2025-04-11", "total": 35.76, "store": "REWE Q6", "store_id": "5626", "num_items": 7, "products": ["FAE. ENTRECOTE", "FAE. ENTRECOTE", "BIO CAMEMBERT", "SAINT AGUR", "MOZZAR.DI BUFALA", "MOZZAR.DI BUFALA", "SPRUEHSAHNE 30%"]}, {"date": "12.04.2025", "date_sort": "2025-04-12", "total": 43.09, "store": "REWE S6", "store_id": "5526", "num_items": 13, "products": ["PROSCIUTTO CRUDO", "EIER FH WEISS", "IRISCHE BUTTER", "H-MILCH 3,5%", "BIO SAHNE 30%", "FEINSTER ZUCKER", "MENT. GUM 100 W.", "FINISH KLARSPUE", "SEIFE CREAM BAR", "PURINA ONE ADULT", "ONE SENSITIVE", "KA GRILLIES RIND", "SCHLECKS GEFL LA"]}, {"date": "15.04.2025", "date_sort": "2025-04-15", "total": 112.96, "store": "REWE S6", "store_id": "5526", "num_items": 26, "products": ["JA!-RUMPSTEAK", "JA!-RUMPSTEAK", "PROSCIUTTO CRUDO", "MILKANA SAHNE", "MOZZAR.DI BUFALA", "EXQUISA FITLINE", "HAEHN. SCHNITZEL", "HAEHN.FILETSTEAK", "TK HAE.CORD.BLEU", "WILDL. BL.TEIG", "TORTELLINI", "FETTUCINE LACHS", "BROCCOLI", "MOZZARELLA-STICK", "MINI FRUHL.ROLL", "ZUPFKUCHEN", "RISOTTOREIS", "TRUEFFEL NOTE", "TOMATO FRITO", "TOM STUECKIG B.O", "LINDT BUTTERMILC", "JOGURT ERDB-MASC", "CRISPY RIEGEL", "ZAHNCREME ORIGIN", "ZEWA ULTRA SOFT", "TEMPO DUO FEUCHT"]}, {"date": "16.04.2025", "date_sort": "2025-04-16", "total": 25.82, "store": "REWE Q6", "store_id": "5626", "num_items": 8, "products": ["PIZZA MARGH.", "CURLY POMMES", "LINDT BUTTERMILC", "LINDOR TAFEL MI", "DUPLO MILCHCREME", "EISSCHOKOLADE", "FRET MINI", "WILLIAM C BIRNE."]}, {"date": "22.04.2025", "date_sort": "2025-04-22", "total": 60.55, "store": "REWE Q6", "store_id": "5626", "num_items": 16, "products": ["RD-HACKFLEISCH", "SCHINKENWUERFEL", "GRANA PADANO", "GNOCCHI MIT BASI", "TRUEFFEL KAESE", "EIER FH WEISS", "HAEHN.FILETSTEAK", "SUESSK. POMMES", "KNOBLAUCH-DUO", "ZWIEBEL-DUO", "BW KNOBLAUCH", "ZWIEBEL GRANUL", "KNOBL.GEWUERZPA.", "TOM STUECKIG B.O", "LINDT BUTTERMILC", "KALKSTOPP-TABS"]}, {"date": "24.04.2025", "date_sort": "2025-04-24", "total": 49.55, "store": "REWE Q6", "store_id": "5626", "num_items": 8, "products": ["FAE. RUMPSTEAK", "FAE. RUMPSTEAK", "SCHINKENWUERFEL", "MOZZAR.DI BUFALA", "LAUGENB. KRAEUTE", "SMOOTHIE YELLOW", "SENF MITTELSCHAR", "MAYNONNAISE"]}, {"date": "26.04.2025", "date_sort": "2025-04-26", "total": 43.69, "store": "REWE S6", "store_id": "5526", "num_items": 10, "products": ["SB-LACHSFILET", "PROSCIUTTO CRUDO", "PARMIGIANO REGG", "BUTTER BRIOCHE", "SAUCE EDELPILZE", "ORANGENSAFT O.FR", "GRAPEFRUIT", "VISS DESINF. FL.", "JA! BACKPAPIERZ", "MUELLB. 35L ZB"]}, {"date": "28.04.2025", "date_sort": "2025-04-28", "total": 22.49, "store": "REWE S6", "store_id": "5526", "num_items": 7, "products": ["ZAZIKI", "BIO SAHNE 30%", "PFANNENGYROS", "LINDT BUTTERMILC", "SCHOKO UND KEKS", "TRIOLADE", "OREO WHITE CHOC"]}, {"date": "03.05.2025", "date_sort": "2025-05-03", "total": 74.44, "store": "REWE Q6", "store_id": "5626", "num_items": 14, "products": ["HA-GESCHNETZELTE", "RAUECHERLACHS", "GIRASOLI LACHS", "SMOOTHIE GEMUESE", "ZWIEBEL ROT", "KAROTTE", "SHITAKE", "CHAMP. BRAUN BIO", "BIO SAHNE 30%", "ICY BLUE RASPBER", "HASELNUSSCREME", "TOMATO PASSIERT", "TOM STUECKIG B.O", "LAYS KRAEUTERBUT"]}, {"date": "06.05.2025", "date_sort": "2025-05-06", "total": 31.89, "store": "REWE Q6", "store_id": "5626", "num_items": 11, "products": ["MOZZAR.DI BUFALA", "HAEHNCHEN NUGGET", "CANNELL. 4 KAESE", "KARTOFFELTASCHE", "KNOBLAUCH-DUO", "ZWIEBEL-DUO", "LINDT BUTTERMILC", "JA VM.BROWNIE", "JA VM.KARAMELL", "OREO WHITE CHOC", "STUECKSEIFE"]}, {"date": "08.05.2025", "date_sort": "2025-05-08", "total": 78.89, "store": "REWE S6", "store_id": "5526", "num_items": 10, "products": ["FAE. RUMPSTEAK", "FAE. RUMPSTEAK", "INNENBRUSTFILET", "HA-GESCHNETZELTE", "GRANA PADANO", "GNOCCHI SPIN.BAS", "HAEHN.FILETSTEAK", "BIO OLIVENOEL", "TOM STUECKIG B.O", "TYRRELLS TRUFFLE"]}, {"date": "12.05.2025", "date_sort": "2025-05-12", "total": 49.43, "store": "REWE S6", "store_id": "5526", "num_items": 16, "products": ["MESSB. 1L", "SB-LACHSFILET", "MOZZAR.DI BUFALA", "GRANA PADANO", "GNOCCI ROTE BETE", "BLATTSALAT MIX", "CAESAR SALATS.", "HP QUARKCREME", "HAEHN.FILETSTEAK", "TYRRELLS TRUFFLE", "ERDBEER JOGHURT", "MILKA OREO WHITE", "REINIGER PULVER", "PURINA ONE ADULT", "GOURMET PERLE", "GOURMET PERLE85G"]}, {"date": "15.05.2025", "date_sort": "2025-05-15", "total": 59.9, "store": "REWE Q6", "store_id": "5626", "num_items": 16, "products": ["LACHSFORELLENFI.", "SUEDTIR.BRETTLSP", "CABANOSSI", "MOZZAR.DI BUFALA", "TRIPLE ORANGE", "BONDU MILD&WILD", "EIER FH WEISS", "H-MILCH GVO-FREI", "PROTEINPUDD. SCH", "WILDL. BL.TEIG", "KNOBLAUCH-DUO", "ZWIEBEL-DUO", "KNOBLAUCH GRANUL", "ZITRONENPFEFFER", "NUTELLA", "WS ORCHIDEE+VAN."]}, {"date": "16.05.2025", "date_sort": "2025-05-16", "total": 36.53, "store": "REWE Q6", "store_id": "5626", "num_items": 10, "products": ["H-MILCH GVO-FREI", "SCHLAGSAHNE", "IGLO SPINAT MIT", "ORANGENSCHALEN", "VANILLE EXTRAKT", "SALTED CARAMEL", "JA VM.BROWNIE", "HANSAPLAST STRIP", "TEMPO FEUCHT NF", "PURINA ONE ADULT"]}, {"date": "17.05.2025", "date_sort": "2025-05-17", "total": 41.95, "store": "REWE Q6", "store_id": "5626", "num_items": 11, "products": ["PROSCIUTTO CRUDO", "BLUETENKAESE", "BONDU MILD&WILD", "HONIG-SENF-DRES.", "EIER FH WEISS", "PROTEINPUDD. SCH", "GARNELE MARIN.", "SURIG ESSIG", "SAUCE A L ORANGE", "MAKRELENFIL.TOM.", "FRET MINI"]}, {"date": "19.05.2025", "date_sort": "2025-05-19", "total": 24.57, "store": "REWE S6", "store_id": "5526", "num_items": 6, "products": ["SMOOTHIE YELLOW", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "WS APRILFRISCH", "GOURMET PERLE85G", "GOURMET PERLE"]}, {"date": "22.05.2025", "date_sort": "2025-05-22", "total": 10.93, "store": "REWE Q6", "store_id": "5626", "num_items": 2, "products": ["PROTEINPUDD. SCH", "HAEHN.FILETSTEAK"]}, {"date": "26.05.2025", "date_sort": "2025-05-26", "total": 60.71, "store": "REWE S6", "store_id": "5526", "num_items": 13, "products": ["SAUCE EDELPILZE", "PROSCIUTTO CRUDO", "MOZZAR.DI BUFALA", "TRUEFFEL KAESE", "BIO SAHNE 30%", "YOPRO ERDB.-HIMB", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "TRUEFFEL SAUCE", "CURRY MANGO SAUC", "TRIOLADE", "NOISETTE", "SCHOKO UND KEKS"]}, {"date": "30.05.2025", "date_sort": "2025-05-30", "total": 39.39, "store": "REWE Q6", "store_id": "5626", "num_items": 6, "products": ["FAE. RUMPSTEAK", "FAE. ENTRECOTE", "PROTEINPUDD. SCH", "TORTELLONI KAESE", "ZAHNCREME FRESH", "TEMPO FEUCHT NF"]}, {"date": "13.06.2025", "date_sort": "2025-06-13", "total": 76.89, "store": "REWE Q6", "store_id": "5626", "num_items": 21, "products": ["JAMON IBERICO", "EXQUISA BALANCE", "EMMENTALER GER.", "GOUDA GER. 48%", "H-MILCH 3,5%", "NESTLE MILCHMAED", "BIO SAHNE 30%", "CREMEFINE 15%", "PROTEINPUDD. SCH", "PIZZA MARGH.", "BIO TK ZWIEBEL", "KNOBLAUCH-DUO", "RAHMCHAMPIGNONS", "ALPENJODSALZ+F", "FLOTTE BIENE", "TOMATO FRITO", "TOM STUECKIG B.O", "LINDT BUTTERMILC", "WILLIAM C BIRNE.", "PERWOLL SPORT", "TEMPO FEUCHT NF"]}, {"date": "14.06.2025", "date_sort": "2025-06-14", "total": 50.68, "store": "REWE Q6", "store_id": "5626", "num_items": 9, "products": ["CHAMPIGNONS BR", "PILZ AUSTERN", "SHITAKE", "BIO SCHLAGSAHNE", "PROTEINPUDD. SCH", "CHEESE BURGER", "LANG. REIS KB", "ICY BLUE RASPBER", "MEERESFRUECHTE"]}, {"date": "17.06.2025", "date_sort": "2025-06-17", "total": 46.0, "store": "REWE Q6", "store_id": "5626", "num_items": 7, "products": ["PROSCIUTTO CRUDO", "BIO LACHS FILETS", "GARNELE MARIN.", "HEINZ TK 1170", "TOM STUECKIG B.O", "TOMATO PASSIERT", "TOMATO FRITO"]}, {"date": "20.06.2025", "date_sort": "2025-06-20", "total": 31.2, "store": "REWE Q6", "store_id": "5626", "num_items": 11, "products": ["MOZZAR.DI BUFALA", "ZWIEBELN", "EIER FH WEISS", "FR.SCHLAGSAHNE", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "KNOBLAUCH-DUO", "LAYS KRAEUTERBUT", "LAYS SALT&VINEG.", "MEERESFRUECHTE", "TEMPO DUO FEUCHT"]}, {"date": "23.06.2025", "date_sort": "2025-06-23", "total": 34.55, "store": "REWE Q6", "store_id": "5626", "num_items": 5, "products": ["ZAZIKI", "PROTEINPUDD. SCH", "BIO LACHS FILETS", "PFANNENGYROS", "SAUCE SALT.CARAM"]}, {"date": "24.06.2025", "date_sort": "2025-06-24", "total": 7.68, "store": "REWE Q6", "store_id": "5626", "num_items": 2, "products": ["HA-GESCHNETZELTE", "ZITRONENSAFT"]}, {"date": "24.06.2025", "date_sort": "2025-06-24", "total": 5.11, "store": "REWE Q6", "store_id": "5626", "num_items": 4, "products": ["TRAUBE BICOLOR", "BUMI ZITRONE", "JA! H-MILCH 1,5%", "NATURJOGHURT 3,5"]}, {"date": "25.06.2025", "date_sort": "2025-06-25", "total": 35.67, "store": "REWE Q6", "store_id": "5626", "num_items": 9, "products": ["PROSCIUTTO CRUDO", "BUTTER BRIOCHE", "FAMILY MIX", "EIER FH WEISS", "BIO SAHNE 30%", "PROTEINPUDD. SCH", "HOLLANDAISE LEG.", "WEISSE TAFEL", "ZEWA ULTRA SOFT"]}, {"date": "30.06.2025", "date_sort": "2025-06-30", "total": 41.25, "store": "REWE Q6", "store_id": "5626", "num_items": 13, "products": ["MOZZ.MINI LEICHT", "RFW LACHSFILET", "TRIPLE ORANGE", "FAMILY MIX", "HONIG-SENF-DRES.", "PROTEINPUDD. SCH", "GER.ORANGENSCH.", "LINDT BUTTERMILC", "OREO WHITE CHOC", "STABFEUERZEUG", "SEIFE CREAM BAR", "RASIERGEL SENS.", "TEMPO FEUCHT NF"]}, {"date": "01.07.2025", "date_sort": "2025-07-01", "total": 47.34, "store": "REWE Q6", "store_id": "5626", "num_items": 13, "products": ["HA-GESCHNETZELTE", "MOZZAR.DI BUFALA", "EXQUISA BALANCE", "PHILADELPHIA NAT", "GRANA PADANO", "EIER FH WEISS", "BIO SAHNE 30%", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "FELD.FARMERS GEM", "KARAMELLGEBAECK", "KEKSE DOUB.STUFF", "KEKSE DOUB.STUFF"]}, {"date": "03.07.2025", "date_sort": "2025-07-03", "total": 7.77, "store": "REWE City N1", "store_id": "5693", "num_items": 3, "products": ["H-MILCH GVO-FREI", "TIRAMISU", "MEERESFRUECHTE"]}, {"date": "08.07.2025", "date_sort": "2025-07-08", "total": 98.96, "store": "REWE Q6", "store_id": "5626", "num_items": 23, "products": ["INNENBRUSTFILET", "HA-HERZEN", "RFW DUROC SCHIN.", "AUFLAUFKASE", "PIZZAKAES GERIEB", "GRANA PADANO", "GRANA PADANO", "TRIPLE ORANGE", "FAMILY MIX", "CAESAR SALATS.", "EIER FH WEISS", "PROTEINPUDD. SCH", "TIRAMISU", "BIO LACHS FILETS", "ANGUS BURGER", "D.HUHN&GEMUESE", "MANGO", "HOLLANDAISE LEG.", "MAYONNAISE", "TOMATO FRITO", "WS ORANGE VERBEN", "ULTIM. FRESH 46", "NATURAL SKIN"]}, {"date": "08.07.2025", "date_sort": "2025-07-08", "total": 7.46, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["EIER FH WEISS", "PROTEINPUDD. SCH", "TAGLIATELLE"]}, {"date": "09.07.2025", "date_sort": "2025-07-09", "total": 4.18, "store": "REWE Q6", "store_id": "5626", "num_items": 2, "products": ["BAVARIA BLU", "ROESTZWIEBELN"]}, {"date": "11.07.2025", "date_sort": "2025-07-11", "total": 44.57, "store": "REWE Q6", "store_id": "5626", "num_items": 9, "products": ["RFW MOZZ. AP", "H-MILCH GVO-FREI", "FR.SCHLAGSAHNE", "HAEHN. SCHNITZEL", "HAEHN.FILETSTEAK", "KAISERGEMUESE", "HEINZ TK 1170", "GORDONS RTD", "BL.FOR. GINTONIC"]}, {"date": "14.07.2025", "date_sort": "2025-07-14", "total": 121.47, "store": "REWE Q6", "store_id": "5626", "num_items": 29, "products": ["RD-HACKFLEISCH", "PROSCIUTTO CRUDO", "BACONWUERFEL", "BLUETENKAESE", "MOZZAR.DI BUFALA", "EXQUISA FITLINE", "XXL HAMBURGER", "JA! WAFFELN", "BUTTER BRIOCHE", "TRIPLE ORANGE", "FAMILY MIX", "HONIG-SENF-DRES.", "EIER FH WEISS", "BIO SAHNE 30%", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "GARNELE MARIN.", "ANGUS BURGER", "D.HUHN&GEMUESE", "APFELROTKOHL", "MANGO", "MINI FRUHL.ROLL", "CROISSANT 4ER", "SOFT TORTILLA", "TRUEFFEL NOTE", "GARLIC HERB", "NUTELLA", "CHIPZZ TRUEFFEL", "NATURAL SKIN"]}, {"date": "17.07.2025", "date_sort": "2025-07-17", "total": 27.15, "store": "REWE Q6", "store_id": "5626", "num_items": 7, "products": ["BAUCHSPECKWUERF", "SUEDTIR.BRETTLSP", "ORANGENSAFT O.FR", "TRIPLE ORANGE", "FAMILY MIX", "CAESAR SALATS.", "KONDENSMILCH"]}, {"date": "23.07.2025", "date_sort": "2025-07-23", "total": 68.84, "store": "REWE S6", "store_id": "5526", "num_items": 17, "products": ["HA-GESCHNETZELTE", "PROSCIUTTO CRUDO", "BUTTER BRIOCHE", "ZWIEBEL ROT", "KNOBLAUCH", "EIER FH WEISS", "CREMEFINE 15%", "PROTEINPUDD. SCH", "HAEHN. SCHNITZEL", "BIO TK ZWIEBEL", "MAYNONNAISE", "TOMATO PASSIERT", "YOGURETTE", "OREO", "TRIOLADE", "APFEL DS NL", "TEMPO DUO FEUCHT"]}, {"date": "26.07.2025", "date_sort": "2025-07-26", "total": 7.8, "store": "REWE Kurfürstenstr.", "store_id": "6009", "num_items": 2, "products": ["SPREEQ. NATURELL", "SOM.APPLE 0,33"]}, {"date": "28.07.2025", "date_sort": "2025-07-28", "total": 9.37, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["KAISERGEMUESE", "SURIG ESSIG", "BIO ROTWEINESSIG"]}, {"date": "28.07.2025", "date_sort": "2025-07-28", "total": 82.27, "store": "REWE Q6", "store_id": "5626", "num_items": 22, "products": ["JB-GULASCH KEULE", "PROSCIUTTO CRUDO", "GRANA PADANO", "ZWIEBELN", "KNOBLAUCH", "ROSMARIN", "THYMIAN", "EIER FH RES 10ER", "H-MILCH 3,5%", "FR.SCHLAGSAHNE", "PROTEINPUDD. SCH", "D.HUHN&GEMUESE", "PIZZA MARGH.", "MEISTERMEHL", "BR.ROHRZUCKER", "RINDER FOND", "SAUCE HOLL.LIG", "HOLLANDAISE LEG.", "ZONIN MERLOT", "BIO ZITRONENSAFT", "ONE SENSITIVE", "GOURMET PERLE"]}, {"date": "31.07.2025", "date_sort": "2025-07-31", "total": 23.41, "store": "REWE Q6", "store_id": "5626", "num_items": 9, "products": ["BONDU MILD&WILD", "CAESAR SALATS.", "EIER FH WEISS", "YAKULT ORIGINAL", "FR.SCHLAGSAHNE", "ORANGE SPRITZ", "LENOR WS", "JA SPEZIALSALZ", "TEMPO DUO FEUCHT"]}, {"date": "02.08.2025", "date_sort": "2025-08-02", "total": 147.42, "store": "REWE Q6", "store_id": "5626", "num_items": 26, "products": ["KOPFSALAT M.ZWIE", "MOZZAR.DI BUFALA", "FAMILY MIX", "BONDU MILD&WILD", "CAESAR SALATS.", "HONIG-SENF-DRES.", "KAROTTINI", "SUESSKARTOFFEL", "PROTEINPUDD. SCH", "TIRAMISU", "HAEHN. SCHNITZEL", "TAGLIATELLE FUNG", "D.HUHN&GEMUESE", "ZUCCHINI KAESE", "KAISERGEMUESE", "BROCCOLI", "MANGO", "ERDBEEREN", "ICY BLUE RASPBER", "TABAS.SRIRACHA", "HENNESSY VS 0,7", "JIM BEAM BLACK", "ZEWA ULTRA SOFT", "TEMPO FEUCHT NF", "ONE SENSITIVE", "KA GRILLIES LACH"]}, {"date": "04.08.2025", "date_sort": "2025-08-04", "total": 49.3, "store": "REWE Q6", "store_id": "5626", "num_items": 15, "products": ["KOERNIGER FK", "MOZZARELLA GER", "GRANA PADANO", "TRIPLE ORANGE", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "ANGUS BURGER", "DESIGNER BAR VEG", "OLIVENOEL ORIGI.", "MILKA OREO WHITE", "ERDBEER JOGHURT", "MILKA OREO", "KUHFLECKEN 90G", "FRET MINI", "MUELLB. 35L ZB"]}, {"date": "07.08.2025", "date_sort": "2025-08-07", "total": 72.81, "store": "REWE Q6", "store_id": "5626", "num_items": 8, "products": ["ENTRECOTE IRL", "ENTRECOTE IRL", "ENTRECOTE IRL", "GORGONZOLA", "BIRNE BUNT FOREL", "ZWIEBELN", "EXCELLENCE MILD&", "NUSS DEL. HAS.M."]}, {"date": "13.08.2025", "date_sort": "2025-08-13", "total": 99.04, "store": "REWE S6", "store_id": "5526", "num_items": 24, "products": ["JAMON IBERICO", "BUTTER BRIOCHE", "HONIG-SENF-DRES.", "EIER FH RES 10ER", "H-MILCH GVO-FREI", "HAEHN. SCHNITZEL", "WILDLACHS FILET", "ZWIEBEL-DUO", "KNOBLAUCH-DUO", "RISOTTOREIS", "GRIECH. OLIVENOE", "INGWER GEMAHLEN", "OSTMANN BASIL.", "BUNTER PFEFFER", "ZWIEBELGEWUERZ", "SAUCE HOLL.LIG", "SOJASAUCE HELL", "TRIOLADE", "FINISH CAPS CITR", "DAN KL. SCHIMMEL", "NATURAL SKIN", "ONE SENSITIVE", "GOURMET PERLE", "KA GRILLIES RIND"]}, {"date": "15.08.2025", "date_sort": "2025-08-15", "total": 14.56, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["EIS VANILLE", "FRET MINI", "VOLVIC 8L"]}, {"date": "16.08.2025", "date_sort": "2025-08-16", "total": 63.31, "store": "REWE Q6", "store_id": "5626", "num_items": 16, "products": ["RD-HACKFLEISCH", "HA-GESCHNETZELTE", "TRIPLE ORANGE", "FAMILY MIX", "KAROTTINI", "ZITRONE UEB", "BANANE CHIQUITA", "APFEL ROT", "INGWER BIO", "BABYSPINAT BIO", "PROTEINPUDD. SCH", "TK HAE.CORD.BLEU", "KNOBLAUCH GRANUL", "ALPENMILCH 250G", "SCHOKO UND KEKS", "NOISETTE 250G"]}, {"date": "18.08.2025", "date_sort": "2025-08-18", "total": 8.69, "store": "REWE Q6", "store_id": "5626", "num_items": 4, "products": ["EXQUISA FITLINE", "FAMILY MIX", "CAESAR SALATS.", "CHOCO WAFER"]}, {"date": "20.08.2025", "date_sort": "2025-08-20", "total": 24.17, "store": "REWE Q6", "store_id": "5626", "num_items": 7, "products": ["GRANA PADANO", "KART.SAL ESS/OEL", "PROTEINPUDD. SCH", "JA! RAFF.ZUCKER", "ORANGENSCHALEN", "CHOCO WAFER", "STUECKSEIFE"]}, {"date": "21.08.2025", "date_sort": "2025-08-21", "total": 81.8, "store": "REWE Q6", "store_id": "5626", "num_items": 23, "products": ["WAGYU BURGER", "BACON-STREIFEN", "BAUCHSPECKWUERF", "KERRYGOLD CHEDD.", "MOZZAR.DI BUFALA", "GNOCCHI DI PATAT", "TRIPLE ORANGE", "HONIG-SENF-DRES.", "CAESAR SALATS.", "H-MILCH GVO-FREI", "FR.SCHLAGSAHNE", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "HAEHN.SCHNITZEL", "SMASH BURGER", "MANGO", "HOLLAEND.KAKAO", "REAL MAYO", "BLUETENHONIG FL", "MILKA BISCOFF", "CHOCO WAFER", "NATURAL SKIN", "KA GRILLIES LACH"]}, {"date": "25.08.2025", "date_sort": "2025-08-25", "total": 47.07, "store": "REWE Q6", "store_id": "5626", "num_items": 12, "products": ["HA-GESCHNETZELTE", "RFW DUROC SCHIN.", "INDIAN STYLE MAN", "TRIPLE ORANGE", "FAMILY MIX", "PFLAUME", "KARTOFFELTASCHE", "APFELROTKOHL", "MINI WINDBEUTEL", "MILKA BISCOFF", "NIPPON WEISS", "HAZELNUT CREAM"]}, {"date": "01.09.2025", "date_sort": "2025-09-01", "total": 179.32, "store": "REWE Q6", "store_id": "5626", "num_items": 43, "products": ["RD-HACKFLEISCH", "HA-GESCHNETZELTE", "ITAL. MORTADELLA", "TRUEFFEL MORTADE", "BAUCHSPECKWUERF", "ROHSCHINKEN GEW.", "BURRATA BUFALA", "MOZZAR.DI BUFALA", "PIZZAKAES GERIEB", "AUFLAUFKASE", "ROT THAI CURRY", "INDIAN STYLE MAN", "PIZZATEIG M.SA.", "FAMILY MIX", "CAESAR SALATS.", "MANGO-MINZ DRESS", "EIER FH WEISS", "IRISCHE BUTTER", "H-MILCH GVO-FREI", "YAKULT ORIGINAL", "FR.SCHLAGSAHNE", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "KAISERGEMUESE", "ZWIEBEL-DUO", "KNOBLAUCH-DUO", "CROISSANT 4ER", "FETTUCCINE", "ICY BLUE RASPBER", "OLIVENOEL ORIGI.", "TRUEFFEL NOTE", "CURRY MANGO SAUC", "HEINZ TK 1170", "TOMATE FRITO BA", "STRAWB.CHEESEC.", "SCHOKO UND KEKS", "OREO", "TRIOLADE", "KALKSTOPP-TABS", "ZAHNCREME ORIGIN", "KA GRILLIES LACH", "KA GRILLIES ENTE", "MIKROFASERT.10"]}, {"date": "03.09.2025", "date_sort": "2025-09-03", "total": 7.67, "store": "REWE S6", "store_id": "5526", "num_items": 3, "products": ["TORTILLA DIP", "MEERESFRUECHTE", "CHOCO WAFER"]}, {"date": "08.09.2025", "date_sort": "2025-09-08", "total": 62.35, "store": "REWE Q6", "store_id": "5626", "num_items": 16, "products": ["RD-HACKFLEISCH", "RFW DUROC SCHIN.", "PIZZAKAES GERIEB", "GRANA PADANO", "TRIPLE ORANGE", "MISCHSALAT ROHK.", "ANANAS", "KUERB.BUTTEN.BIO", "EIER FH WEISS", "PROTEINPUDD. SCH", "KARTOFFELTASCHE", "BIO TK KAR.TASCH", "G. I. SAISONPFAN", "WS APRILFRISCH", "WS ORCHIDEE+VAN.", "TEMPO DUO FEUCHT"]}, {"date": "10.09.2025", "date_sort": "2025-09-10", "total": 12.68, "store": "REWE Q6", "store_id": "5626", "num_items": 2, "products": ["ALPENJODSALZ+F", "VOLVIC 8L"]}, {"date": "18.09.2025", "date_sort": "2025-09-18", "total": 90.94, "store": "REWE Q6", "store_id": "5626", "num_items": 22, "products": ["HA-GESCHNETZELTE", "TRUEFFEL MORTADE", "RFW DUROC SCHIN.", "BIO CAMEMBERT", "MOZZAR.DI BUFALA", "REIBEKAESE PIZZA", "INDIAN STYLE MAN", "PIZZATEIG M.SA.", "TRIPLE ORANGE", "YAKULT ORIGINAL", "FR.SCHLAGSAHNE", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "KART.HAEHNCH.PF", "G. I. SAISONPFAN", "ZWIEBEL-DUO", "NUTELLA", "YOGURETTE", "HAPPY HIPPO", "KAUBONBONS MINT", "FRET MINI", "CHOCO WAFER"]}, {"date": "20.09.2025", "date_sort": "2025-09-20", "total": 49.7, "store": "REWE Q6", "store_id": "5626", "num_items": 10, "products": ["RD-HACKFLEISCH", "HA-BRUSTFILET", "CABANOSSI", "FRI BUTTERBLEATT", "CROISSANT 4ER", "TOMATO FRITO", "TOMATE FRITO BA", "VOLVIC 8L", "TEMPO DUO FEUCHT", "DIGI-ALKALINE LR"]}, {"date": "22.09.2025", "date_sort": "2025-09-22", "total": 20.12, "store": "REWE Q6", "store_id": "5626", "num_items": 7, "products": ["LEBERWURSTBAELL", "EXQUISA FITLINE", "SPAETZLEKAES", "HIGH PROT. SALT.", "TUC BR SEA SALT", "KINDER BUENO", "CHOCO WAFER"]}, {"date": "25.09.2025", "date_sort": "2025-09-25", "total": 56.36, "store": "REWE Q6", "store_id": "5626", "num_items": 18, "products": ["EXQUISA FITLINE", "GNOCCHI MIT BASI", "TOM.BASIL.SAUCE", "PIZZATEIG M.SA.", "KAROTTINI", "ZWIEBELN", "KNOBLAUCH", "PROTEINPUDD. SCH", "BRONZO SPAGHETTI", "CRE.TARTE CITRON", "FRET MINI", "CHOCO WAFER", "VOLVIC 8L", "TEMPO DUO FEUCHT", "GOURMET PERLE", "GOURMET PERLE", "GOURMET PERLE", "KA GRILLIES ENTE"]}, {"date": "27.09.2025", "date_sort": "2025-09-27", "total": 86.04, "store": "REWE Q6", "store_id": "5626", "num_items": 20, "products": ["MORTADELLA", "TRUEFFEL MORTADE", "KERRYGOLD CHEDD.", "PARMIGIANO REG.", "PECORINO ROMANO", "INDIAN STYLE MAN", "ORANGENSAFT O.FR", "BLATTSALAT MIX", "TRAUBE HELL KL", "NEKTARINE", "CHAMP. BRAUN BIO", "BIO SAHNE 30%", "PROTEINPUDD. SCH", "ZWIEBEL-DUO", "8 KRAEUTER GEMI.", "ICY BLUE RASPBER", "LINDORTF MILK PP", "LINDORTF WEISS P", "LINDT TAFEL", "KITKAT CHUNKY"]}, {"date": "01.10.2025", "date_sort": "2025-10-01", "total": 141.92, "store": "REWE Q6", "store_id": "5626", "num_items": 34, "products": ["SB-LACHSFILET", "PROSCIUTTO CRUDO", "GRANA PADANO", "GRANA PADANO", "TRIPLE ORANGE", "KOPFSALAT M.ZWIE", "EIER FH RES 10ER", "H-MILCH GVO-FREI", "YAKULT ORIGINAL", "NESTLE MILCHMAED", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "GARNELE MARIN.", "FELD.FARMERS GEM", "NUTELLA MUFFIN", "WINDBEUTEL", "CROISSANT 4ER", "ROESTI BERNER AR", "CONCHIGLIE", "PATNA REIS LOSE", "TRUEFFELP. MIT C", "DELIKATESS SENF", "NUTELLA", "TRIOLADE", "SCHOKO UND KEKS", "OREO", "ECLATS NOIS", "CHOCO THINS", "OREO WHITE CHOC", "FRET MINI", "CHOCO WAFER", "DOVE DUSCHE", "TEMPO DUO FEUCHT", "MUELLB. 35L ZB"]}, {"date": "04.10.2025", "date_sort": "2025-10-04", "total": 16.16, "store": "REWE Q6", "store_id": "5626", "num_items": 4, "products": ["DIE FEINEN KART.", "TRUEFFEL SAUCE", "VOLVIC 8L", "BRENNPASTE 1L"]}, {"date": "05.10.2025", "date_sort": "2025-10-05", "total": 21.05, "store": "REWE Q6", "store_id": "5626", "num_items": 4, "products": ["SB-LACHSFILET", "FAMILY MIX", "CHAMPIGNONS BR", "NESTLE KITKAT"]}, {"date": "09.10.2025", "date_sort": "2025-10-09", "total": 47.32, "store": "REWE Q6", "store_id": "5626", "num_items": 10, "products": ["PIZZAKAES GERIEB", "GRANA PADANO", "INDIAN STYLE MAN", "YAKULT ORIGINAL", "FR.SCHLAGSAHNE", "PROTEINPUDD. SCH", "TOMATENFRUCHTFLE", "KINDER BUENO 10", "OREO WHITE CHOC", "ULTIM. FRESH 46"]}, {"date": "13.10.2025", "date_sort": "2025-10-13", "total": 34.22, "store": "REWE Q6", "store_id": "5626", "num_items": 6, "products": ["REIBEKAESE PIZZA", "BUTTERTOAST", "NESTLE MILCHMAED", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "HAEHN.SCHNITZEL"]}, {"date": "15.10.2025", "date_sort": "2025-10-15", "total": 25.73, "store": "REWE S6", "store_id": "5526", "num_items": 6, "products": ["SB-LACHSFILET", "GALBANI GER.", "KONDENSMILCH", "CREMEFINE", "SPA. KNOBLAUCH", "MILLE FOGLIE SN."]}, {"date": "17.10.2025", "date_sort": "2025-10-17", "total": 79.48, "store": "REWE Q6", "store_id": "5626", "num_items": 24, "products": ["PROSCIUTTO CRUDO", "GRANA PADANO", "PASTA 5 KAESE", "PASTA CHICKEN", "CHICK.TIKKA TAKE", "KNOBLAUCH", "BIO SAHNE 30%", "CREMEFINE 15%", "PROTEINPUDD. SCH", "D.HUHN&GEMUESE", "ITALIENISCHE KRA", "BIO TK PETERSIL", "BIO TK SCHNITTLA", "KNOBLAUCH-DUO", "ZWIEBEL-DUO", "CHEESE BITES", "NESTLE KITKAT", "CHOCO WAFER", "FINISH SALZ", "SCHOKO LEBKU ZB", "GOURMET PERLE", "PURINA ONE ADULT", "GOURMET PERLE", "KA GRILLIES LACH"]}, {"date": "20.10.2025", "date_sort": "2025-10-20", "total": 40.61, "store": "REWE S6", "store_id": "5526", "num_items": 11, "products": ["BUTTER BRIOCHE", "TRUEFFEL KAESE", "SAUCE EDELPILZE", "TRIPLE ORANGE", "PROTEINPUDD. SCH", "CHEESE BITES", "KNOBLAUCH TOSK", "MEERESFRUECHTE", "CHOCO WAFER", "SEIFE CREAM BAR", "DEO ROLL ON"]}, {"date": "22.10.2025", "date_sort": "2025-10-22", "total": 157.67, "store": "REWE Q6", "store_id": "5626", "num_items": 31, "products": ["RD-HACKFLEISCH", "INNENBRUSTFILET", "ANTIPASTO", "PROSCIUTTO CRUDO", "COPPA", "TRIPLE ORANGE", "DIE FEINEN KART.", "ZWIEBELN", "PROTEINPUDD. SCH", "TIRAMISU", "HAEHN.FILETSTEAK", "HAEHN. SCHNITZEL", "D.HUHN&GEMUESE", "IGLO RAHMS. MINI", "KOENIGSGEM.TK", "BUTTERGEMUESE", "CHEESE BITES", "CROISSANT 4ER", "ICY BLUE RASPBER", "ROTE BETE", "LAYS KRAEUTERBUT", "TUC BR SEA SALT", "FERRERO DUPLO", "NUTELLA BISCUITS", "ECLATS NOIS", "FRET MINI", "CHOCO WAFER", "ZEWA ULTRA SOFT", "NATURAL SKIN", "TEMPO TASCHENT.", "KUECHENROLLE"]}, {"date": "25.10.2025", "date_sort": "2025-10-25", "total": 77.41, "store": "REWE Q6", "store_id": "5626", "num_items": 13, "products": ["SB-LACHSFILET", "MINI WIENER", "TRIPLE ORANGE", "FAMILY MIX", "HONIG-SENF-DRES.", "HAEHN.FILETSTEAK", "FRUTTI DI MARE", "KAISERGEMUESE", "CROISSANT 4ER", "KITKAT TAFEL", "TAFEL DOUBLE CHO", "NESTLE KITKAT WH", "NESTLE KITKAT"]}, {"date": "03.11.2025", "date_sort": "2025-11-03", "total": 210.1, "store": "REWE Q6", "store_id": "5626", "num_items": 45, "products": ["HA-MINISTEAKS", "SB-LACHSFILET", "RFW DUROC SCHIN.", "EXQUISA FITLINE", "PIZZAKAES GERIEB", "AUFLAUFKASE", "GRANA PADANO", "FONDUE", "PIZZATEIG M.SA.", "TRIPLE ORANGE", "NESTLE MILCHMAED", "ZAZIKI", "CREMEFINE 15%", "PROTEINPUDD. SCH", "SCHOKOSOUFFLE", "TIRAMISU M.SPEKU", "HAEHN.SCHNITZEL", "HAEHN.FILETSTEAK", "HAEHN. SCHNITZEL", "WILDLACHSFILET", "D.HUHN&GEMUESE", "PASTEIS DE NATA", "BRATKARTOFFEL", "BRONZO RIGATONI", "ORECCHIETTE", "TOMATO SOUP", "SESAMOEL", "SWEET ONION", "TOMATEN STUECKIG", "TOMATE FRITO BA", "NESTLE KITKAT WH", "NESTLE KITKAT", "MATCHA CRUNCHY", "MILDE CRUNCHY", "FRET MINI", "CHOCO WAFER", "SOM.APPLE 0,33", "PERWOLL RENEW", "OXI ACTIONPULVER", "FINISH KLARSPUE", "TEMPO DUO FEUCHT", "GOURMET PERLE", "PURINA ONE ADULT", "KA GRILLIES LACH", "KA GRILLIES ENTE"]}, {"date": "04.11.2025", "date_sort": "2025-11-04", "total": 13.26, "store": "REWE Q6", "store_id": "5626", "num_items": 4, "products": ["OLD AMSTERDAM", "GORGONZOLA", "JA ! BRIESPITZE", "PFANNENGYROS"]}, {"date": "06.11.2025", "date_sort": "2025-11-06", "total": 20.83, "store": "REWE Q6", "store_id": "5626", "num_items": 5, "products": ["BAGUETTE", "CANNOLI CACAO", "SCHOKOSOUFFLE", "HAEHN.SCHNITZEL", "MINI CORDON BLEU"]}, {"date": "08.11.2025", "date_sort": "2025-11-08", "total": 49.83, "store": "REWE Q6", "store_id": "5626", "num_items": 14, "products": ["KAROTTE", "EIER FH WEISS", "FR.SCHLAGSAHNE", "CREMEFINE 15%", "PROTEINPUDD. SCH", "SCHOKOSOUFFLE", "CROISSANT 4ER", "BOURBON VANILLE", "NESTLE KITKAT", "KAUBONBONS MINT", "EXTRA FR. MINT", "CHOCO WAFER", "ZAHNCREME ORIGIN", "LEBENSMITTEL"]}, {"date": "11.11.2025", "date_sort": "2025-11-11", "total": 30.79, "store": "REWE Q6", "store_id": "5626", "num_items": 6, "products": ["SB-LACHSFILET", "ROT THAI CURRY", "PROTEINPUDD. SCH", "SCHOKOSOUFFLE", "RAPSOEL JA!", "CURRY MANGO SAUC"]}, {"date": "15.11.2025", "date_sort": "2025-11-15", "total": 23.04, "store": "REWE Q6", "store_id": "5626", "num_items": 5, "products": ["SALAME TOSCANA", "LEERDAMMER F.S.", "SMOOTHIE GREEN1", "TRIPLE ORANGE", "CROISSANT 4ER"]}, {"date": "17.11.2025", "date_sort": "2025-11-17", "total": 40.06, "store": "REWE Q6", "store_id": "5626", "num_items": 12, "products": ["FONDUE", "KAROTTE", "EIER FH RES 10ER", "H-MILCH GVO-FREI", "CREMEFINE 15%", "CHOCO WAFER", "WS ORCHIDEE+VAN.", "STUECKSEIFE", "SEIFE", "TEMPO DUO FEUCHT", "GOURMET PERLE", "GOURMET PERLE"]}, {"date": "19.11.2025", "date_sort": "2025-11-19", "total": 100.48, "store": "REWE Q6", "store_id": "5626", "num_items": 15, "products": ["SB-LACHSFILET", "LE GRUYERE SCHB", "PIZZAKAES GERIEB", "INDIAN STYLE MAN", "GEF. GNOCCHI", "GIRASOLI LACHS", "CREMEFINE 15%", "PROTEINPUDD. SCH", "REISBAEL. KOCHSC", "REISBAEL. HACKFL", "TORTA SWEET VENI", "ICY BLUE RASPBER", "OREO WHITE CHOC", "FRET MINI", "CHOCO WAFER"]}, {"date": "21.11.2025", "date_sort": "2025-11-21", "total": 27.31, "store": "REWE Q6", "store_id": "5626", "num_items": 5, "products": ["SAINT AGUR", "NESTLE MILCHMAED", "PROTEINPUDD. SCH", "KOENIGSGEM.TK", "ULTIM. FRESH 46"]}, {"date": "25.11.2025", "date_sort": "2025-11-25", "total": 108.7, "store": "REWE Q6", "store_id": "5626", "num_items": 20, "products": ["FAE. RUMPSTEAK", "FAE. RUMPSTEAK", "PIZZAKAES GERIEB", "GRANA PADANO", "PASTA CAESAR CH.", "GEF. GNOCCHI", "PIZZATEIG M.SA.", "BIRNE ALEX.LUCAS", "CREMEFINE 15%", "PROTEINPUDD. SCH", "SCHOKOSOUFFLE", "MINI SCHNITZEL", "CHEESE BITES", "DAIM TORTE", "ZIMTSTANGEN", "OSTMANN BASIL.", "TRUEFFEL NOTE", "CHOCO WAFER", "FRET MINI", "OBLATENLEBKUCHEN"]}, {"date": "28.11.2025", "date_sort": "2025-11-28", "total": 23.1, "store": "REWE Q6", "store_id": "5626", "num_items": 5, "products": ["PROTEINPUDD. SCH", "LASAGNE BOLOGNES", "REISBAEL. HACKFL", "REISBAEL. KOCHSC", "TERIYAKI SAUCE"]}, {"date": "01.12.2025", "date_sort": "2025-12-01", "total": 219.07, "store": "REWE Q6", "store_id": "5626", "num_items": 44, "products": ["HA-HERZEN", "HA-MINISTEAKS", "OLD AMSTERDAM", "SAINT AGUR", "GRANA PADANO", "MILKA CHOCO TRIO", "BUTTER BRIOCHE", "PASTA CHICKEN", "LACHSROELLCHEN", "TRUEFFEL KAESE", "TRIPLE ORANGE", "H-MILCH GVO-FREI", "CREMEFINE 15%", "PROTEINPUDD. SCH", "SCHOKOSOUFFLE", "CHEESECAKE SPEK", "HAEHN.FILETSTEAK", "BACKTEIG NUGGETS", "MINI SCHNITZEL", "FELD.FARMERS GEM", "G. I. SAISONPFAN", "ZWIEBEL-DUO", "APFELROTKOHL", "CHEESE BITES", "PROFITEROLES", "CHOC CHIP COOKIE", "VOLLMILCH GLASUR", "ICY BLUE RASPBER", "ALPENJODSALZ", "NATIV.OLIVENOEL", "LES. S.CREM. KAE", "LES SAUCE HONIG", "CR.MAYONNAISE", "NUTELLA", "NESTLE KITKAT", "NESTLE KITKAT WH", "CHOCO WAFER", "FRET MINI", "ZEWA ULTRA SOFT", "TEMPO DUO FEUCHT", "PANETTONE", "LEBENSMITTEL", "GOURMET PERLE", "GOURMET PERLE"]}, {"date": "04.12.2025", "date_sort": "2025-12-04", "total": 55.03, "store": "REWE Q6", "store_id": "5626", "num_items": 11, "products": ["SB-LACHSFILET", "MILKA CHOCO TRIO", "GEF. GNOCCHI", "ZITRONE", "SCHLAGSAHNE 32%", "SCHNITTLAUCH", "DILL", "LINDOR PRAESE", "CHOCO WAFER", "BIO ZITRONENSAFT", "PANETTONE"]}, {"date": "06.12.2025", "date_sort": "2025-12-06", "total": 39.76, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["JUBILAEUMSBOX X01", "EIER FH RES 10ER", "VOLVIC 8L"]}, {"date": "11.12.2025", "date_sort": "2025-12-11", "total": 4.94, "store": "REWE Q6", "store_id": "5626", "num_items": 2, "products": ["PASSIONSFRUCHT", "BLATTGELATINE"]}, {"date": "11.12.2025", "date_sort": "2025-12-11", "total": 5.78, "store": "REWE Q6", "store_id": "5626", "num_items": 1, "products": ["FR.SCHLAGSAHNE"]}, {"date": "12.12.2025", "date_sort": "2025-12-12", "total": 84.39, "store": "REWE Q6", "store_id": "5626", "num_items": 20, "products": ["PROSCIUTTO CRUDO", "SAINT AGUR", "FONDUE", "PASTA CHICKEN", "BUTTER CHICKEN", "CHINESE STYLE", "INDIAN STYLE MAN", "POFFERTJES", "GEF. GNOCCHI", "BANANE CHIQUITA", "APFEL RED CHIEF", "TRAUBE HELL", "BIO SPEISEKART.", "FR.SCHLAGSAHNE", "PROTEINPUDD. SCH", "HAEHN. SCHNITZEL", "KNUSPERENTE", "MANGO", "ALPENMILCH 90G", "KOKOS"]}, {"date": "17.12.2025", "date_sort": "2025-12-17", "total": 153.49, "store": "REWE Q6", "store_id": "5626", "num_items": 44, "products": ["BURRATA APULIEN", "GALBANI GER.", "PIZZAKAES GERIEB", "AUFLAUFKASE", "GRANA PADANO", "TRUEFFEL KAESE", "PIZZATEIG M.SA.", "ORANGENSAFT O.FR", "KNOBLAUCH FRISCH", "EIER FH RES 10ER", "IRISCHE BUTTER", "TRUEFFELBUTTER", "CREMEFINE 15%", "BIO TK ZWIEBEL", "KNOBLAUCH-DUO", "ACAI BOWL", "ANANAS WEI.SCHOK", "ERDB.WEISSE SCHO", "CHEESE BITES", "CROISSANT 4ER", "MEHL TYP 405", "JA! RAFF.ZUCKER", "ZWIEBEL GRANUL", "KNOBLAUCH GRANUL", "INGWER GEMAHLEN", "CHILI FLOCKEN DB", "HOLLANDAISE LEG.", "THUNFIL.BIOOEL", "LACHS", "SCHAELTOMATEN", "PIZZA PASTASAUCE", "TOMATE FRITO BA", "ERDBEER JOGHURT", "NESTLE KITKAT", "MEERESFRUECHTE", "FRET MINI", "CHOCO WAFER", "TEMPO DUO FEUCHT", "PANETTONE", "GOURMET PERLE", "GOURMET PERLE", "ONE SENSITIVE", "KA GRILLIES ENTE", "WHISKAS KNUSPER"]}, {"date": "20.12.2025", "date_sort": "2025-12-20", "total": 41.34, "store": "REWE Q6", "store_id": "5626", "num_items": 10, "products": ["RFW DUROC SCHIN.", "BUTTER BRIOCHE", "SHITAKE", "PROTEINPUDD. SCH", "DAIM TORTE", "HALF BAKED", "STRAWBERRY CHEES", "OREO WHITE CHOC", "CHOCO WAFER", "GR. PAPIERTASCHE"]}, {"date": "23.12.2025", "date_sort": "2025-12-23", "total": 50.76, "store": "REWE S6", "store_id": "5526", "num_items": 12, "products": ["SB-LACHSFILET", "TRUEFFEL KAESE", "SAUCE EDELPILZE", "CHERRY ROMA BIO", "JA! SCHLAGSAHNE", "STRAW. DOUGHNUT", "HALF BAKED", "GER.ORANGENSCH.", "PAPRIKA EDELSUES", "PAPRIKA GER.", "NUTELLA", "CHOCO WAFER"]}, {"date": "23.12.2025", "date_sort": "2025-12-23", "total": 99.11, "store": "REWE Q6", "store_id": "5626", "num_items": 13, "products": ["SAINT AGUR", "CHINESE STYLE", "INDIAN STYLE MAN", "EIER FH RES 10ER", "FR.SCHLAGSAHNE", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "DAIM TORTE", "MOCHI EIS MANGO", "SCHOKO UND KEKS", "HOCHFEIN WINTER", "TEMPO DUO FEUCHT", "ONE SENSITIVE"]}, {"date": "27.12.2025", "date_sort": "2025-12-27", "total": 34.65, "store": "REWE Q6", "store_id": "5626", "num_items": 8, "products": ["LACHSFORELLENFI.", "GRANA PADANO", "GEF. GNOCCHI", "OBST/GEMUESE", "BIO SAHNE 30%", "HAEHN. SCHNITZEL", "SUESSK. POMMES", "TRUEFFEL NOTE"]}, {"date": "30.12.2025", "date_sort": "2025-12-30", "total": 10.77, "store": "REWE City N1", "store_id": "5693", "num_items": 6, "products": ["EIER BH M-L", "JA! SCHLAGSAHNE", "GER.ORANGENSCH.", "JA! BACKPAPIERZ", "ONE SENSITIVE", "PURINA ONE ADULT"]}, {"date": "02.01.2026", "date_sort": "2026-01-02", "total": 180.43, "store": "REWE Q6", "store_id": "5626", "num_items": 29, "products": ["RD-HACKFLEISCH", "RD-HACKFLEISCH", "PROSCIUTTO CRUDO", "GALBANI GER.", "PIZZAKAES GERIEB", "GRANA PADANO", "CREMEFINE 15%", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "HAEHN.SCHNITZEL", "D.HUHN&GEMUESE", "KOENIGSGEMUESE", "BROCCOLI", "BRONZO SPAGHETTI", "TAGLIATELLE", "ICY BLUE RASPBER", "TOMATE FRITO BA", "TOMATO PASSIERT", "STUECKIGE TOMATE", "DAIM PRALINEN", "CHOCO WAFER", "FRET MINI", "ULTIM. FRESH 46", "FINISH SALZ", "ZAHNCREME ORIGIN", "STUECKSEIFE", "TEMPO DUO FEUCHT", "ONE SENSITIVE", "WHISKAS KNUSPER"]}, {"date": "05.01.2026", "date_sort": "2026-01-05", "total": 8.91, "store": "REWE Q6", "store_id": "5626", "num_items": 5, "products": ["PITAROLL CHEESE", "CHIPSFRISCH", "KINDERSCHOKOLADE", "HAPPY HIPPO", "CC Z 0,33L EW FL"]}, {"date": "05.01.2026", "date_sort": "2026-01-05", "total": 12.79, "store": "REWE S6", "store_id": "5526", "num_items": 4, "products": ["BUTTER BRIOCHE", "TRIPLE ORANGE", "AVOCADO ANGER.", "BIO EIER 6ER OKT"]}, {"date": "05.01.2026", "date_sort": "2026-01-05", "total": 46.74, "store": "REWE Q6", "store_id": "5626", "num_items": 7, "products": ["PROSC.DI PARMA", "GALBANI GER.", "RAUECHERLACHS", "ORANGENSAFT O.FR", "AVOCADO FEINE W.", "HAEHN. SCHNITZEL", "CROISSANT 4ER"]}, {"date": "22.01.2026", "date_sort": "2026-01-22", "total": 129.53, "store": "REWE Q6", "store_id": "5626", "num_items": 36, "products": ["SAINT AGUR", "GRANA PADANO", "BUTTER BRIOCHE", "PASTA CHICKEN", "PASTA TOSCANA", "INDIAN STYLE MAN", "CHICKEN TERIYAKI", "GR.THAI CURRY TA", "GEF. GNOCCHI", "PIZZATEIG M.SA.", "ORANGENSAFT O.FR", "SMOOTHIE GREEN1", "TRIPLE ORANGE", "FAMILY MIX", "CAESAR SALATS.", "BANANE CHIQUITA", "EIER FH WEISS", "PROTEINPUDD. SCH", "D.HUHN&GEMUESE", "SUESSK. POMMES", "HERZOGINKARTOFF.", "KNOBLAUCH-DUO", "APFELROTKOHL", "STEINPILZE", "DAIM TORTE", "ORANGENSCHALEN", "VANILLE EXTRAKT", "SURIG ESSIG", "BALSAMICO CREME", "HOLLANDAISE LEG.", "TOMATENFRUCHTFLE", "TOMATE FRITO BA", "CHOCO WAFER", "ONE SENSITIVE", "GOURMET PERLE", "PURINA ONE HYDRA"]}, {"date": "23.01.2026", "date_sort": "2026-01-23", "total": 19.91, "store": "REWE Q6", "store_id": "5626", "num_items": 6, "products": ["LEICHTSCHIN. GEW", "RAUECHERLACHS", "ZWIEBEL ROT", "LAUCHZWIEBELN", "YAKULT ORIGINAL", "CR.FRAICHE NATUR"]}, {"date": "24.01.2026", "date_sort": "2026-01-24", "total": 18.36, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["SB-LACHSFILET", "WINTER EDITION", "TIRAMISU"]}, {"date": "28.01.2026", "date_sort": "2026-01-28", "total": 61.91, "store": "REWE Q6", "store_id": "5626", "num_items": 16, "products": ["PROSCIUTTO CRUDO", "GALBANI GER.", "PIZZAKAES GERIEB", "GRANA PADANO", "CREMEFINE 15%", "HAEHN.FILETSTEAK", "ZWIEBEL-DUO", "OREO SANDWICH", "TOMATO SOUP", "CHOCO WAFER", "PERWOLL SPORT", "WS ORCHIDEE+VAN.", "KALKSTOPP-TABS", "TEMPO FEUCHT", "PURINA ONE INDOO", "ONE SENSITIVE"]}, {"date": "30.01.2026", "date_sort": "2026-01-30", "total": 33.33, "store": "REWE Q6", "store_id": "5626", "num_items": 6, "products": ["SB-LACHSFILET", "PROSCIUTTO CRUDO", "BIO SPEISEKART.", "YAKULT ORIGINAL", "CANNOLI MIGNON", "HYDRA TABS"]}, {"date": "04.02.2026", "date_sort": "2026-02-04", "total": 211.4, "store": "REWE Q6", "store_id": "5626", "num_items": 45, "products": ["LE GRUYERE ANTI.", "MASCARPONE", "PHILADELPHIA NAT", "CHICKEN TERIYAKI", "CHINESE STYLE", "GEF. GNOCCHI", "TRIPLE ORANGE", "MELONENMIX", "WINTER EDITION", "FAMILY MIX", "CAESAR SALATS.", "KAROTTINI", "EIER FH RES 10ER", "FR.SCHLAGSAHNE", "PROTEINPUDD. SCH", "HAEHN. SCHNITZEL", "FISCHSTAEBCHEN", "PFANNENGYROS", "D.HUHN&GEMUESE", "DUMPLING KOREAN", "BIO TK ZWIEBEL", "B.BLUEMCH.TORTE", "MOUSSE AU CHOC", "MINI DONUTS", "CROISSANT 4ER", "ESN BAR DARK", "SOFT BARS WHITE", "ICY BLUE RASPBER", "SAU.HOLLAND.+20%", "AMERIC.MUST.MILD", "HEINZSAUCE", "CURRY MANGO SAUC", "HEINZ TK 1170", "CR.MAYONNAISE", "KNUSPERKEKS", "CEREOLA SCHOKOL.", "FRET MINI", "CHOCO WAFER", "DOVE DUSCHE", "TEMPO DUO FEUCHT", "MUELLB. 35L ZB", "GOURMET PERLE", "ONE SENSITIVE", "GOURMET PERLE", "KASTENFORM"]}, {"date": "07.02.2026", "date_sort": "2026-02-07", "total": 43.86, "store": "REWE S6", "store_id": "5526", "num_items": 11, "products": ["HA-BRUSTFILET", "JA! EMMENTALER", "MILKANA SAHNE", "TOM.BASIL.SAUCE", "EIER FH RES 10ER", "YOPRO ERDB.-HIMB", "MINI PIZ. SALAMI", "CHOC FUD.BROWNIE", "PANIERMEHL", "ROTE BETE LIGHT", "NESTLE KITKAT"]}, {"date": "13.02.2026", "date_sort": "2026-02-13", "total": 75.8, "store": "REWE S6", "store_id": "5526", "num_items": 21, "products": ["SB-LACHSFILET", "SAINT AGUR", "TRUEFFEL KAESE", "FRI BUTTERBLEATT", "FAMILY MIX", "HONIG-SENF-DRES.", "KARTOFFEL", "ZWIEB.GEMUESE", "KNOBLAUCH", "CHAMPIGNON W/BR", "BIO SAHNE 30%", "PROTEINPUDD. SCH", "TIRAMISU", "D.HUHN&GEMUESE", "KAKAO-MOUSSE", "74% DIE KRAEFTIG", "MEERESFRUECHTE", "CHOCO WAFER", "VISS DESINF. FL.", "MUELLBTL.10L", "KA GRILLIES ENTE"]}, {"date": "14.02.2026", "date_sort": "2026-02-14", "total": 33.0, "store": "REWE Q6", "store_id": "5626", "num_items": 10, "products": ["HERZ ERDBEEREN", "CHAMP. WEISS", "KR. PETERSILIE", "THYMIAN", "CHOC FUD.BROWNIE", "ESN BAR STRAWBE", "ESN BAR DARK", "RINDER FOND", "NESTLE KITKAT", "ENTRECOTE MERLOT"]}, {"date": "16.02.2026", "date_sort": "2026-02-16", "total": 9.68, "store": "REWE S6", "store_id": "5526", "num_items": 2, "products": ["SAUCE EDELPILZE", "CHOC FUD.BROWNIE"]}, {"date": "17.02.2026", "date_sort": "2026-02-17", "total": 8.91, "store": "REWE Lindenhof", "store_id": "0250", "num_items": 3, "products": ["CABANOSSI", "BAGUETTE", "YOPRO ERDB.-HIMB"]}, {"date": "19.02.2026", "date_sort": "2026-02-19", "total": 90.19, "store": "REWE S6", "store_id": "5526", "num_items": 29, "products": ["PROSCIUTTO CRUDO", "EXQUISA FITLINE", "BUTTER BRIOCHE", "CHICKEN TERIYAKI", "GEF. GNOCCHI", "GARNELENSALAT KN", "CANTALOUPE200G", "ANANASSCHEIBEN", "FAMILY MIX", "ORANGE", "ZITRONE", "BANANE CHIQUITA", "APFEL GALA", "INGWER BIO", "BABYSPINAT", "EIER FH WEISS", "CREMEFINE 15%", "PROTEINPUDD. SCH", "FISCHSTAEB OMEGA", "MINI PIZ. SALAMI", "ESN BAR STRAWBE", "PUTENGESCHNETZEL", "GOLDSCHATZ", "MEERESFRUECHTE", "MATT-PASTE", "FRISCHHALTEFOLIE", "GOURMET PERLE", "PURINA ONE ADULT", "ONE SENSITIVE"]}, {"date": "23.02.2026", "date_sort": "2026-02-23", "total": 30.59, "store": "REWE Lindenhof", "store_id": "0250", "num_items": 8, "products": ["CABANOSSI", "IND.STY MADRAS", "PROTEINPUDD. SCH", "GEBAECKPRALINE", "CHOCO WAFER", "FRET MINI", "METTERNICH RIESL", "KA GRILLIES RIND"]}, {"date": "02.03.2026", "date_sort": "2026-03-02", "total": 226.08, "store": "REWE Q6", "store_id": "5626", "num_items": 43, "products": ["HA-GESCHNETZELTE", "HA-BRUSTFILET", "CABANOSSI", "SAINT AGUR", "NATUR", "GALBANI GER.", "GRANA PADANO", "PASTA CHICKEN", "CHICKEN TERIYAKI", "INDIAN STYLE MAN", "CHINESE STYLE", "LACHSFORELLE", "LACHSROELLCHEN", "TRIPLE ORANGE", "JUBILAEUMSBOX X01", "ANANAS GANZ 400G", "MISCHSALAT ROHK.", "ERDBEERE CALINDA", "CREMEFINE 15%", "PROTEINPUDD. SCH", "HAEHN.FILETSTEAK", "HAEHN. SCHNITZEL", "FISCHSTAEBCHEN", "GARNELE MARIN.", "MINI PIZ. SALAMI", "SUPREMA MARGHER", "CROISSANT 4ER", "CHOC FUD.BROWNIE", "TAGLIATELLE", "ESN BAR STRAWBE", "ICY BLUE RASPBER", "ALPENJODSALZ", "SAU.HOLLAND.+20%", "PFIRSICHE SCHN.", "TOMATE FRITO BA", "STUECKIGE TOMATE", "MILKA BISCOFF", "ROCHER", "FRET MINI", "CHOCO WAFER", "ULTIM. FRESH 46", "AKTIV-REINIGER", "LIP INFUSIONS"]}, {"date": "04.03.2026", "date_sort": "2026-03-04", "total": 23.19, "store": "REWE S6", "store_id": "5526", "num_items": 10, "products": ["SEKTGLAS X2", "TRIPLE ORANGE", "ANANASSCHEIBEN", "ORANGE", "ZITRONE", "BANANE CHIQUITA", "APFEL PINK LADY", "PROTEINPUDD. SCH", "BRILLENPUTZTUECH", "SCRUB DADDY HEAR"]}, {"date": "07.03.2026", "date_sort": "2026-03-07", "total": 18.71, "store": "REWE Q6", "store_id": "5626", "num_items": 5, "products": ["BURRATA BUFALA", "FR.SCHLAGSAHNE", "NATURELL PET FL", "TEMPO DUO FEUCHT", "TEMPO TASCHENT."]}, {"date": "09.03.2026", "date_sort": "2026-03-09", "total": 2.85, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["EIER BH M-L", "PROTEINPUDD. SCH", "ZEWA ULTRA SOFT"]}, {"date": "10.03.2026", "date_sort": "2026-03-10", "total": 10.56, "store": "REWE Q6", "store_id": "5626", "num_items": 4, "products": ["EMMENTALER GER.", "GRANA PADANO", "DIE FEINEN KART.", "FR.SCHLAGSAHNE"]}, {"date": "10.03.2026", "date_sort": "2026-03-10", "total": 10.97, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["ORZO SALAT", "ERDBEERE CALINDA", "MILDE CRUNCHY"]}, {"date": "13.03.2026", "date_sort": "2026-03-13", "total": 32.44, "store": "REWE Q6", "store_id": "5626", "num_items": 9, "products": ["MINI MOZZARELLA", "EIER FH RES 10ER", "FR.SCHLAGSAHNE", "PROTEINPUDD. SCH", "ZITRONENSCHALEN", "NUTELLA", "STUECKSEIFE", "TEMPO DUO FEUCHT", "FENSTERTUCH"]}, {"date": "16.03.2026", "date_sort": "2026-03-16", "total": 30.03, "store": "REWE S6", "store_id": "5526", "num_items": 6, "products": ["BIO LACHSFILET", "PASTA RUSTICA", "NESTLE MILCHMAED", "PROTEINPUDD. SCH", "VISS DESINF. FL.", "SEIFE"]}, {"date": "19.03.2026", "date_sort": "2026-03-19", "total": 7.94, "store": "REWE Q6", "store_id": "5626", "num_items": 3, "products": ["ZAZIKI", "PROTEINPUDD. SCH", "CHOCO WAFER"]}, {"date": "19.03.2026", "date_sort": "2026-03-19", "total": 34.54, "store": "REWE Q6", "store_id": "5626", "num_items": 10, "products": ["EIER FH RES S-L", "H-MILCH GVO-FREI", "NESTLE MILCHMAED", "PROTEINPUDD. SCH", "ESN BAR STRAWBE", "FERRE BUENO DARK", "LENOR WS", "ULTIM. FRESH 46", "FINISH SALZ", "ALLZWECKTUECHER"]}, {"date": "24.03.2026", "date_sort": "2026-03-24", "total": 58.78, "store": "REWE S6", "store_id": "5526", "num_items": 16, "products": ["BUTTER BRIOCHE", "GR.THAI CURRY TA", "BUTTER CHICKEN", "CHICK.TIKKA TAKE", "TRIPLE ORANGE", "FAMILY MIX", "PROTEINPUDD. SCH", "PIZZA MARGH.", "CREMISSIMO BOURB", "NESTLE KITKAT", "EXTRA PROF.", "CHOCO WAFER", "MIGNON WAFFELN", "DAN KL. SCHIMMEL", "PURINA ONE ADULT", "ONE SENSITIVE"]}, {"date": "25.03.2026", "date_sort": "2026-03-25", "total": 9.86, "store": "REWE S6", "store_id": "5526", "num_items": 4, "products": ["IRISCHE BUTTER", "BR.ROHRZUCKER", "FEINSTER ZUCKER", "GOLDSCHATZ"]}, {"date": "27.03.2026", "date_sort": "2026-03-27", "total": 16.99, "store": "REWE Q6", "store_id": "5626", "num_items": 1, "products": ["WHEY PROT. DARK"]}, {"date": "28.03.2026", "date_sort": "2026-03-28", "total": 23.24, "store": "REWE Q6", "store_id": "5626", "num_items": 7, "products": ["NACKENSTEAK", "NACKENSTEAK", "RFW DUROC SCHIN.", "ZWIEB.GEMUESE", "SUPPENGRUEN", "BRATEN FOND", "DAS SCHWARZE BV"]}, {"date": "31.03.2026", "date_sort": "2026-03-31", "total": 4.55, "store": "REWE Q6", "store_id": "5626", "num_items": 2, "products": ["FELDSALAT MIX", "PROTEINPUDD. SCH"]}, {"date": "01.04.2026", "date_sort": "2026-04-01", "total": 228.65, "store": "REWE S6", "store_id": "5526", "num_items": 57, "products": ["SB-LACHSFILET", "JAMON IBERICO", "CABANOSSI", "SAINT AGUR", "MOZZAR.DI BUFALA", "NATUR", "EMMENTALER GER.", "GOUDA GER. 48%", "GRANA PADANO", "GRANA PADANO", "RAEUCHERL. GRUEN", "RAUECHERLACHS", "TRIPLE ORANGE", "MISCHSALAT ROHK.", "ORANGE", "ZITRONE", "BANANE CHIQUITA", "APFEL GALA", "BABYSPINAT", "KR. PETERSILIE", "KR. PETERSILIE", "ROSMARIN", "KR. SCHNITTLAUCH", "EIER BH M-L", "IRISCHE BUTTER", "H-MILCH GVO-FREI", "CREMEFINE 15%", "BIO SAHNE 30%", "PROTEINPUDD. SCH", "TIRAMISU", "HAEHN.FILETSTEAK", "HAEHN. SCHNITZEL", "CEVPCICI", "DAIM TORTE", "CROISSANT 4ER", "TAGLIATELLE", "RISOTTO U PAELLA", "ESN BAR STRAWBE", "ESN BAR DARK", "INDIA CHICKEN BX", "GRIECH. OLIVENOE", "DIJON-SENF ORIG.", "COCKTAIL SAUCE", "TOMATENKETCHUP", "CR.MAYONNAISE", "SCHOKO MAC", "CRUNCHY CREAM", "BLUETENHONIG FL", "TOMATE FRITO BA", "GOLDSCHATZ", "MEERESFRUECHTE", "CHOCO WAFER", "BIO LIMETTENSAFT", "LISTERINE", "TEMPO DUO FEUCHT", "ONE SENSITIVE", "PURINA ONE ADULT"]}, {"date": "04.04.2026", "date_sort": "2026-04-04", "total": 29.88, "store": "REWE Q6", "store_id": "5626", "num_items": 12, "products": ["RFW COMTE", "RFW CAMEMBERT", "CAMEMBERT 45%", "GEF. GNOCCHI", "TRUEFFEL KAESE", "FAMILY MIX", "SUPPENGRUEN", "CHAMPIGNONS", "HAFERDRINK UNGE.", "BOURBON VANILLE", "LASAGNE", "KINDERSCHOKO-BON"]}];
 const bL=["Aug 2025", "Sep 2025", "Oct 2025", "Nov 2025", "Dec 2025", "Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026"],bV=[62.76, 62.5, 62.8, 62.8, 61.16, 62.26, 63.22, 62.72, 63.02];
 const pU=75,pDn=57,pSt=165;
-const CC=["#cc0000", "#2196f3", "#4caf50", "#9c27b0", "#333333", "#ff9800", "#00bcd4", "#e91e63", "#795548", "#607d8b", "#8bc34a", "#ff5722", "#3f51b5", "#cddc39"];
+const CC=["#cc0000", "#e53935", "#ff5722", "#ff9800", "#ffc107", "#8bc34a", "#4caf50", "#009688", "#00bcd4", "#2196f3", "#3f51b5", "#9c27b0"];
 const cM={};cL.forEach((c,i)=>cM[c]=CC[i%CC.length]);
 
 // Tabs
@@ -626,20 +501,14 @@ document.addEventListener('click',e=>{if(!e.target.closest('.acw'))acDd.classLis
 function addToCart(name,fromApi){
 const existing=cart.find(c=>c.n===name);
 if(existing){existing.q++;saveCart();return}
-let item;
 const p=P.find(x=>x.n===name);
 if(p){
-item={n:p.n,q:1,lp:p.lp,kg:p.kg,iu:p.iu||'',cat:p.cat,desc:p.desc||p.fn||'',src:'hist'};
+cart.push({n:p.n,q:1,lp:p.lp,kg:p.kg,iu:p.iu||'',cat:p.cat,desc:p.desc||p.fn||'',src:'hist'});
 }else if(fromApi){
-item={n:fromApi.name,q:1,lp:0,kg:false,iu:fromApi.img||'',cat:'',desc:fromApi.full||'',src:'api'};
+cart.push({n:fromApi.name,q:1,lp:0,kg:false,iu:fromApi.img||'',cat:'',desc:fromApi.full||'',src:'api'});
 }else{
-item={n:name,q:1,lp:0,kg:false,iu:'',cat:'',desc:'',src:'manual'};
+cart.push({n:name,q:1,lp:0,kg:false,iu:'',cat:'',desc:'',src:'manual'});
 }
-// Smart grouping: insert next to same-category items
-if(item.cat){
-const lastIdx=cart.map((c,i)=>c.cat===item.cat?i:-1).filter(i=>i>=0).pop();
-if(lastIdx!==undefined){cart.splice(lastIdx+1,0,item)}else{cart.push(item)}
-}else{cart.push(item)}
 acIn.value='';acDd.classList.remove('show');acTg.innerHTML='';
 saveCart()}
 
@@ -688,34 +557,79 @@ document.getElementById('acCf').classList.remove('show')}
 function saveCart(){if(!fbSyncing){fbCart.set(cart)}renderCart()}
 function renderCart(){
 const cl=document.getElementById('cartL'),ct=document.getElementById('cartT');
-if(!cart.length){cl.innerHTML='<div style="text-align:center;padding:20px;color:#ccc;font-size:13px">'+t('cart_empty')+'</div>';ct.style.display='none';return}
-// Sort: unchecked first (grouped by category), checked last
-const indexed=cart.map((c,i)=>({...c,_i:i}));
-const unchecked=indexed.filter(c=>!c.ck);
-const checked=indexed.filter(c=>c.ck);
-// Group unchecked by category
-unchecked.sort((a,b)=>(a.cat||'').localeCompare(b.cat||''));
-const sorted=[...unchecked,...checked];
-cl.innerHTML=sorted.map(c=>{
-const i=c._i;
+if(!cart.length){cl.innerHTML='<div style="text-align:center;padding:20px;color:#ccc;font-size:13px">Carrinho vazio. Busque produtos acima.</div>';ct.style.display='none';return}
+cl.innerHTML=cart.map((c,i)=>{
 const im=c.iu?`<img src="${c.iu}">`:`<div class="cni">${(c.desc||c.n).substring(0,16)}</div>`;
-const u=c.kg?'/kg':'';
+const u=c.kg?'/kg':'';const src=c.src==='api'?' (REWE)':c.src==='manual'?' (manual)':'';
 const subT=c.lp>0?c.lp*c.q:0;
-if(c.ck){
-return`<div class="ctit" style="opacity:.4;text-decoration:line-through;padding:6px 10px;border-bottom:1px solid #f5f5f5"><input type="checkbox" checked onchange="ctog(${i})" style="width:18px;height:18px;accent-color:#bbb;flex-shrink:0"><div class="cif" style="color:#aaa"><div class="cnm" style="font-size:11px;color:#bbb">${c.n}</div></div><div class="cpr" style="color:#ccc;font-size:11px">${c.lp>0?'\u20ac'+subT.toFixed(2):''}</div></div>`}
-return`<div class="ctit"><input type="checkbox" onchange="ctog(${i})" style="width:20px;height:20px;accent-color:#cc0000;flex-shrink:0">${im}<div class="cif"><div class="cnm">${c.n}</div><div class="cct">${c.cat||''}</div></div><div class="cqt"><button onclick="cqty(${i},-1)">-</button><span>${c.q}</span><button onclick="cqty(${i},1)">+</button></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2)+u:''}</div><div class="crm" onclick="crmv(${i})">&times;</div></div>`}).join('');
-const total=cart.reduce((a,c)=>(c.lp>0&&!c.ck?a+c.lp*c.q:a),0);
-const count=cart.filter(c=>!c.ck).reduce((a,c)=>a+c.q,0);
+const ckStyle=c.ck?'opacity:.35;text-decoration:line-through':'';
+return`<div class="ctit" style="${ckStyle}"><input type="checkbox" ${c.ck?'checked':''} onchange="ctog(${i})" style="width:18px;height:18px;accent-color:#cc0000;flex-shrink:0">${im}<div class="cif"><div class="cnm">${c.n}</div><div class="cct">${c.cat||''}${src}</div></div><div class="cqt"><button onclick="cqty(${i},-1)">-</button><span>${c.q}</span><button onclick="cqty(${i},1)">+</button></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2)+u:''}</div><div class="crm" onclick="crmv(${i})">&times;</div></div>`}).join('');
+const total=cart.reduce((a,c)=>(c.lp>0?a+c.lp*c.q:a),0);
+const count=cart.reduce((a,c)=>a+c.q,0);
 document.getElementById('cartC').textContent=count;
 document.getElementById('cartV').textContent='\u20ac'+total.toFixed(2);
 ct.style.display='flex';
-document.getElementById('syncSt').style.display='block';document.getElementById('syncSt').innerHTML='<span style="color:#4CAF50;font-size:11px">\u25cf '+t('synced')+'</span>'}
+document.getElementById('syncSt').style.display='block';document.getElementById('syncSt').innerHTML='<span style="color:#4CAF50;font-size:11px">\u25cf Sincronizado em tempo real</span>'}
 function ctog(i){cart[i].ck=!cart[i].ck;saveCart()}
 function cqty(i,d){cart[i].q=Math.max(1,cart[i].q+d);saveCart()}
 function crmv(i){cart.splice(i,1);saveCart()}
-function clrCart(){if(confirm(t('clear_cart_confirm'))){cart=[];saveCart()}}
+function clrCart(){if(confirm('Limpar carrinho?')){cart=[];saveCart()}}
 function cpCart(){const txt=cart.map(c=>`${c.q}x ${c.n}${c.lp>0?' (\u20ac'+c.lp.toFixed(2)+')':''}`).join('\n');
-navigator.clipboard.writeText(txt).then(()=>alert(t('cart_copied')))}
+navigator.clipboard.writeText(txt).then(()=>alert('Carrinho copiado!'))}
+
+// Apple Notes Sync
+const noteSearchTags={"manteiga": ["BUTTER"], "leite": ["MILCH"], "ovo": ["EIER"], "ovos": ["EIER"], "queijo": ["KAESE", "CHEESE", "GOUDA", "GRANA", "EXQUISA", "GALBANI", "PHILADELPHIA", "CAMEMBERT", "BURRATA", "AMSTERDAM", "GRUYERE", "LEERDAMMER", "PECOR"], "mussarela": ["MOZZAR"], "parmesao": ["PARMESAN", "PARMIGIANO", "GRANA PADANO"], "frango": ["HAEHN", "HUHN", "CHICKEN", "BRUSTFILET", "GEFLUEGEL"], "carne": ["FLEISCH", "HACK", "STEAK", "GULASCH", "ENTRECOTE"], "boi": ["RIND", "ANGUS"], "porco": ["SCHWEIN", "DUROC"], "peixe": ["FISCH", "LACHS", "FORELLE"], "salmao": ["LACHS"], "camarao": ["GARNELE", "SCAMPI"], "presunto": ["PROSCIUTTO", "SCHIN"], "bacon": ["BACON", "BAUCHSPECK"], "linguica": ["BRATWURST", "WURST", "SALSICCIA"], "salsicha": ["WIENER", "WURST"], "salame": ["SALAMI", "SALAME"], "pao": ["BROT", "BROETCHEN"], "torrada": ["TOAST"], "croissant": ["CROISSANT"], "arroz": ["REIS"], "macarrao": ["PASTA", "NUDEL", "SPAGHETTI", "PENNE", "FUSILLI", "RIGATONI", "TAGLIATELLE"], "farinha": ["MEHL"], "tomate": ["TOMATE", "TOMATO"], "batata": ["KARTOFFEL"], "cebola": ["ZWIEBEL"], "alho": ["KNOBLAUCH"], "gengibre": ["INGWER"], "pepino": ["GURKE"], "cenoura": ["KAROTTE"], "abacate": ["AVOCADO"], "abobrinha": ["ZUCCHINI"], "brocolis": ["BROKKOLI", "BROCCOLI"], "espinafre": ["SPINAT"], "alface": ["SALAT", "KOPFSALAT"], "rucula": ["RUCOLA"], "cogumelo": ["CHAMPIGNON", "PILZ", "SHITAKE"], "pimentao": ["PAPRIKA"], "banana": ["BANANE"], "maca": ["APFEL"], "laranja": ["ORANGE"], "limao": ["ZITRONE", "LIMETTE"], "morango": ["ERDBEERE"], "framboesa": ["HIMBEERE"], "mirtilo": ["BLAUBEERE"], "manga": ["MANGO"], "abacaxi": ["ANANAS"], "uva": ["TRAUBE"], "melao": ["MELONE"], "kiwi": ["KIWI"], "agua": ["WASSER", "VOLVIC"], "suco": ["SAFT", "JUICE"], "cerveja": ["BIER"], "vinho": ["WEIN", "RIESLING", "SAUVIGNON"], "cafe": ["KAFFEE", "ESPRESSO"], "cha": ["TEE"], "energetico": ["ENERGY", "RED BULL", "R.BULL", "ICY BLUE"], "refrigerante": ["COLA", "FANTA", "SPRITE"], "chocolate": ["SCHOKO", "CHOCO", "MILKA", "LINDT", "RITTER"], "biscoito": ["KEKS", "COOKIE"], "chips": ["CHIPS", "NACHOS", "LAYS"], "sorvete": ["EIS", "ICE", "MAGNUM", "BEN + JERRY"], "bala": ["HARIBO", "GUMMIBAER", "GOLDBAEREN"], "iogurte": ["JOGHURT", "JOGURT", "YOPRO", "SKYR"], "nata": ["SAHNE", "SCHLAGSAHNE"], "creme": ["CREAM", "CREMEFINE"], "requeijao": ["FRISCHKAESE", "QUARK"], "ricota": ["RICOTTA"], "mascarpone": ["MASCARPONE"], "azeite": ["OLIVENOE"], "oleo": ["RAPSOEL", "SESAMOEL"], "molho": ["SAUCE", "DRESSING"], "ketchup": ["KETCHUP"], "mostarda": ["SENF"], "maionese": ["MAYONNAISE", "MAYNONNAISE", "MAYO"], "pesto": ["PESTO"], "vinagre": ["ESSIG"], "sal": ["SALZ", "ALPENJODSALZ"], "pimenta": ["PFEFFER", "CHILI"], "acucar": ["ZUCKER"], "mel": ["HONIG"], "geleia": ["MARMELADE", "KONFITUERE"], "pizza": ["PIZZA"], "lasanha": ["LASAGNE"], "batata frita": ["POMMES"], "nuggets": ["NUGGETS"], "sabonete": ["SEIFE"], "shampoo": ["SHAMPOO"], "condicionador": ["CONDITIONER"], "papel higienico": ["TOILETTENPAPIER"], "detergente": ["SPUELMITTEL", "WASCHMITTEL", "FINISH"], "amaciante": ["LENOR"], "limpador": ["REINIGER"], "desodorante": ["DEODORANT", "DEO"], "butter": ["BUTTER"], "milk": ["MILCH"], "egg": ["EIER"], "eggs": ["EIER"], "cheese": ["KAESE", "CHEESE"], "chicken": ["HAEHN", "CHICKEN"], "beef": ["RIND", "ANGUS"], "pork": ["SCHWEIN"], "fish": ["FISCH"], "salmon": ["LACHS"], "shrimp": ["GARNELE"], "ham": ["PROSCIUTTO", "SCHIN"], "sausage": ["WURST"], "bread": ["BROT"], "rice": ["REIS"], "pasta": ["PASTA", "NUDEL"], "flour": ["MEHL"], "potato": ["KARTOFFEL"], "onion": ["ZWIEBEL"], "garlic": ["KNOBLAUCH"], "cucumber": ["GURKE"], "carrot": ["KAROTTE"], "broccoli": ["BROKKOLI"], "spinach": ["SPINAT"], "lettuce": ["SALAT"], "mushroom": ["CHAMPIGNON", "PILZ"], "pepper": ["PAPRIKA"], "apple": ["APFEL"], "lemon": ["ZITRONE"], "strawberry": ["ERDBEERE"], "grape": ["TRAUBE"], "water": ["WASSER"], "juice": ["SAFT"], "beer": ["BIER"], "wine": ["WEIN"], "coffee": ["KAFFEE"], "tea": ["TEE"], "cookie": ["KEKS"], "yogurt": ["JOGHURT"], "cream": ["SAHNE", "CREAM"], "oil": ["OLIVENOE"], "sauce": ["SAUCE"], "sugar": ["ZUCKER"], "honey": ["HONIG"], "salt": ["SALZ"], "soap": ["SEIFE"]};
+function matchNoteItem(text){
+const tl=text.toLowerCase().replace(/[()0-9gml%kg]+/g,'').trim();
+// Try direct match in products
+let best=null,bestScore=0;
+P.forEach(p=>{
+let score=0;
+const nl=p.n.toLowerCase();
+// Direct name match
+if(tl.includes(nl)||nl.includes(tl))score=100+p.tb;
+// Tag match
+(p.tg||[]).forEach(t=>{if(tl.includes(t))score=Math.max(score,50+p.tb)});
+// Word overlap
+const words=tl.split(/\s+/).filter(w=>w.length>2);
+words.forEach(w=>{if(nl.includes(w))score=Math.max(score,30+p.tb);(p.tg||[]).forEach(t=>{if(t.includes(w))score=Math.max(score,20+p.tb)})});
+if(score>bestScore){bestScore=score;best=p}
+});
+return bestScore>=20?best:null}
+
+function syncNotes(){
+if(!cart.length){showSync('Carrinho vazio. Adicione itens primeiro.','#fff3e0','#e65100');return}
+// Build note content organized by category
+const cats={};
+cart.forEach(c=>{const cat=c.cat||'Outros';if(!cats[cat])cats[cat]=[];cats[cat].push(c)});
+let body='Mercado da semana \ud83d\uded2\n\nAtualizado: '+new Date().toLocaleDateString('de-DE')+'\n(Sincronizado do REWE Dashboard)\n\n';
+Object.keys(cats).sort().forEach(cat=>{
+body+=cat+':\n';
+cats[cat].forEach(c=>{body+='- '+c.q+'x '+c.n+(c.lp>0?' (\u20ac'+c.lp.toFixed(2)+')':'')+'\n'});
+body+='\n'});
+// Copy to clipboard for manual paste into Notes (most reliable)
+navigator.clipboard.writeText(body).then(()=>{
+showSync('Lista copiada! Cole no Apple Notes (Cmd+V). Ou rode: <code>python3 build_report.py</code> para sincronizar automaticamente.','#e8f5e9','#2e7d32');
+}).catch(()=>{showSync('Erro ao copiar. Use o botao Copiar.','#ffebee','#c62828')})}
+
+function importNotes(){
+showSync('Importando da nota "Mercado da semana"...','#e3f2fd','#1565c0');
+// We pre-embed the note content and try to match items
+fetch('/api/notes').catch(()=>{
+// Can\'t fetch Apple Notes from browser, use pre-embedded data
+const noteItems=["Mercado da semana 🛒 Atualizado: 04.04.2026 15:43 (Gerado pelo REWE Dashboard) ### Carnes & Peixes: - 🔴 D.HUHN&GEMUESE €3.89 (a cada 22d) - 🔴 MINI PIZ. SALAMI €2.49 (a cada 12d) - 🔴 CHICKEN TERIYAKI €4.79 (a cada 13d) - 🟡 PASTA CHICKEN €4.79 (a cada 34d) ### Frios & Embutidos: - 🔴 PROSCIUTTO CRUDO €5.99 (a cada 20d) ### Laticínios & Ovos: - 🔴 EIER FH WEISS €3.29 (a cada 33d) - 🟡 GALBANI GER. €2.89 (a cada 28d) ### Legumês & Verduras: - 🔴 KNOBLAUCH-DUO €1.29 (a cada 31d) - 🔴 CAESAR SALATS. €2.59 (a cada 30d) ### Bebidas: - 🔴 YAKULT ORIGINAL €3.69 (a cada 30d) - 🟡 ICY BLUE RASPBER €24.99 (a cada 30d) ### Doces & Snacks: - 🔴 FRET MINI €2.79 (a cada 20d) ### Molhos & Condimentos: - 🔴 INDIAN STYLE MAN €4.79 (a cada 21d) - 🟡 CHINESE STYLE €4.79 (a cada 27d) ### Congelados & Prontos: - 🔴 PIZZATEIG M.SA. €1.99 (a cada 24d) - 🔴 PIZZAKAES GERIEB €2.99 (a cada 23d) ### Ração & Pets: - 🔴 GOURMET PERLE €0.65 (a cada 16d)"];
+if(!noteItems.length){showSync('Nenhum item encontrado na nota.','#fff3e0','#e65100');return}
+let added=0,notFound=[];
+noteItems.forEach(text=>{
+const match=matchNoteItem(text);
+if(match&&!cart.find(c=>c.n===match.n)){
+addToCart(match.n);added++
+}else if(!match){notFound.push(text)}
+});
+let msg=`Importados ${added} itens do Apple Notes.`;
+if(notFound.length)msg+=` ${notFound.length} não encontrados: ${notFound.slice(0,5).join(', ')}${notFound.length>5?'...':''}`;
+showSync(msg,'#e8f5e9','#2e7d32');
+})}
 
 function showSync(msg,bg,color){
 const el=document.getElementById('syncSt');
@@ -737,22 +651,11 @@ const xD={"budget_target": 393.71, "heatmap": {"1": 130.06, "2": 127.44, "3": 56
 function updBudget(){
 const target=parseFloat(document.getElementById('budgetIn').value)||xD.budget_target;
 localStorage.setItem('rBudget',target);
-const period=document.getElementById('budgetPeriod')?document.getElementById('budgetPeriod').value:'all';
-let filteredM=[],filteredV=[];
-mL.forEach((m,i)=>{
-if(period==='all'){filteredM.push(m);filteredV.push(mV[i])}
-else if(period==='2026'&&m.includes('2026')){filteredM.push(m);filteredV.push(mV[i])}
-else if(period==='2025'&&m.includes('2025')){filteredM.push(m);filteredV.push(mV[i])}
-else if(period==='6m'){if(i>=mL.length-6){filteredM.push(m);filteredV.push(mV[i])}}
-else if(period==='3m'){if(i>=mL.length-3){filteredM.push(m);filteredV.push(mV[i])}}
-});
-if(!filteredM.length){filteredM=mL;filteredV=mV}
-const html=filteredM.map((m,i)=>{
-const v=filteredV[i];const pct=Math.min(100,Math.round(v/target*100));
-const gradColor=pct>100?'linear-gradient(90deg,#ff9800,#d32f2f)':pct>85?'linear-gradient(90deg,#4caf50,#ff9800)':'linear-gradient(90deg,#4caf50,#66bb6a)';
+const html=mL.map((m,i)=>{
+const v=mV[i];const pct=Math.min(100,Math.round(v/target*100));
+const color=pct>100?'#d32f2f':pct>85?'#ff9800':'#4caf50';
 const over=v>target?` <span style="color:#d32f2f;font-weight:600">+\u20ac${(v-target).toFixed(0)}</span>`:'';
-const under=v<=target?` <span style="color:#4caf50;font-size:9px">-\u20ac${(target-v).toFixed(0)}</span>`:'';
-return`<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px"><span style="font-weight:500">${m}</span><span>\u20ac${v.toFixed(0)} / \u20ac${target.toFixed(0)}${over}${under}</span></div><div class="bbar"><div style="width:${pct}%;background:${gradColor}"></div></div></div>`}).join('');
+return`<div style="margin-bottom:6px"><div style="display:flex;justify-content:space-between;font-size:11px"><span>${m}</span><span>\u20ac${v.toFixed(0)} / \u20ac${target.toFixed(0)}${over}</span></div><div class="bbar"><div style="width:${pct}%;background:${color}"></div></div></div>`}).join('');
 document.getElementById('budgetBars').innerHTML=html}
 updBudget();
 
@@ -795,7 +698,7 @@ if(line.startsWith('---'))return`<hr style="border:none;border-top:1px solid #ee
 if(line.startsWith('*'))return`<p style="font-size:11px;color:#999;font-style:italic;margin-top:12px">${line.replace(/\*/g,'')}</p>`;
 if(line==='')return'<div style="height:6px"></div>';
 return`<p>${line.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')}</p>`}).join('');
-function cpReport(){navigator.clipboard.writeText(rpText).then(()=>alert(t('report_copied')))}
+function cpReport(){navigator.clipboard.writeText(rpText).then(()=>alert('Relatório copiado!'))}
 
 // Receipt timeline
 function rRL(){const st=document.getElementById('tlSt').value;
@@ -867,17 +770,5 @@ ua.ondrop=e=>{e.preventDefault();ua.classList.remove('dg');hF(e.dataTransfer.fil
 fi.onchange=e=>hF(e.target.files);
 function hF(files){const pdfs=Array.from(files).filter(f=>f.name.endsWith('.pdf'));
 document.getElementById('uS').innerHTML=pdfs.length?`<strong>${pdfs.length}</strong> PDFs selecionados. Copie para <code>pdfs/</code> e rode:<br><code>python3 rewe_parser.py && python3 build_report.py</code>`:`<span style="color:#d32f2f">Nenhum PDF.</span>`}
-
-// Most bought product image
-if(tS[0]&&tS[0].iu){const mbi=document.getElementById('mostBoughtImg');if(mbi){mbi.src=tS[0].iu;mbi.style.display='block'}}
-
-// QR Code - load image if available
-(()=>{const qc=document.getElementById('qrContent');
-const img=new Image();img.onload=()=>{qc.innerHTML='';qc.appendChild(img);img.style.width='200px';img.style.height='200px';img.style.borderRadius='8px'};
-img.onerror=()=>{qc.innerHTML='<svg viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" rx="12" fill="#f5f5f5"/><text x="100" y="90" text-anchor="middle" font-family="Arial" font-size="14" fill="#999">REWE Bonus</text><text x="100" y="115" text-anchor="middle" font-family="Arial" font-size="11" fill="#bbb">QR Code</text></svg>'};
-img.src='rewe_bonus_qr.png'})();
-
-// Init language on load
-setLang(curLang);
 </script>
 </body></html>
