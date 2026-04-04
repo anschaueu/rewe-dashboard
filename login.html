@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REWE Dashboard - Login</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#1a1a2e,#16213e);min-height:100vh;display:flex;align-items:center;justify-content:center}
+.login-box{background:#fff;border-radius:16px;padding:40px;width:90%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.3);text-align:center}
+.logo{font-size:32px;font-weight:800;color:#cc0000;margin-bottom:4px;letter-spacing:-1px}
+.sub{color:#888;font-size:13px;margin-bottom:28px}
+.input-group{position:relative;margin-bottom:16px}
+input[type=password]{width:100%;padding:14px 16px;border:2px solid #eee;border-radius:10px;font-size:15px;outline:none;transition:border .2s}
+input[type=password]:focus{border-color:#cc0000}
+.btn{width:100%;padding:14px;background:linear-gradient(135deg,#cc0000,#990000);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(204,0,0,.4)}
+.btn:active{transform:translateY(0)}
+.error{color:#cc0000;font-size:12px;margin-top:8px;display:none}
+.footer{margin-top:20px;font-size:11px;color:#bbb}
+@media(prefers-color-scheme:dark){
+.login-box{background:#242424;color:#e0e0e0}
+input[type=password]{background:#1a1a1a;color:#e0e0e0;border-color:#333}
+input[type=password]:focus{border-color:#ff6b6b}
+.sub{color:#888}
+}
+</style>
+</head>
+<body>
+<div class="login-box">
+<div class="logo">REWE Dashboard</div>
+<div class="sub">anschau.eu</div>
+<form onsubmit="return checkPass()">
+<div class="input-group">
+<input type="password" id="pw" placeholder="Senha de acesso" autofocus>
+</div>
+<button type="submit" class="btn">Entrar</button>
+<div class="error" id="err">Senha incorreta. Tente novamente.</div>
+</form>
+<div class="footer">Dados pessoais protegidos</div>
+</div>
+<script>
+// Hash the password for comparison (SHA-256)
+// Default password hash: "rewe2024" -> change this to your preferred password
+// To generate a new hash, run in browser console:
+// crypto.subtle.digest('SHA-256', new TextEncoder().encode('YOUR_PASSWORD')).then(h=>console.log([...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('')))
+const HASH = 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'; // "123"
+
+async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function checkPass() {
+    const pw = document.getElementById('pw').value;
+    const hash = await sha256(pw);
+    if (hash === HASH) {
+        sessionStorage.setItem('rAuth', '1');
+        window.location.href = 'report.html';
+    } else {
+        document.getElementById('err').style.display = 'block';
+        document.getElementById('pw').value = '';
+        document.getElementById('pw').focus();
+    }
+    return false;
+}
+
+// If already authenticated, redirect
+if (sessionStorage.getItem('rAuth') === '1') {
+    window.location.href = 'report.html';
+}
+</script>
+</body>
+</html>
