@@ -94,9 +94,11 @@ tr:hover{background:#fff5f5;cursor:pointer}tr.sel{background:#ffe0e0}
 .aci{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #f0f0f0;cursor:pointer}.aci:hover{background:#fff5f5}.aci img{width:40px;height:40px;object-fit:contain;border-radius:5px;flex-shrink:0}.aci .ani{width:40px;height:40px;border-radius:5px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa;flex-shrink:0}
 .aci .aif{flex:1;min-width:0}.aci .anm{font-weight:600;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.aci .adc{font-size:10px;color:#888}.aci .afq{font-size:9px;color:#bbb}.aci .apr{font-weight:700;color:#cc0000;font-size:13px;white-space:nowrap}
 .actg{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}.atg{display:inline-block;padding:2px 8px;border-radius:12px;font-size:10px;background:#f0f0f0;color:#666;cursor:pointer;transition:all .15s}.atg:hover{background:#ffe0e0;color:#cc0000}.atg.hl{background:#cc000015;color:#cc0000;font-weight:600}
-.ctit{display:flex;align-items:center;gap:10px;padding:10px;border-bottom:1px solid #f0f0f0}.ctit img{width:40px;height:40px;object-fit:contain;border-radius:5px}.ctit .cni{width:40px;height:40px;border-radius:5px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa}
-.ctit .cif{flex:1}.ctit .cnm{font-weight:600;font-size:12px}.ctit .cct{font-size:10px;color:#888}
-.ctit .cqt{display:flex;align-items:center;gap:4px}.ctit .cqt button{width:26px;height:26px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}.ctit .cqt button:hover{background:#fff5f5;border-color:#cc0000}.ctit .cqt span{font-weight:600;min-width:20px;text-align:center}
+.ctit{display:flex;align-items:center;gap:10px;padding:12px 10px;border-bottom:1px solid #f0f0f0;transition:all .25s ease}.ctit img{width:40px;height:40px;object-fit:contain;border-radius:8px}.ctit .cni{width:40px;height:40px;border-radius:8px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa}
+.ctit .cif{flex:1;min-width:0}.ctit .cnm{font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ctit .cct{font-size:10px;color:#888}
+.ctit .cqt{display:flex;align-items:center;gap:4px}.ctit .cqt button{width:30px;height:30px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}.ctit .cqt button:hover,.ctit .cqt button:active{background:#fff5f5;border-color:#cc0000}.ctit .cqt span{font-weight:600;min-width:20px;text-align:center}
+.ctit-done{background:#fafafa;padding:10px;border-bottom:1px solid #f5f5f5}.ctit-done .cnm{text-decoration:line-through;color:#888;font-weight:500;font-size:12px}.ctit-done .cpr{color:#aaa;font-size:11px}.ctit-done .cct{display:none}.ctit-done img,.ctit-done .cni{display:none}.ctit-done .cqt{display:none}.ctit-done .crm{display:none}
+.ctit .crm{color:#ccc;cursor:pointer;font-size:20px;padding:4px 6px;-webkit-tap-highlight-color:transparent;border-radius:6px}.ctit .crm:hover,.ctit .crm:active{color:#cc0000;background:#fff5f5}
 .ctit .cpr{font-weight:700;color:#cc0000;font-size:13px;white-space:nowrap;min-width:60px;text-align:right}.ctit .crm{color:#ccc;cursor:pointer;font-size:18px;padding:0 4px}.ctit .crm:hover{color:#cc0000}
 .ctot{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #cc0000;background:#fff5f5;border-radius:0 0 10px 10px}
 .ctot .ctl{font-size:12px;color:#666}.ctot .ctv{font-size:18px;font-weight:700;color:#cc0000}
@@ -129,7 +131,7 @@ tr:hover{background:#fff5f5;cursor:pointer}tr.sel{background:#ffe0e0}
 /* Responsive - Mobile First */
 body{padding-bottom:80px}
 @media(max-width:900px){.g2{grid-template-columns:1fr}.cards{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.ctn{padding:6px}.sec{padding:12px}.tab{padding:10px 12px;font-size:10px;min-height:44px;display:flex;align-items:center}.cd .vl{font-size:16px}.cd .lb{font-size:9px}.pd.vis{flex-direction:column}.cards{grid-template-columns:repeat(2,1fr)}table{font-size:9px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}th,td{padding:5px 4px;white-space:nowrap}.pc img,.pc .ni{width:22px;height:22px}.cb{height:220px}.cbs{height:200px}.g2{gap:8px}.hdr h1{font-size:16px}.hdr .sub{font-size:10px}.sl li{padding:8px 6px;gap:6px;min-height:44px}.sl img{width:28px;height:28px}.ctit{padding:10px 8px;gap:8px}.ctit img{width:36px;height:36px}.ctit .cqt button{width:32px;height:32px;font-size:16px}.ctit input[type=checkbox]{width:22px!important;height:22px!important}.aci{padding:10px 12px;gap:8px;min-height:44px}.aci img{width:36px;height:36px}.tabs{gap:0;position:relative}.tabs::after{content:'';position:absolute;right:0;top:0;bottom:0;width:24px;background:linear-gradient(90deg,transparent,#fff);pointer-events:none}.acdd{max-height:280px}.hdr-top{flex-wrap:wrap}.lang-toggle{margin-top:4px}.qr-fab{bottom:16px;right:16px;width:50px;height:50px;font-size:20px}}
+@media(max-width:600px){.ctn{padding:6px}.sec{padding:12px}.tab{padding:10px 12px;font-size:10px;min-height:44px;display:flex;align-items:center}.cd .vl{font-size:16px}.cd .lb{font-size:9px}.pd.vis{flex-direction:column}.cards{grid-template-columns:repeat(2,1fr)}table{font-size:9px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}th,td{padding:5px 4px;white-space:nowrap}.pc img,.pc .ni{width:22px;height:22px}.cb{height:220px}.cbs{height:200px}.g2{gap:8px}.hdr h1{font-size:16px}.hdr .sub{font-size:10px}.sl li{padding:8px 6px;gap:6px;min-height:44px}.sl img{width:28px;height:28px}.ctit{padding:12px 8px;gap:8px;min-height:48px}.ctit img{width:38px;height:38px;border-radius:8px}.ctit .cnm{font-size:13px}.ctit .cqt button{width:34px;height:34px;font-size:18px}.ctit input[type=checkbox]{width:24px!important;height:24px!important}.ctit .crm{font-size:22px;padding:6px 8px}.ctit-done{padding:8px;min-height:40px}.ctit-done input[type=checkbox]{width:20px!important;height:20px!important}.ctit-done .cnm{font-size:12px}.aci{padding:10px 12px;gap:8px;min-height:44px}.aci img{width:36px;height:36px}.tabs{gap:0;position:relative}.tabs::after{content:'';position:absolute;right:0;top:0;bottom:0;width:24px;background:linear-gradient(90deg,transparent,#fff);pointer-events:none}.acdd{max-height:280px}.hdr-top{flex-wrap:wrap}.lang-toggle{margin-top:4px}.qr-fab{bottom:16px;right:16px;width:50px;height:50px;font-size:20px}}
 @media(max-width:380px){.cards{grid-template-columns:1fr}.cd{padding:10px}.cd .vl{font-size:14px}.tab{padding:8px 10px;font-size:9px}}
 /* Animations */
 .tc{animation:fadeIn .3s ease}.cd{transition:transform .2s}.cd:hover{transform:translateY(-2px)}
@@ -692,7 +694,7 @@ document.getElementById('acCf').classList.remove('show')}
 function saveCart(){if(!fbSyncing){fbCart.set(cart)}renderCart()}
 function renderCart(){
 const cl=document.getElementById('cartL'),ct=document.getElementById('cartT');
-if(!cart.length){cl.innerHTML='<div style="text-align:center;padding:20px;color:#ccc;font-size:13px">'+t('cart_empty')+'</div>';ct.style.display='none';return}
+if(!cart.length){cl.innerHTML='<div style="text-align:center;padding:30px 20px;color:#bbb;font-size:13px"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ddd" stroke-width="1.5" style="display:block;margin:0 auto 8px"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>'+t('cart_empty')+'</div>';ct.style.display='none';return}
 // Sort: unchecked first (grouped by category), checked last
 const indexed=cart.map((c,i)=>({...c,_i:i}));
 const unchecked=indexed.filter(c=>!c.ck);
@@ -700,14 +702,21 @@ const checked=indexed.filter(c=>c.ck);
 // Group unchecked by category
 unchecked.sort((a,b)=>(a.cat||'').localeCompare(b.cat||''));
 const sorted=[...unchecked,...checked];
-cl.innerHTML=sorted.map(c=>{
+// Add separator before checked items
+let html='';
+let addedSep=false;
+sorted.forEach(c=>{
 const i=c._i;
 const im=c.iu?`<img src="${c.iu}">`:`<div class="cni">${(c.desc||c.n).substring(0,16)}</div>`;
 const u=c.kg?'/kg':'';
 const subT=c.lp>0?c.lp*c.q:0;
 if(c.ck){
-return`<div class="ctit" style="opacity:.4;text-decoration:line-through;padding:6px 10px;border-bottom:1px solid #f5f5f5"><input type="checkbox" checked onchange="ctog(${i})" style="width:18px;height:18px;accent-color:#bbb;flex-shrink:0"><div class="cif" style="color:#aaa"><div class="cnm" style="font-size:11px;color:#bbb">${c.n}</div></div><div class="cpr" style="color:#ccc;font-size:11px">${c.lp>0?'\u20ac'+subT.toFixed(2):''}</div></div>`}
-return`<div class="ctit"><input type="checkbox" onchange="ctog(${i})" style="width:20px;height:20px;accent-color:#cc0000;flex-shrink:0">${im}<div class="cif"><div class="cnm">${c.n}</div><div class="cct">${c.cat||''}</div></div><div class="cqt"><button onclick="cqty(${i},-1)">-</button><span>${c.q}</span><button onclick="cqty(${i},1)">+</button></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2)+u:''}</div><div class="crm" onclick="crmv(${i})">&times;</div></div>`}).join('');
+if(!addedSep&&checked.length>0&&unchecked.length>0){addedSep=true;html+=`<div style="padding:6px 12px;font-size:10px;color:#aaa;background:#f8f8f8;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:6px"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#bbb" stroke-width="2"><polyline points="2 8 6 12 14 4"/></svg>${checked.length} ${t('items')}</div>`}
+html+=`<div class="ctit ctit-done"><input type="checkbox" checked onchange="ctog(${i})" style="width:20px;height:20px;accent-color:#4caf50;flex-shrink:0"><div class="cif"><div class="cnm">${c.n}</div></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2):''}</div></div>`}
+else{
+html+=`<div class="ctit"><input type="checkbox" onchange="ctog(${i})" style="width:22px;height:22px;accent-color:#cc0000;flex-shrink:0">${im}<div class="cif"><div class="cnm">${c.n}</div><div class="cct">${c.cat||''}</div></div><div class="cqt"><button onclick="cqty(${i},-1)">&minus;</button><span>${c.q}</span><button onclick="cqty(${i},1)">&plus;</button></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2)+u:''}</div><div class="crm" onclick="crmv(${i})">&times;</div></div>`}
+});
+cl.innerHTML=html;
 const total=cart.reduce((a,c)=>(c.lp>0&&!c.ck?a+c.lp*c.q:a),0);
 const count=cart.filter(c=>!c.ck).reduce((a,c)=>a+c.q,0);
 document.getElementById('cartC').textContent=count;
