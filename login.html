@@ -56,7 +56,7 @@ async function checkPass() {
     const pw = document.getElementById('pw').value;
     const hash = await sha256(pw);
     if (hash === HASH) {
-        sessionStorage.setItem('rAuth', '1');
+        document.cookie = 'rAuth=1; max-age=2592000; path=/; SameSite=Strict';
         window.location.href = 'report.html';
     } else {
         document.getElementById('err').style.display = 'block';
@@ -67,7 +67,7 @@ async function checkPass() {
 }
 
 // If already authenticated, redirect
-if (sessionStorage.getItem('rAuth') === '1') {
+if (document.cookie.split(';').some(c => c.trim().startsWith('rAuth='))) {
     window.location.href = 'report.html';
 }
 </script>
