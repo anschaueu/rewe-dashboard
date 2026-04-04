@@ -97,7 +97,7 @@ tr:hover{background:#fff5f5;cursor:pointer}tr.sel{background:#ffe0e0}
 .ctit{display:flex;align-items:center;gap:10px;padding:12px 10px;border-bottom:1px solid #f0f0f0;transition:all .25s ease}.ctit img{width:40px;height:40px;object-fit:contain;border-radius:8px}.ctit .cni{width:40px;height:40px;border-radius:8px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa}
 .ctit .cif{flex:1;min-width:0}.ctit .cnm{font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ctit .cct{font-size:10px;color:#888}
 .ctit .cqt{display:flex;align-items:center;gap:4px}.ctit .cqt button{width:30px;height:30px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.ctit .cqt button:hover,.ctit .cqt button:active{background:#fff5f5;border-color:#cc0000}.ctit .cqt span{font-weight:600;min-width:20px;text-align:center}
-.ctit-done{background:#f5f5f5;padding:10px 12px;border-bottom:1px solid #eee;opacity:0.75}.ctit-done .cnm{text-decoration:line-through;color:#555;font-weight:500;font-size:13px}.ctit-done .cpr{color:#777;font-size:12px}.ctit-done .cct{display:none}.ctit-done .cqt{display:none}.ctit-done .crm{display:none}.ctit-done img{width:34px;height:34px;border-radius:6px;opacity:0.6}.ctit-done .cni{font-size:8px;opacity:0.5}
+.ctit-done{background:#f5f5f5;padding:10px 12px;border-bottom:1px solid #eee;opacity:0.75}.ctit-done .cnm{text-decoration:line-through;color:#555;font-weight:500;font-size:13px}.ctit-done .cpr{color:#777;font-size:12px}.ctit-done .cct{display:none}.ctit-done .cqt{display:none}.ctit-done .crm{display:none}.ctit-done img{width:34px;height:34px;border-radius:6px;opacity:0.6}.ctit-done .cni{opacity:0.5}
 .ctit .crm{color:#ccc;cursor:pointer;font-size:20px;padding:4px 6px;-webkit-tap-highlight-color:transparent;border-radius:6px}.ctit .crm:hover,.ctit .crm:active{color:#cc0000;background:#fff5f5}
 .ctit .cpr{font-weight:700;color:#cc0000;font-size:13px;white-space:nowrap;min-width:60px;text-align:right}.ctit .crm{color:#ccc;cursor:pointer;font-size:18px;padding:0 4px}.ctit .crm:hover{color:#cc0000}
 .ctot{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #cc0000;background:#fff5f5;border-radius:0 0 10px 10px}
@@ -519,6 +519,9 @@ en:{'Carnes & Peixes':'Meat & Fish','Laticínios & Ovos':'Dairy & Eggs','Doces &
 de:{'Carnes & Peixes':'Fleisch & Fisch','Laticínios & Ovos':'Milch & Eier','Doces & Snacks':'Süßes & Snacks','Bebidas':'Getränke','Outros':'Sonstiges','Higiene & Limpeza':'Hygiene & Reinigung','Molhos & Condimentos':'Soßen & Gewürze','Legumês & Verduras':'Gemüse','Frutas':'Obst','Padaria & Massas':'Bäckerei & Nudeln','Frios & Embutidos':'Aufschnitt','Congelados & Prontos':'TK & Fertiggerichte','Ração & Pets':'Tierfutter','Temperos & Especiarias':'Kräuter & Gewürze'}
 };
 function tc(cat){return (CAT_TR[curLang]||{})[cat]||cat}
+// Category emoji fallback for products without images
+const CAT_EMOJI={'Carnes & Peixes':'🥩','Laticínios & Ovos':'🥛','Doces & Snacks':'🍫','Bebidas':'🥤','Outros':'🛒','Higiene & Limpeza':'🧹','Molhos & Condimentos':'🫙','Legumês & Verduras':'🥬','Frutas':'🍎','Padaria & Massas':'🍞','Frios & Embutidos':'🧀','Congelados & Prontos':'🧊','Ração & Pets':'🐾','Temperos & Especiarias':'🌿'};
+function catEmoji(cat){return CAT_EMOJI[cat]||'🛒'}
 // ====== End i18n ======
 
 const fbApp=firebase.initializeApp({apiKey:"AIzaSyBERY390wjQD4CCGwgz1pAfw48-jjsKTX8",authDomain:"rewe-dashboard.firebaseapp.com",projectId:"rewe-dashboard",databaseURL:"https://rewe-dashboard-default-rtdb.europe-west1.firebasedatabase.app",storageBucket:"rewe-dashboard.firebasestorage.app",messagingSenderId:"517022269032",appId:"1:517022269032:web:0daa0155e7d404f5cc45dd"});
@@ -564,7 +567,7 @@ chCB_=new Chart(document.getElementById('chCB'),{type:'bar',data:{labels:cL.map(
 renderAllCharts();
 
 // Top spending
-document.getElementById('topL').innerHTML=tS.map((p,i)=>{const rc=i===0?'':i===1?'s':i===2?'b':'o';const im=p.iu?`<img src="${p.iu}">`:'';return`<li><div class="rk ${rc}">${i+1}</div>${im}<div class="d"><div class="nm">${p.n}</div><div class="su">${tc(p.cat)} &middot; ${p.tb}x</div></div><div class="am">\u20ac${p.ts.toFixed(2)}</div></li>`}).join('');
+document.getElementById('topL').innerHTML=tS.map((p,i)=>{const rc=i===0?'':i===1?'s':i===2?'b':'o';const im=p.iu?`<img src="${p.iu}">`:`<span style="font-size:22px">${catEmoji(p.cat)}</span>`;return`<li><div class="rk ${rc}">${i+1}</div>${im}<div class="d"><div class="nm">${p.n}</div><div class="su">${tc(p.cat)} &middot; ${p.tb}x</div></div><div class="am">\u20ac${p.ts.toFixed(2)}</div></li>`}).join('');
 
 // Products tab
 let sc='tb',sa=false,sp=null,pCh=null;const PS=30;let cp=0;
@@ -579,7 +582,7 @@ const tp=Math.ceil(f.length/PS);if(cp>=tp)cp=Math.max(0,tp-1);const pg=f.slice(c
 document.getElementById('pB').innerHTML=pg.map(p=>{
 const ti=p.tr==='up'?'<span class="tu">\u25b2</span>':p.tr==='down'?'<span class="td">\u25bc</span>':'<span class="ts">\u25cf</span>';
 const vc=p.var>0?'tu':p.var<0?'td':'ts';const sel=sp===p.n?'sel':'';
-const im=p.iu?`<img src="${p.iu}" loading="lazy">`:p.desc?`<div class="ni">${p.desc.substring(0,20)}</div>`:`<div class="ni">?</div>`;
+const im=p.iu?`<img src="${p.iu}" loading="lazy">`:`<div class="ni" style="font-size:22px;display:flex;align-items:center;justify-content:center">${catEmoji(p.cat)}</div>`;
 const pu=p.kg?'/kg':'';const cc2=cM[p.cat]||'#999';const sn=p.n.replace(/'/g,"\\'").replace(/"/g,'&quot;');
 const freq=p.af?p.af+'d':'-';
 return`<tr class="${sel}" onclick="sP('${sn}')"><td><div class="pc">${im}<span>${p.n}</span></div></td><td><span class="bg" style="background:${cc2}20;color:${cc2}">${tc(p.cat)}</span></td><td>${p.tb}</td><td>${freq}</td><td>\u20ac${p.ts.toFixed(2)}</td><td>\u20ac${p.lp.toFixed(2)}<span class="pk">${pu}</span></td><td>\u20ac${p.mn.toFixed(2)}</td><td>\u20ac${p.mx.toFixed(2)}</td><td class="${vc}">${p.var>0?'+':''}${p.var.toFixed(1)}%</td><td>${ti}</td></tr>`}).join('');
@@ -661,7 +664,7 @@ function acRender(results,q){
 if(!results.length&&!q){acDd.classList.remove('show');return}
 const ql=q.toLowerCase();
 let html=results.map(p=>{
-const im=p.iu?`<img src="${p.iu}">`:`<div class="ani">${(p.desc||p.n).substring(0,16)}</div>`;
+const im=p.iu?`<img src="${p.iu}">`:`<div class="ani" style="font-size:22px;display:flex;align-items:center;justify-content:center">${catEmoji(p.cat)}</div>`;
 const u=p.kg?'/kg':'';
 const dc=p.desc||p.fn||'';
 const tags=(p.tg||[]).filter(t=>t.includes(ql)).slice(0,3).map(t=>`<span class="atg hl">${t}</span>`).join('')+
@@ -768,7 +771,7 @@ let html='';
 let addedSep=false;
 sorted.forEach(c=>{
 const i=c._i;
-const im=c.iu?`<img src="${c.iu}">`:`<div class="cni">${(c.desc||c.n).substring(0,16)}</div>`;
+const im=c.iu?`<img src="${c.iu}">`:`<div class="cni" style="font-size:22px;display:flex;align-items:center;justify-content:center">${catEmoji(c.cat)}</div>`;
 const u=c.kg?'/kg':'';
 const subT=c.lp>0?c.lp*c.q:0;
 if(c.ck){
@@ -799,7 +802,7 @@ renderCart();
 
 // Recompra suggestions
 document.getElementById('shL').innerHTML=shD.map((s,i)=>{
-const im=s.iu?`<img src="${s.iu}">`:(s.fn||s.desc?`<div class="pc"><div class="ni">${(s.fn||s.desc||'').substring(0,18)}</div></div>`:'');
+const im=s.iu?`<img src="${s.iu}">`:`<div class="pc"><div class="ni" style="font-size:18px;display:flex;align-items:center;justify-content:center">${catEmoji(s.cat||'')}</div></div>`;
 const urgL=s.urg==='overdue'?`<span class="urgbg overdue">${s.od}d atrasado</span>`:s.urg==='soon'?`<span class="urgbg soon">em breve</span>`:`<span class="urgbg ok">em dia</span>`;
 const freq=s.af?`a cada ${s.af}d`:'';
 return`<li class="${s.urg==='overdue'?'od':s.urg==='soon'?'sn':''}" onclick="addToCart('${s.n.replace(/'/g,"\\'")}');this.style.opacity=0.3" style="cursor:pointer">${im}<div class="si"><div class="sn2">${s.n}</div><div class="sd">${s.cat} &middot; ${freq} &middot; ${urgL}</div></div><div class="sp">\u20ac${(s.lp||0).toFixed(2)}</div></li>`}).join('');
