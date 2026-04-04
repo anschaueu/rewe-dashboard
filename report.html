@@ -97,7 +97,7 @@ tr:hover{background:#fff5f5;cursor:pointer}tr.sel{background:#ffe0e0}
 .ctit{display:flex;align-items:center;gap:10px;padding:12px 10px;border-bottom:1px solid #f0f0f0;transition:all .25s ease}.ctit img{width:40px;height:40px;object-fit:contain;border-radius:8px}.ctit .cni{width:40px;height:40px;border-radius:8px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa}
 .ctit .cif{flex:1;min-width:0}.ctit .cnm{font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ctit .cct{font-size:10px;color:#888}
 .ctit .cqt{display:flex;align-items:center;gap:4px}.ctit .cqt button{width:30px;height:30px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.ctit .cqt button:hover,.ctit .cqt button:active{background:#fff5f5;border-color:#cc0000}.ctit .cqt span{font-weight:600;min-width:20px;text-align:center}
-.ctit-done{background:#f5f5f5;padding:10px 12px;border-bottom:1px solid #eee;opacity:0.75}.ctit-done .cnm{text-decoration:line-through;color:#555;font-weight:500;font-size:13px}.ctit-done .cpr{color:#777;font-size:12px}.ctit-done .cct{display:none}.ctit-done .cqt{display:none}.ctit-done .crm{display:none}.ctit-done img{width:34px;height:34px;border-radius:6px;opacity:0.6}.ctit-done .cni{font-size:8px;opacity:0.5}
+.ctit-done{background:#f5f5f5;padding:10px 12px;border-bottom:1px solid #eee;opacity:0.75}.ctit-done .cnm{text-decoration:line-through;color:#555;font-weight:500;font-size:13px}.ctit-done .cpr{color:#777;font-size:12px}.ctit-done .cct{display:none}.ctit-done .cqt{display:none}.ctit-done .crm{display:none}.ctit-done img{width:34px;height:34px;border-radius:6px;opacity:0.6}.ctit-done .cni{opacity:0.5}
 .ctit .crm{color:#ccc;cursor:pointer;font-size:20px;padding:4px 6px;-webkit-tap-highlight-color:transparent;border-radius:6px}.ctit .crm:hover,.ctit .crm:active{color:#cc0000;background:#fff5f5}
 .ctit .cpr{font-weight:700;color:#cc0000;font-size:13px;white-space:nowrap;min-width:60px;text-align:right}.ctit .crm{color:#ccc;cursor:pointer;font-size:18px;padding:0 4px}.ctit .crm:hover{color:#cc0000}
 .ctot{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #cc0000;background:#fff5f5;border-radius:0 0 10px 10px}
@@ -178,13 +178,11 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <div class="cd tip" data-tip="Intervalo médio entre compras"><div class="lb" data-i18n="shop_frequency">Freq. Compras</div><div class="vl sm" data-i18n="every_4d">a cada 4d</div><div class="dt" data-i18n="max_gap">max 87d sem ir</div></div>
 </div>
 
-<div class="sec"><h2 data-i18n="monthly_budget">Orçamento Mensal</h2>
-<p style="font-size:10px;color:#888;margin-bottom:6px" data-i18n="budget_desc">Meta baseada na sua média: &euro;393.71/mês. Edite o valor abaixo.</p>
-<div class="ctrl"><label style="font-size:11px;color:#666" data-i18n="budget_label">Meta: &euro;</label><input class="sb" id="budgetIn" type="number" value="394" style="width:65px" max="9999" onchange="updBudget()">
-<select class="fl" id="budgetPeriod" onchange="updBudget()" style="font-size:11px"><option value="all" data-i18n="filter_all">Todo período</option><option value="2026" data-i18n="filter_2026">2026</option><option value="2025" data-i18n="filter_2025">2025</option><option value="6m" data-i18n="filter_6m">Últimos 6 meses</option><option value="3m" data-i18n="filter_3m">Últimos 3 meses</option></select></div>
+<div class="sec"><h2 data-i18n="monthly_spending">Gasto Mensal</h2>
+<div class="ctrl" style="flex-wrap:wrap;gap:6px;margin-bottom:8px"><label style="font-size:11px;color:#666;display:flex;align-items:center;gap:3px" data-i18n="budget_label">Meta: &euro;</label><input class="sb" id="budgetIn" type="number" value="394" style="width:65px" max="9999" onchange="updBudget()">
+<select class="fl" id="budgetPeriod" onchange="updBudget()" style="font-size:11px"><option value="all" data-i18n="filter_all">Todo período</option><option value="2026" data-i18n="filter_2026">2026</option><option value="2025" data-i18n="filter_2025">2025</option><option value="6m" data-i18n="filter_6m">Últimos 6 meses</option><option value="3m" data-i18n="filter_3m">Últimos 3 meses</option></select>
+<div id="budgetSummary" style="font-size:10px;color:#888;margin-left:auto"></div></div>
 <div class="cb" style="height:280px"><canvas id="chBudget"></canvas></div></div>
-
-<div class="sec"><h2 data-i18n="monthly_spending">Gasto Mensal</h2><div style="font-size:10px;color:#888;margin:-6px 0 8px" data-i18n="line_avg">Linha = média &euro;393.71</div><div class="cb"><canvas id="chM"></canvas></div></div>
 <div class="g2">
 <div class="sec"><h2 data-i18n="categories">Categorias</h2><div class="cb cbs"><canvas id="chC"></canvas></div></div>
 <div class="sec"><h2 data-i18n="day_of_week">Dia da Semana</h2><div class="cb cbs"><canvas id="chW"></canvas></div></div>
@@ -393,7 +391,7 @@ tab_overview:'Visão Geral',tab_shopping:'Lista Compras',tab_products:'Produtos'
 header_sub:'01.07.2024 - 04.04.2026 \u00b7 165 compras \u00b7 712 produtos \u00b7 21 meses',
 total_spent:'Total Gasto',monthly_avg:'Média Mensal',avg_receipt:'Ticket Médio',purchases:'Compras',products:'Produtos',most_bought:'Mais Comprado',annual_forecast:'Projeção Anual',shop_frequency:'Freq. Compras',every_4d:'a cada 4d',max_gap:'max 87d sem ir',items_count:'2785 itens',
 monthly_budget:'Orçamento Mensal',budget_desc:'Meta baseada na sua média: \u20ac393.71/mês. Edite abaixo.',budget_label:'Meta: \u20ac',
-filter_all:'Todo período',filter_2026:'2026',filter_2025:'2025',filter_6m:'Últimos 6 meses',filter_3m:'Últimos 3 meses',
+over_budget:'acima da meta',filter_all:'Todo período',filter_2026:'2026',filter_2025:'2025',filter_6m:'Últimos 6 meses',filter_3m:'Últimos 3 meses',
 monthly_spending:'Gasto Mensal',line_avg:'Linha = média \u20ac393.71',categories:'Categorias',day_of_week:'Dia da Semana',top10_spending:'Top 10 Gasto',cat_ranking:'Ranking Categorias',
 details:'Detalhe',click_product:'Clique em um produto abaixo',search:'Buscar...',all_cats:'Todas cat.',all_stores:'Todas filiais',
 q6_vs_s6:'Q6 vs S6 - Resumo',common_products:'Produtos em Comum',q6_cheaper:'Q6 Mais Barato',s6_cheaper:'S6 Mais Barato',same_price:'Mesmo Preço',simulated_basket:'Cesta Simulada',price_comparison:'Comparativo Preços',
@@ -431,7 +429,7 @@ tab_overview:'Overview',tab_shopping:'Shopping List',tab_products:'Products',tab
 header_sub:'07/01/2024 - 04/04/2026 \u00b7 165 purchases \u00b7 712 products \u00b7 21 months',
 total_spent:'Total Spent',monthly_avg:'Monthly Average',avg_receipt:'Avg. Receipt',purchases:'Purchases',products:'Products',most_bought:'Most Bought',annual_forecast:'Annual Forecast',shop_frequency:'Shop Frequency',every_4d:'every 4d',max_gap:'max 87d gap',items_count:'2785 items',
 monthly_budget:'Monthly Budget',budget_desc:'Target based on your average: \u20ac393.71/month. Edit below.',budget_label:'Target: \u20ac',
-filter_all:'All time',filter_2026:'2026',filter_2025:'2025',filter_6m:'Last 6 months',filter_3m:'Last 3 months',
+over_budget:'over budget',filter_all:'All time',filter_2026:'2026',filter_2025:'2025',filter_6m:'Last 6 months',filter_3m:'Last 3 months',
 monthly_spending:'Monthly Spending',line_avg:'Line = avg \u20ac393.71',categories:'Categories',day_of_week:'Day of Week',top10_spending:'Top 10 Spending',cat_ranking:'Category Ranking',
 details:'Details',click_product:'Click a product below',search:'Search...',all_cats:'All categories',all_stores:'All stores',
 q6_vs_s6:'Q6 vs S6 - Summary',common_products:'Common Products',q6_cheaper:'Q6 Cheaper',s6_cheaper:'S6 Cheaper',same_price:'Same Price',simulated_basket:'Simulated Basket',price_comparison:'Price Comparison',
@@ -469,7 +467,7 @@ tab_overview:'Übersicht',tab_shopping:'Einkaufsliste',tab_products:'Produkte',t
 header_sub:'01.07.2024 - 04.04.2026 \u00b7 165 Einkäufe \u00b7 712 Produkte \u00b7 21 Monate',
 total_spent:'Gesamtausgaben',monthly_avg:'Monatsdurchschnitt',avg_receipt:'Ø Einkauf',purchases:'Einkäufe',products:'Produkte',most_bought:'Meistgekauft',annual_forecast:'Jahresprognose',shop_frequency:'Einkaufsrhythmus',every_4d:'alle 4 Tage',max_gap:'max 87T Pause',items_count:'2785 Artikel',
 monthly_budget:'Monatsbudget',budget_desc:'Ziel basierend auf deinem Durchschnitt: \u20ac393.71/Monat. Anpassen:',budget_label:'Ziel: \u20ac',
-filter_all:'Gesamtzeitraum',filter_2026:'2026',filter_2025:'2025',filter_6m:'Letzte 6 Monate',filter_3m:'Letzte 3 Monate',
+over_budget:'über Budget',filter_all:'Gesamtzeitraum',filter_2026:'2026',filter_2025:'2025',filter_6m:'Letzte 6 Monate',filter_3m:'Letzte 3 Monate',
 monthly_spending:'Monatsausgaben',line_avg:'Linie = Ø \u20ac393.71',categories:'Kategorien',day_of_week:'Wochentag',top10_spending:'Top 10 Ausgaben',cat_ranking:'Kategorie-Ranking',
 details:'Details',click_product:'Klicke auf ein Produkt',search:'Suchen...',all_cats:'Alle Kategorien',all_stores:'Alle Filialen',
 q6_vs_s6:'Q6 vs S6 - Zusammenfassung',common_products:'Gemeinsame Produkte',q6_cheaper:'Q6 günstiger',s6_cheaper:'S6 günstiger',same_price:'Gleicher Preis',simulated_basket:'Simulierter Warenkorb',price_comparison:'Preisvergleich',
@@ -521,6 +519,9 @@ en:{'Carnes & Peixes':'Meat & Fish','Laticínios & Ovos':'Dairy & Eggs','Doces &
 de:{'Carnes & Peixes':'Fleisch & Fisch','Laticínios & Ovos':'Milch & Eier','Doces & Snacks':'Süßes & Snacks','Bebidas':'Getränke','Outros':'Sonstiges','Higiene & Limpeza':'Hygiene & Reinigung','Molhos & Condimentos':'Soßen & Gewürze','Legumês & Verduras':'Gemüse','Frutas':'Obst','Padaria & Massas':'Bäckerei & Nudeln','Frios & Embutidos':'Aufschnitt','Congelados & Prontos':'TK & Fertiggerichte','Ração & Pets':'Tierfutter','Temperos & Especiarias':'Kräuter & Gewürze'}
 };
 function tc(cat){return (CAT_TR[curLang]||{})[cat]||cat}
+// Category emoji fallback for products without images
+const CAT_EMOJI={'Carnes & Peixes':'🥩','Laticínios & Ovos':'🥛','Doces & Snacks':'🍫','Bebidas':'🥤','Outros':'🛒','Higiene & Limpeza':'🧹','Molhos & Condimentos':'🫙','Legumês & Verduras':'🥬','Frutas':'🍎','Padaria & Massas':'🍞','Frios & Embutidos':'🧀','Congelados & Prontos':'🧊','Ração & Pets':'🐾','Temperos & Especiarias':'🌿'};
+function catEmoji(cat){return CAT_EMOJI[cat]||'🛒'}
 // ====== End i18n ======
 
 const fbApp=firebase.initializeApp({apiKey:"AIzaSyBERY390wjQD4CCGwgz1pAfw48-jjsKTX8",authDomain:"rewe-dashboard.firebaseapp.com",projectId:"rewe-dashboard",databaseURL:"https://rewe-dashboard-default-rtdb.europe-west1.firebasedatabase.app",storageBucket:"rewe-dashboard.firebasestorage.app",messagingSenderId:"517022269032",appId:"1:517022269032:web:0daa0155e7d404f5cc45dd"});
@@ -551,11 +552,8 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelect
 (()=>{const sb=localStorage.getItem('rBudget');if(sb){const bi=document.getElementById('budgetIn');if(bi){bi.value=parseFloat(sb)}}})();
 
 // Chart instances for re-rendering on language change
-let chM_,chC_,chW_,chCB_,chKC_,chKP_,chDisc_,chBI_,chInf_,chCT_,chCE_;
+let chC_,chW_,chCB_,chKC_,chKP_,chDisc_,chBI_,chInf_,chCT_,chCE_;
 function renderAllCharts(){
-// Monthly
-if(chM_)chM_.destroy();
-chM_=new Chart(document.getElementById('chM'),{type:'bar',data:{labels:mL,datasets:[{label:t('spent'),data:mV,backgroundColor:'rgba(204,0,0,.8)',borderRadius:5,order:1},{label:t('avg_line'),data:mV.map(()=>avgM),type:'line',borderColor:'#999',borderDash:[5,5],pointRadius:0,borderWidth:1.5,order:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'\u20ac'+v,font:{size:10}}},x:{ticks:{maxRotation:45,font:{size:9}}}}}});
 // Cat donut
 if(chC_)chC_.destroy();
 chC_=new Chart(document.getElementById('chC'),{type:'doughnut',data:{labels:cL.map(tc),datasets:[{data:cV,backgroundColor:CC.slice(0,cL.length),borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9},padding:4}}}}});
@@ -569,7 +567,7 @@ chCB_=new Chart(document.getElementById('chCB'),{type:'bar',data:{labels:cL.map(
 renderAllCharts();
 
 // Top spending
-document.getElementById('topL').innerHTML=tS.map((p,i)=>{const rc=i===0?'':i===1?'s':i===2?'b':'o';const im=p.iu?`<img src="${p.iu}">`:'';return`<li><div class="rk ${rc}">${i+1}</div>${im}<div class="d"><div class="nm">${p.n}</div><div class="su">${tc(p.cat)} &middot; ${p.tb}x</div></div><div class="am">\u20ac${p.ts.toFixed(2)}</div></li>`}).join('');
+document.getElementById('topL').innerHTML=tS.map((p,i)=>{const rc=i===0?'':i===1?'s':i===2?'b':'o';const im=p.iu?`<img src="${p.iu}">`:`<span style="font-size:22px">${catEmoji(p.cat)}</span>`;return`<li><div class="rk ${rc}">${i+1}</div>${im}<div class="d"><div class="nm">${p.n}</div><div class="su">${tc(p.cat)} &middot; ${p.tb}x</div></div><div class="am">\u20ac${p.ts.toFixed(2)}</div></li>`}).join('');
 
 // Products tab
 let sc='tb',sa=false,sp=null,pCh=null;const PS=30;let cp=0;
@@ -584,7 +582,7 @@ const tp=Math.ceil(f.length/PS);if(cp>=tp)cp=Math.max(0,tp-1);const pg=f.slice(c
 document.getElementById('pB').innerHTML=pg.map(p=>{
 const ti=p.tr==='up'?'<span class="tu">\u25b2</span>':p.tr==='down'?'<span class="td">\u25bc</span>':'<span class="ts">\u25cf</span>';
 const vc=p.var>0?'tu':p.var<0?'td':'ts';const sel=sp===p.n?'sel':'';
-const im=p.iu?`<img src="${p.iu}" loading="lazy">`:p.desc?`<div class="ni">${p.desc.substring(0,20)}</div>`:`<div class="ni">?</div>`;
+const im=p.iu?`<img src="${p.iu}" loading="lazy">`:`<div class="ni" style="font-size:22px;display:flex;align-items:center;justify-content:center">${catEmoji(p.cat)}</div>`;
 const pu=p.kg?'/kg':'';const cc2=cM[p.cat]||'#999';const sn=p.n.replace(/'/g,"\\'").replace(/"/g,'&quot;');
 const freq=p.af?p.af+'d':'-';
 return`<tr class="${sel}" onclick="sP('${sn}')"><td><div class="pc">${im}<span>${p.n}</span></div></td><td><span class="bg" style="background:${cc2}20;color:${cc2}">${tc(p.cat)}</span></td><td>${p.tb}</td><td>${freq}</td><td>\u20ac${p.ts.toFixed(2)}</td><td>\u20ac${p.lp.toFixed(2)}<span class="pk">${pu}</span></td><td>\u20ac${p.mn.toFixed(2)}</td><td>\u20ac${p.mx.toFixed(2)}</td><td class="${vc}">${p.var>0?'+':''}${p.var.toFixed(1)}%</td><td>${ti}</td></tr>`}).join('');
@@ -666,7 +664,7 @@ function acRender(results,q){
 if(!results.length&&!q){acDd.classList.remove('show');return}
 const ql=q.toLowerCase();
 let html=results.map(p=>{
-const im=p.iu?`<img src="${p.iu}">`:`<div class="ani">${(p.desc||p.n).substring(0,16)}</div>`;
+const im=p.iu?`<img src="${p.iu}">`:`<div class="ani" style="font-size:22px;display:flex;align-items:center;justify-content:center">${catEmoji(p.cat)}</div>`;
 const u=p.kg?'/kg':'';
 const dc=p.desc||p.fn||'';
 const tags=(p.tg||[]).filter(t=>t.includes(ql)).slice(0,3).map(t=>`<span class="atg hl">${t}</span>`).join('')+
@@ -773,7 +771,7 @@ let html='';
 let addedSep=false;
 sorted.forEach(c=>{
 const i=c._i;
-const im=c.iu?`<img src="${c.iu}">`:`<div class="cni">${(c.desc||c.n).substring(0,16)}</div>`;
+const im=c.iu?`<img src="${c.iu}">`:`<div class="cni" style="font-size:22px;display:flex;align-items:center;justify-content:center">${catEmoji(c.cat)}</div>`;
 const u=c.kg?'/kg':'';
 const subT=c.lp>0?c.lp*c.q:0;
 if(c.ck){
@@ -804,7 +802,7 @@ renderCart();
 
 // Recompra suggestions
 document.getElementById('shL').innerHTML=shD.map((s,i)=>{
-const im=s.iu?`<img src="${s.iu}">`:(s.fn||s.desc?`<div class="pc"><div class="ni">${(s.fn||s.desc||'').substring(0,18)}</div></div>`:'');
+const im=s.iu?`<img src="${s.iu}">`:`<div class="pc"><div class="ni" style="font-size:18px;display:flex;align-items:center;justify-content:center">${catEmoji(s.cat||'')}</div></div>`;
 const urgL=s.urg==='overdue'?`<span class="urgbg overdue">${s.od}d atrasado</span>`:s.urg==='soon'?`<span class="urgbg soon">em breve</span>`:`<span class="urgbg ok">em dia</span>`;
 const freq=s.af?`a cada ${s.af}d`:'';
 return`<li class="${s.urg==='overdue'?'od':s.urg==='soon'?'sn':''}" onclick="addToCart('${s.n.replace(/'/g,"\\'")}');this.style.opacity=0.3" style="cursor:pointer">${im}<div class="si"><div class="sn2">${s.n}</div><div class="sd">${s.cat} &middot; ${freq} &middot; ${urgL}</div></div><div class="sp">\u20ac${(s.lp||0).toFixed(2)}</div></li>`}).join('');
@@ -828,8 +826,12 @@ else if(period==='3m'){if(i>=mL.length-3){filteredM.push(m);filteredV.push(mV[i]
 });
 if(!filteredM.length){filteredM=mL;filteredV=mV}
 const colors=filteredV.map(v=>v>target?'rgba(211,47,47,.8)':v>target*0.85?'rgba(255,152,0,.8)':'rgba(76,175,80,.8)');
+const fAvg=filteredV.reduce((a,b)=>a+b,0)/filteredV.length;
+const overCount=filteredV.filter(v=>v>target).length;
+const sumEl=document.getElementById('budgetSummary');
+if(sumEl)sumEl.innerHTML=`Ø \u20ac${fAvg.toFixed(0)}/m &middot; <span style="color:${overCount>0?'#d32f2f':'#2e7d32'}">${overCount}/${filteredV.length} ${t('over_budget')}</span>`;
 if(budgetChart)budgetChart.destroy();
-budgetChart=new Chart(document.getElementById('chBudget'),{type:'bar',data:{labels:filteredM,datasets:[{label:t('spent'),data:filteredV,backgroundColor:colors,borderRadius:6,borderSkipped:false},{label:t('budget_label').replace(': \u20ac',''),data:filteredM.map(()=>target),type:'line',borderColor:'#cc0000',borderWidth:2,borderDash:[6,3],pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.type==='line'?t('budget_label')+target.toFixed(0):'\u20ac'+ctx.raw.toFixed(0)+(ctx.raw>target?' (+\u20ac'+(ctx.raw-target).toFixed(0)+')':' (-\u20ac'+(target-ctx.raw).toFixed(0)+')')}}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'\u20ac'+v,font:{size:9}},grid:{color:'#f0f0f0'}},x:{ticks:{maxRotation:45,font:{size:8}},grid:{display:false}}}}})}
+budgetChart=new Chart(document.getElementById('chBudget'),{type:'bar',data:{labels:filteredM,datasets:[{label:t('spent'),data:filteredV,backgroundColor:colors,borderRadius:6,borderSkipped:false},{label:t('budget_label').replace(': \u20ac',''),data:filteredM.map(()=>target),type:'line',borderColor:'#cc0000',borderWidth:2,borderDash:[6,3],pointRadius:0,fill:false},{label:'Ø',data:filteredM.map(()=>fAvg),type:'line',borderColor:'#999',borderWidth:1.5,borderDash:[4,4],pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{if(ctx.datasetIndex===1)return t('budget_label')+target.toFixed(0);if(ctx.datasetIndex===2)return 'Ø \u20ac'+fAvg.toFixed(0);return'\u20ac'+ctx.raw.toFixed(0)+(ctx.raw>target?' (+\u20ac'+(ctx.raw-target).toFixed(0)+')':' (-\u20ac'+(target-ctx.raw).toFixed(0)+')')}}}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'\u20ac'+v,font:{size:9}},grid:{color:'#f0f0f0'}},x:{ticks:{maxRotation:45,font:{size:8}},grid:{display:false}}}}})}
 updBudget();
 
 // Price alerts from last receipt
