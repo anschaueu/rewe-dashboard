@@ -515,6 +515,12 @@ if(typeof updBudget==='function')updBudget();
 if(typeof renderAllCharts==='function')renderAllCharts();
 if(typeof renderLateCharts==='function')renderLateCharts();
 }
+// Category name translations
+const CAT_TR={
+en:{'Carnes & Peixes':'Meat & Fish','Laticínios & Ovos':'Dairy & Eggs','Doces & Snacks':'Sweets & Snacks','Bebidas':'Drinks','Outros':'Other','Higiene & Limpeza':'Hygiene & Cleaning','Molhos & Condimentos':'Sauces & Condiments','Legumês & Verduras':'Vegetables','Frutas':'Fruits','Padaria & Massas':'Bakery & Pasta','Frios & Embutidos':'Cold Cuts','Congelados & Prontos':'Frozen & Ready','Ração & Pets':'Pet Food','Temperos & Especiarias':'Herbs & Spices'},
+de:{'Carnes & Peixes':'Fleisch & Fisch','Laticínios & Ovos':'Milch & Eier','Doces & Snacks':'Süßes & Snacks','Bebidas':'Getränke','Outros':'Sonstiges','Higiene & Limpeza':'Hygiene & Reinigung','Molhos & Condimentos':'Soßen & Gewürze','Legumês & Verduras':'Gemüse','Frutas':'Obst','Padaria & Massas':'Bäckerei & Nudeln','Frios & Embutidos':'Aufschnitt','Congelados & Prontos':'TK & Fertiggerichte','Ração & Pets':'Tierfutter','Temperos & Especiarias':'Kräuter & Gewürze'}
+};
+function tc(cat){return (CAT_TR[curLang]||{})[cat]||cat}
 // ====== End i18n ======
 
 const fbApp=firebase.initializeApp({apiKey:"AIzaSyBERY390wjQD4CCGwgz1pAfw48-jjsKTX8",authDomain:"rewe-dashboard.firebaseapp.com",projectId:"rewe-dashboard",databaseURL:"https://rewe-dashboard-default-rtdb.europe-west1.firebasedatabase.app",storageBucket:"rewe-dashboard.firebasestorage.app",messagingSenderId:"517022269032",appId:"1:517022269032:web:0daa0155e7d404f5cc45dd"});
@@ -552,23 +558,23 @@ if(chM_)chM_.destroy();
 chM_=new Chart(document.getElementById('chM'),{type:'bar',data:{labels:mL,datasets:[{label:t('spent'),data:mV,backgroundColor:'rgba(204,0,0,.8)',borderRadius:5,order:1},{label:t('avg_line'),data:mV.map(()=>avgM),type:'line',borderColor:'#999',borderDash:[5,5],pointRadius:0,borderWidth:1.5,order:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'\u20ac'+v,font:{size:10}}},x:{ticks:{maxRotation:45,font:{size:9}}}}}});
 // Cat donut
 if(chC_)chC_.destroy();
-chC_=new Chart(document.getElementById('chC'),{type:'doughnut',data:{labels:cL,datasets:[{data:cV,backgroundColor:CC.slice(0,cL.length),borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9},padding:4}}}}});
+chC_=new Chart(document.getElementById('chC'),{type:'doughnut',data:{labels:cL.map(tc),datasets:[{data:cV,backgroundColor:CC.slice(0,cL.length),borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9},padding:4}}}}});
 // Weekday
 if(chW_)chW_.destroy();
 chW_=new Chart(document.getElementById('chW'),{type:'bar',data:{labels:getWN(),datasets:[{label:t('visits'),data:wVi,backgroundColor:'rgba(204,0,0,.7)',borderRadius:5,yAxisID:'y'},{label:t('ticket'),data:wAv,type:'line',borderColor:'#ff9800',pointBackgroundColor:'#ff9800',tension:.3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:9}}}},scales:{y:{beginAtZero:true,ticks:{font:{size:9}}},y1:{beginAtZero:true,position:'right',grid:{drawOnChartArea:false},ticks:{callback:v=>'\u20ac'+v,font:{size:9}}}}}});
 // Cat bar
 if(chCB_)chCB_.destroy();
-chCB_=new Chart(document.getElementById('chCB'),{type:'bar',data:{labels:cL,datasets:[{data:cV,backgroundColor:CC.slice(0,cL.length),borderRadius:5}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>'\u20ac'+v,font:{size:9}}},y:{ticks:{font:{size:9}}}}}});
+chCB_=new Chart(document.getElementById('chCB'),{type:'bar',data:{labels:cL.map(tc),datasets:[{data:cV,backgroundColor:CC.slice(0,cL.length),borderRadius:5}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>'\u20ac'+v,font:{size:9}}},y:{ticks:{font:{size:9}}}}}});
 }
 renderAllCharts();
 
 // Top spending
-document.getElementById('topL').innerHTML=tS.map((p,i)=>{const rc=i===0?'':i===1?'s':i===2?'b':'o';const im=p.iu?`<img src="${p.iu}">`:'';return`<li><div class="rk ${rc}">${i+1}</div>${im}<div class="d"><div class="nm">${p.n}</div><div class="su">${p.cat} &middot; ${p.tb}x</div></div><div class="am">\u20ac${p.ts.toFixed(2)}</div></li>`}).join('');
+document.getElementById('topL').innerHTML=tS.map((p,i)=>{const rc=i===0?'':i===1?'s':i===2?'b':'o';const im=p.iu?`<img src="${p.iu}">`:'';return`<li><div class="rk ${rc}">${i+1}</div>${im}<div class="d"><div class="nm">${p.n}</div><div class="su">${tc(p.cat)} &middot; ${p.tb}x</div></div><div class="am">\u20ac${p.ts.toFixed(2)}</div></li>`}).join('');
 
 // Products tab
 let sc='tb',sa=false,sp=null,pCh=null;const PS=30;let cp=0;
 const cs=[...new Set(P.map(p=>p.cat))].sort();
-document.getElementById('cF').innerHTML='<option value="">Todas cat.</option>'+cs.map(c=>`<option value="${c}">${c}</option>`).join('');
+document.getElementById('cF').innerHTML=`<option value="">${t('all_cats')}</option>`+cs.map(c=>`<option value="${c}">${tc(c)}</option>`).join('');
 
 function gF(){const fl=document.getElementById('sB').value.toLowerCase(),cat=document.getElementById('cF').value,st=document.getElementById('sfF').value;
 return P.filter(p=>p.n.toLowerCase().includes(fl)&&(!cat||p.cat===cat)&&(!st||p.sb[sts.find(s=>s.id===st)?.name]))}
@@ -581,7 +587,7 @@ const vc=p.var>0?'tu':p.var<0?'td':'ts';const sel=sp===p.n?'sel':'';
 const im=p.iu?`<img src="${p.iu}" loading="lazy">`:p.desc?`<div class="ni">${p.desc.substring(0,20)}</div>`:`<div class="ni">?</div>`;
 const pu=p.kg?'/kg':'';const cc2=cM[p.cat]||'#999';const sn=p.n.replace(/'/g,"\\'").replace(/"/g,'&quot;');
 const freq=p.af?p.af+'d':'-';
-return`<tr class="${sel}" onclick="sP('${sn}')"><td><div class="pc">${im}<span>${p.n}</span></div></td><td><span class="bg" style="background:${cc2}20;color:${cc2}">${p.cat}</span></td><td>${p.tb}</td><td>${freq}</td><td>\u20ac${p.ts.toFixed(2)}</td><td>\u20ac${p.lp.toFixed(2)}<span class="pk">${pu}</span></td><td>\u20ac${p.mn.toFixed(2)}</td><td>\u20ac${p.mx.toFixed(2)}</td><td class="${vc}">${p.var>0?'+':''}${p.var.toFixed(1)}%</td><td>${ti}</td></tr>`}).join('');
+return`<tr class="${sel}" onclick="sP('${sn}')"><td><div class="pc">${im}<span>${p.n}</span></div></td><td><span class="bg" style="background:${cc2}20;color:${cc2}">${tc(p.cat)}</span></td><td>${p.tb}</td><td>${freq}</td><td>\u20ac${p.ts.toFixed(2)}</td><td>\u20ac${p.lp.toFixed(2)}<span class="pk">${pu}</span></td><td>\u20ac${p.mn.toFixed(2)}</td><td>\u20ac${p.mx.toFixed(2)}</td><td class="${vc}">${p.var>0?'+':''}${p.var.toFixed(1)}%</td><td>${ti}</td></tr>`}).join('');
 const pg2=document.getElementById('pg');if(tp<=1){pg2.innerHTML='';return}
 let h='';for(let i=0;i<tp;i++)if(i===0||i===tp-1||Math.abs(i-cp)<=2)h+=`<button class="${i===cp?'ac':''}" onclick="gP(${i})">${i+1}</button>`;else if(Math.abs(i-cp)===3)h+=`<button disabled>...</button>`;
 pg2.innerHTML=h}
@@ -596,7 +602,7 @@ if(p.fn&&p.pl)fn.innerHTML=`<a href="${p.pl}" target="_blank">${p.fn} &#8599;</a
 else if(p.fn)fn.textContent=p.fn;else if(p.desc)fn.textContent=p.desc;else fn.textContent='';
 const pl=p.kg?t('price_per_kg'):t('price_lbl');const freq=p.af?`${t('every')} ${p.af} ${t('ch_days')}`:'-';
 const sb2=Object.entries(p.sb||{}).map(([s,c2])=>`${s}: ${c2}x`).join(', ');
-document.getElementById('dS').innerHTML=`<div class="st">${t('cat_lbl')}: <strong>${p.cat}</strong></div><div class="st">${t('bought_lbl')}: <strong>${p.tb}x</strong></div><div class="st">${t('freq_lbl')}: <strong>${freq}</strong></div><div class="st">${t('total_lbl')}: <strong>\u20ac${p.ts.toFixed(2)}</strong></div><div class="st">${pl}: <strong>\u20ac${p.lp.toFixed(2)}</strong></div><div class="st">${t('min_lbl')}: <strong>\u20ac${p.mn.toFixed(2)}</strong></div><div class="st">${t('max_lbl')}: <strong>\u20ac${p.mx.toFixed(2)}</strong></div><div class="st">${t('var_lbl')}: <strong class="${p.var>0?'tu':p.var<0?'td':''}">${p.var>0?'+':''}${p.var.toFixed(1)}%</strong></div><div class="st">${t('stores_lbl')}: <strong>${sb2||'-'}</strong></div>`;
+document.getElementById('dS').innerHTML=`<div class="st">${t('cat_lbl')}: <strong>${tc(p.cat)}</strong></div><div class="st">${t('bought_lbl')}: <strong>${p.tb}x</strong></div><div class="st">${t('freq_lbl')}: <strong>${freq}</strong></div><div class="st">${t('total_lbl')}: <strong>\u20ac${p.ts.toFixed(2)}</strong></div><div class="st">${pl}: <strong>\u20ac${p.lp.toFixed(2)}</strong></div><div class="st">${t('min_lbl')}: <strong>\u20ac${p.mn.toFixed(2)}</strong></div><div class="st">${t('max_lbl')}: <strong>\u20ac${p.mx.toFixed(2)}</strong></div><div class="st">${t('var_lbl')}: <strong class="${p.var>0?'tu':p.var<0?'td':''}">${p.var>0?'+':''}${p.var.toFixed(1)}%</strong></div><div class="st">${t('stores_lbl')}: <strong>${sb2||'-'}</strong></div>`;
 if(pCh)pCh.destroy();const ctx=document.getElementById('pCh').getContext('2d');
 const bd={};p.h.forEach(h=>{const pr=h.pkg||h.p;if(!bd[h.ds])bd[h.ds]=[];bd[h.ds].push(pr)});
 const dates=Object.keys(bd).sort(),prices=dates.map(d=>{const a=bd[d];return a.reduce((x,y)=>x+y,0)/a.length});
@@ -622,7 +628,7 @@ let diff='-',tag='';if(p.diff_pct!=null)diff=(p.diff_pct>0?'+':'')+p.diff_pct.to
 if(p.cheaper_at==='Q6')tag='<span class="stag sq6">Q6</span>';else if(p.cheaper_at==='S6')tag='<span class="stag ss6">S6</span>';
 else if(p.exclusive_to==='Q6')tag='<span class="stag sq6">Só Q6</span>';else if(p.exclusive_to==='S6')tag='<span class="stag ss6">Só S6</span>';
 const cc2=cM[p.category]||'#999';
-return`<tr><td>${p.name}</td><td><span class="bg" style="background:${cc2}20;color:${cc2}">${p.category}</span></td><td>${q6}</td><td>${p.q6_count}</td><td>${s6}</td><td>${p.s6_count}</td><td>${diff}</td><td>${tag}</td></tr>`}).join('');
+return`<tr><td>${p.name}</td><td><span class="bg" style="background:${cc2}20;color:${cc2}">${tc(p.category)}</span></td><td>${q6}</td><td>${p.q6_count}</td><td>${s6}</td><td>${p.s6_count}</td><td>${diff}</td><td>${tag}</td></tr>`}).join('');
 const pg2=document.getElementById('cpP');if(tp<=1){pg2.innerHTML='';return}
 let h='';for(let i=0;i<tp;i++)h+=`<button class="${i===ccP?'ac':''}" onclick="ccP=${i};rC()">${i+1}</button>`;pg2.innerHTML=h}
 document.getElementById('scB').oninput=()=>{ccP=0;rC()};document.getElementById('scF').onchange=()=>{ccP=0;rC()};rC();
@@ -631,9 +637,9 @@ document.getElementById('scB').oninput=()=>{ccP=0;rC()};document.getElementById(
 const tot=pU+pDn+pSt;
 document.getElementById('kB').innerHTML=`<div style="width:${(pU/tot*100).toFixed(1)}%;background:#d32f2f">${pU}</div><div style="width:${(pSt/tot*100).toFixed(1)}%;background:#9e9e9e">${pSt}</div><div style="width:${(pDn/tot*100).toFixed(1)}%;background:#2e7d32">${pDn}</div>`;
 if(chKC_)chKC_.destroy();
-chKC_=new Chart(document.getElementById('chKC'),{type:'bar',data:{labels:cpd.map(c=>c.cat),datasets:[{label:t('ch_increase'),data:cpd.map(c=>c.up),backgroundColor:'#d32f2f'},{label:t('ch_stable'),data:cpd.map(c=>c.st),backgroundColor:'#9e9e9e'},{label:t('ch_decrease'),data:cpd.map(c=>c.dn),backgroundColor:'#2e7d32'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:9}}}},scales:{x:{stacked:true,ticks:{font:{size:8}}},y:{stacked:true}}}});
+chKC_=new Chart(document.getElementById('chKC'),{type:'bar',data:{labels:cpd.map(c=>tc(c.cat)),datasets:[{label:t('ch_increase'),data:cpd.map(c=>c.up),backgroundColor:'#d32f2f'},{label:t('ch_stable'),data:cpd.map(c=>c.st),backgroundColor:'#9e9e9e'},{label:t('ch_decrease'),data:cpd.map(c=>c.dn),backgroundColor:'#2e7d32'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:9}}}},scales:{x:{stacked:true,ticks:{font:{size:8}}},y:{stacked:true}}}});
 if(chKP_)chKP_.destroy();
-chKP_=new Chart(document.getElementById('chKP'),{type:'pie',data:{labels:cpd.map(c=>c.cat+' ('+c.av+'%)'),datasets:[{data:cpd.map(c=>c.ct),backgroundColor:cpd.map(c=>cM[c.cat]||'#999')}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9},padding:4}}}}});
+chKP_=new Chart(document.getElementById('chKP'),{type:'pie',data:{labels:cpd.map(c=>tc(c.cat)+' ('+c.av+'%)'),datasets:[{data:cpd.map(c=>c.ct),backgroundColor:cpd.map(c=>cM[c.cat]||'#999')}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9},padding:4}}}}});
 // Alerts
 const pAs=P.filter(p=>p.var>10).sort((a,b)=>b.var-a.var);
 document.getElementById('pAl').innerHTML=pAs.length?pAs.slice(0,25).map(p=>`<li><strong>${p.n}</strong> &mdash; <span style="font-weight:700;color:#d32f2f">+${p.var.toFixed(1)}%</span> (\u20ac${p.mn.toFixed(2)} \u2192 \u20ac${p.lp.toFixed(2)})</li>`).join(''):`<li style="border-color:#2e7d32;background:#f0fff0">${t('none_above_10')}</li>`;
@@ -665,7 +671,7 @@ const u=p.kg?'/kg':'';
 const dc=p.desc||p.fn||'';
 const tags=(p.tg||[]).filter(t=>t.includes(ql)).slice(0,3).map(t=>`<span class="atg hl">${t}</span>`).join('')+
 (p.tg||[]).filter(t=>!t.includes(ql)).slice(0,2).map(t=>`<span class="atg">${t}</span>`).join('');
-return`<div class="aci" onclick="addToCart('${p.n.replace(/'/g,"\\'")}')">${im}<div class="aif"><div class="anm">${p.n}</div><div class="adc">${dc}</div><div class="afq">${p.tb}x ${t('times_bought_lbl')} &middot; ${p.cat} ${tags?'&middot; '+tags:''}</div></div><div class="apr">\u20ac${p.lp.toFixed(2)}${u}</div></div>`}).join('');
+return`<div class="aci" onclick="addToCart('${p.n.replace(/'/g,"\\'")}')">${im}<div class="aif"><div class="anm">${p.n}</div><div class="adc">${dc}</div><div class="afq">${p.tb}x ${t('times_bought_lbl')} &middot; ${tc(p.cat)} ${tags?'&middot; '+tags:''}</div></div><div class="apr">\u20ac${p.lp.toFixed(2)}${u}</div></div>`}).join('');
 if(q.length>=2){
 html+=`<div class="aapi" onclick="searchRewe('${q.replace(/'/g,"\\'")}')" title="Buscar na REWE"><span class="rewe">REWE</span> <span class="ext">Buscar "${q}" na loja \u2192</span></div>`;
 }
@@ -774,7 +780,7 @@ if(c.ck){
 if(!addedSep&&checked.length>0&&unchecked.length>0){addedSep=true;html+=`<div style="padding:6px 12px;font-size:10px;color:#aaa;background:#f8f8f8;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:6px"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#bbb" stroke-width="2"><polyline points="2 8 6 12 14 4"/></svg>${checked.length} ${t('items')}</div>`}
 html+=`<div class="ctit ctit-done"><input type="checkbox" checked onchange="ctog(${i})" style="width:20px;height:20px;accent-color:#4caf50;flex-shrink:0">${im}<div class="cif"><div class="cnm">${c.n}</div></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2):''}</div></div>`}
 else{
-html+=`<div class="ctit"><input type="checkbox" onchange="ctog(${i})" style="width:22px;height:22px;accent-color:#cc0000;flex-shrink:0">${im}<div class="cif"><div class="cnm">${c.n}</div><div class="cct">${c.cat||''}</div></div><div class="cqt"><button onclick="cqty(${i},-1)">&minus;</button><span>${c.q}</span><button onclick="cqty(${i},1)">&plus;</button></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2)+u:''}</div><div class="crm" onclick="crmv(${i})">&times;</div></div>`}
+html+=`<div class="ctit"><input type="checkbox" onchange="ctog(${i})" style="width:22px;height:22px;accent-color:#cc0000;flex-shrink:0">${im}<div class="cif"><div class="cnm">${c.n}</div><div class="cct">${tc(c.cat||'')}</div></div><div class="cqt"><button onclick="cqty(${i},-1)">&minus;</button><span>${c.q}</span><button onclick="cqty(${i},1)">&plus;</button></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2)+u:''}</div><div class="crm" onclick="crmv(${i})">&times;</div></div>`}
 });
 cl.innerHTML=html;
 const total=cart.reduce((a,c)=>(c.lp>0?a+c.lp*c.q:a),0);
@@ -900,7 +906,7 @@ document.getElementById('trRec').innerHTML=trd.reconsider.length?trd.reconsider.
 const u=p.kg?'/kg':'';return`<li><strong>${p.n}</strong> &mdash; <span style="font-weight:700;color:#d32f2f">+${p.chg.toFixed(1)}%</span> ${t('increase_of')} &middot; \u20ac${p.ts.toFixed(2)} ${t('total_expense')} &middot; ${t('consider_alternatives')}</li>`}).join(''):`<li style="border-color:#2e7d32;background:#f0fff0">${t('no_high_spend_increase')}</li>`;
 // Category trends chart
 if(trd.cat_trends.length>0){
-const ctL=trd.cat_trends.map(c=>c.cat),ctV=trd.cat_trends.map(c=>c.chg);
+const ctL=trd.cat_trends.map(c=>tc(c.cat)),ctV=trd.cat_trends.map(c=>c.chg);
 if(chCT_)chCT_.destroy();
 chCT_=new Chart(document.getElementById('chCT'),{type:'bar',data:{labels:ctL,datasets:[{label:t('variation'),data:ctV,backgroundColor:ctV.map(v=>v>0?'rgba(211,47,47,.7)':'rgba(46,125,50,.7)'),borderRadius:5}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%',font:{size:9}}},y:{ticks:{font:{size:9}}}}}});
 }
@@ -942,7 +948,7 @@ document.getElementById('rlL').innerHTML=f.slice().reverse().map(r=>`<li onclick
 function renderLateCharts(){
 // KPI category chart
 if(chKC_)chKC_.destroy();
-chKC_=new Chart(document.getElementById('chKC'),{type:'bar',data:{labels:cpd.map(c=>c.cat),datasets:[{label:t('ch_increase'),data:cpd.map(c=>c.up),backgroundColor:'#d32f2f'},{label:t('ch_stable'),data:cpd.map(c=>c.st),backgroundColor:'#9e9e9e'},{label:t('ch_decrease'),data:cpd.map(c=>c.dn),backgroundColor:'#2e7d32'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:9}}}},scales:{x:{stacked:true,ticks:{font:{size:8}}},y:{stacked:true}}}});
+chKC_=new Chart(document.getElementById('chKC'),{type:'bar',data:{labels:cpd.map(c=>tc(c.cat)),datasets:[{label:t('ch_increase'),data:cpd.map(c=>c.up),backgroundColor:'#d32f2f'},{label:t('ch_stable'),data:cpd.map(c=>c.st),backgroundColor:'#9e9e9e'},{label:t('ch_decrease'),data:cpd.map(c=>c.dn),backgroundColor:'#2e7d32'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:9}}}},scales:{x:{stacked:true,ticks:{font:{size:8}}},y:{stacked:true}}}});
 // Discovery
 if(chDisc_)chDisc_.destroy();
 chDisc_=new Chart(document.getElementById('chDisc'),{type:'bar',data:{labels:discD.map(d=>d.label),datasets:[{label:t('new_products'),data:discD.map(d=>d.count),backgroundColor:'rgba(33,150,243,.7)',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:{size:9}}},x:{ticks:{maxRotation:45,font:{size:8}}}}}});
@@ -951,9 +957,9 @@ if(bL.length>1){if(chBI_)chBI_.destroy();chBI_=new Chart(document.getElementById
 // Inflation comparison
 if(bIdx.length>1){if(chInf_)chInf_.destroy();chInf_=new Chart(document.getElementById('chInf'),{type:'line',data:{labels:bL,datasets:[{label:t('your_basket'),data:bIdx,borderColor:'#cc0000',backgroundColor:'rgba(204,0,0,.06)',fill:true,tension:.3,pointRadius:3,pointBackgroundColor:'#cc0000',borderWidth:2.5},{label:t('official_food'),data:gCPI,borderColor:'#2196f3',backgroundColor:'rgba(33,150,243,.06)',fill:true,tension:.3,pointRadius:3,pointBackgroundColor:'#2196f3',borderWidth:2.5,borderDash:[5,3]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:10}}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw?.toFixed(1)+'%'}}},scales:{y:{ticks:{callback:v=>v.toFixed(0),font:{size:9}},suggestedMin:98},x:{ticks:{maxRotation:45,font:{size:8}}}}}});}
 // Category trends
-if(trd.cat_trends.length>0){const ctL=trd.cat_trends.map(c=>c.cat),ctV=trd.cat_trends.map(c=>c.chg);if(chCT_)chCT_.destroy();chCT_=new Chart(document.getElementById('chCT'),{type:'bar',data:{labels:ctL,datasets:[{label:t('variation'),data:ctV,backgroundColor:ctV.map(v=>v>0?'rgba(211,47,47,.7)':'rgba(46,125,50,.7)'),borderRadius:5}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%',font:{size:9}}},y:{ticks:{font:{size:9}}}}}});}
+if(trd.cat_trends.length>0){const ctL=trd.cat_trends.map(c=>tc(c.cat)),ctV=trd.cat_trends.map(c=>c.chg);if(chCT_)chCT_.destroy();chCT_=new Chart(document.getElementById('chCT'),{type:'bar',data:{labels:ctL,datasets:[{label:t('variation'),data:ctV,backgroundColor:ctV.map(v=>v>0?'rgba(211,47,47,.7)':'rgba(46,125,50,.7)'),borderRadius:5}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%',font:{size:9}}},y:{ticks:{font:{size:9}}}}}});}
 // Category evolution
-if(chCE_)chCE_.destroy();chCE_=new Chart(document.getElementById('chCE'),{type:'line',data:{labels:mL,datasets:topCats.map((cat,i)=>{return{label:cat,data:sM.map(m=>(catMonthly[cat]||{})[m]||0),borderColor:CC[i],tension:.3,pointRadius:2,borderWidth:2}})},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:9}}}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'\u20ac'+v.toFixed(0),font:{size:9}}},x:{ticks:{maxRotation:45,font:{size:8}}}}}});
+if(chCE_)chCE_.destroy();chCE_=new Chart(document.getElementById('chCE'),{type:'line',data:{labels:mL,datasets:topCats.map((cat,i)=>{return{label:tc(cat),data:sM.map(m=>(catMonthly[cat]||{})[m]||0),borderColor:CC[i],tension:.3,pointRadius:2,borderWidth:2}})},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:9}}}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'\u20ac'+v.toFixed(0),font:{size:9}}},x:{ticks:{maxRotation:45,font:{size:8}}}}}});
 // Dynamic text sections
 renderDynamicText();
 }
