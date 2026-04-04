@@ -97,7 +97,7 @@ tr:hover{background:#fff5f5;cursor:pointer}tr.sel{background:#ffe0e0}
 .ctit{display:flex;align-items:center;gap:10px;padding:12px 10px;border-bottom:1px solid #f0f0f0;transition:all .25s ease}.ctit img{width:40px;height:40px;object-fit:contain;border-radius:8px}.ctit .cni{width:40px;height:40px;border-radius:8px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa}
 .ctit .cif{flex:1;min-width:0}.ctit .cnm{font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ctit .cct{font-size:10px;color:#888}
 .ctit .cqt{display:flex;align-items:center;gap:4px}.ctit .cqt button{width:30px;height:30px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}.ctit .cqt button:hover,.ctit .cqt button:active{background:#fff5f5;border-color:#cc0000}.ctit .cqt span{font-weight:600;min-width:20px;text-align:center}
-.ctit-done{background:#fafafa;padding:10px;border-bottom:1px solid #f5f5f5}.ctit-done .cnm{text-decoration:line-through;color:#888;font-weight:500;font-size:12px}.ctit-done .cpr{color:#aaa;font-size:11px}.ctit-done .cct{display:none}.ctit-done img,.ctit-done .cni{display:none}.ctit-done .cqt{display:none}.ctit-done .crm{display:none}
+.ctit-done{background:#f5f5f5;padding:10px 12px;border-bottom:1px solid #eee;opacity:0.75}.ctit-done .cnm{text-decoration:line-through;color:#555;font-weight:500;font-size:13px}.ctit-done .cpr{color:#777;font-size:12px}.ctit-done .cct{display:none}.ctit-done .cqt{display:none}.ctit-done .crm{display:none}.ctit-done img{width:34px;height:34px;border-radius:6px;opacity:0.6}.ctit-done .cni{font-size:8px;opacity:0.5}
 .ctit .crm{color:#ccc;cursor:pointer;font-size:20px;padding:4px 6px;-webkit-tap-highlight-color:transparent;border-radius:6px}.ctit .crm:hover,.ctit .crm:active{color:#cc0000;background:#fff5f5}
 .ctit .cpr{font-weight:700;color:#cc0000;font-size:13px;white-space:nowrap;min-width:60px;text-align:right}.ctit .crm{color:#ccc;cursor:pointer;font-size:18px;padding:0 4px}.ctit .crm:hover{color:#cc0000}
 .ctot{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #cc0000;background:#fff5f5;border-radius:0 0 10px 10px}
@@ -712,13 +712,13 @@ const u=c.kg?'/kg':'';
 const subT=c.lp>0?c.lp*c.q:0;
 if(c.ck){
 if(!addedSep&&checked.length>0&&unchecked.length>0){addedSep=true;html+=`<div style="padding:6px 12px;font-size:10px;color:#aaa;background:#f8f8f8;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:6px"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#bbb" stroke-width="2"><polyline points="2 8 6 12 14 4"/></svg>${checked.length} ${t('items')}</div>`}
-html+=`<div class="ctit ctit-done"><input type="checkbox" checked onchange="ctog(${i})" style="width:20px;height:20px;accent-color:#4caf50;flex-shrink:0"><div class="cif"><div class="cnm">${c.n}</div></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2):''}</div></div>`}
+html+=`<div class="ctit ctit-done"><input type="checkbox" checked onchange="ctog(${i})" style="width:20px;height:20px;accent-color:#4caf50;flex-shrink:0">${im}<div class="cif"><div class="cnm">${c.n}</div></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2):''}</div></div>`}
 else{
 html+=`<div class="ctit"><input type="checkbox" onchange="ctog(${i})" style="width:22px;height:22px;accent-color:#cc0000;flex-shrink:0">${im}<div class="cif"><div class="cnm">${c.n}</div><div class="cct">${c.cat||''}</div></div><div class="cqt"><button onclick="cqty(${i},-1)">&minus;</button><span>${c.q}</span><button onclick="cqty(${i},1)">&plus;</button></div><div class="cpr">${c.lp>0?'\u20ac'+subT.toFixed(2)+u:''}</div><div class="crm" onclick="crmv(${i})">&times;</div></div>`}
 });
 cl.innerHTML=html;
-const total=cart.reduce((a,c)=>(c.lp>0&&!c.ck?a+c.lp*c.q:a),0);
-const count=cart.filter(c=>!c.ck).reduce((a,c)=>a+c.q,0);
+const total=cart.reduce((a,c)=>(c.lp>0?a+c.lp*c.q:a),0);
+const count=cart.reduce((a,c)=>a+c.q,0);
 document.getElementById('cartC').textContent=count;
 document.getElementById('cartV').textContent='\u20ac'+total.toFixed(2);
 ct.style.display='flex';
