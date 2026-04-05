@@ -429,7 +429,7 @@ export_products:'Exportar Produtos (CSV)',export_receipts:'Exportar Recibos (CSV
 spent:'Gasto',avg_line:'Média',visits:'Visitas',ticket:'Ticket',new_products:'Novos produtos',your_basket:'Sua Cesta',official_food:'Inflação Oficial (Alimentos DE)',basket_cost:'Custo Cesta Base',variation:'Variação %',
 ch_increase:'Aumento',ch_stable:'Estável',ch_decrease:'Queda',
 none_above_10:'Nenhum > 10%',ch_days:'dias',all_bought_recently:'Todos comprados recentemente',
-amplitude:'de amplitude',recent_price:'preço recente',vs_average:'vs média',times_bought_lbl:'comprado',total_spent_lbl:'total',total_expense:'gasto total',consider_alternatives:'Considere alternativas',
+amplitude:'de amplitude',recent_price:'preço recente',vs_average:'vs média',times_bought_lbl:'comprado',already_bought:'já comprado',total_spent_lbl:'total',total_expense:'gasto total',consider_alternatives:'Considere alternativas',
 no_significant_increase:'Nenhum produto com aumento significativo recente',no_significant_decrease:'Nenhum produto com queda significativa recente',no_high_spend_increase:'Nenhum produto com gasto alto + aumento de preço',no_volatile:'Nenhum produto volátil',no_price_change:'Nenhuma alteração na última compra',
 purchases_lbl:'compras',per_purchase:'compra',price_per_kg:'Preço/kg',price_lbl:'Preço',cat_lbl:'Cat',bought_lbl:'Comprado',freq_lbl:'Freq',total_lbl:'Total',min_lbl:'Min',max_lbl:'Max',var_lbl:'Var',stores_lbl:'Filiais',ch_items:'itens',
 wd_mon:'Seg',wd_tue:'Ter',wd_wed:'Qua',wd_thu:'Qui',wd_fri:'Sex',wd_sat:'Sab',wd_sun:'Dom',
@@ -486,7 +486,7 @@ export_products:'Export Products (CSV)',export_receipts:'Export Receipts (CSV)',
 spent:'Spent',avg_line:'Average',visits:'Visits',ticket:'Ticket',new_products:'New products',your_basket:'Your Basket',official_food:'Official Inflation (Food DE)',basket_cost:'Basket Cost',variation:'Variation %',
 ch_increase:'Increase',ch_stable:'Stable',ch_decrease:'Decrease',
 none_above_10:'None > 10%',ch_days:'days',all_bought_recently:'All bought recently',
-amplitude:'range',recent_price:'recent price',vs_average:'vs average',times_bought_lbl:'bought',total_spent_lbl:'total',total_expense:'total spent',consider_alternatives:'Consider alternatives',
+amplitude:'range',recent_price:'recent price',vs_average:'vs average',times_bought_lbl:'bought',already_bought:'already bought',total_spent_lbl:'total',total_expense:'total spent',consider_alternatives:'Consider alternatives',
 no_significant_increase:'No product with significant recent increase',no_significant_decrease:'No product with significant recent decrease',no_high_spend_increase:'No high-spend product with price increase',no_volatile:'No volatile products',no_price_change:'No price changes in last purchase',
 purchases_lbl:'purchases',per_purchase:'purchase',price_per_kg:'Price/kg',price_lbl:'Price',cat_lbl:'Cat',bought_lbl:'Bought',freq_lbl:'Freq',total_lbl:'Total',min_lbl:'Min',max_lbl:'Max',var_lbl:'Var',stores_lbl:'Stores',ch_items:'items',
 wd_mon:'Mon',wd_tue:'Tue',wd_wed:'Wed',wd_thu:'Thu',wd_fri:'Fri',wd_sat:'Sat',wd_sun:'Sun',
@@ -543,7 +543,7 @@ export_products:'Produkte exportieren (CSV)',export_receipts:'Belege exportieren
 spent:'Ausgaben',avg_line:'Durchschnitt',visits:'Besuche',ticket:'Bon',new_products:'Neue Produkte',your_basket:'Dein Warenkorb',official_food:'Offizielle Inflation (Lebensmittel DE)',basket_cost:'Warenkorbkosten',variation:'Veränderung %',
 ch_increase:'Anstieg',ch_stable:'Stabil',ch_decrease:'Rückgang',
 none_above_10:'Keine > 10%',ch_days:'Tage',all_bought_recently:'Alles kürzlich gekauft',
-amplitude:'Schwankung',recent_price:'aktueller Preis',vs_average:'vs Durchschnitt',times_bought_lbl:'gekauft',total_spent_lbl:'gesamt',total_expense:'Gesamtausgaben',consider_alternatives:'Alternativen prüfen',
+amplitude:'Schwankung',recent_price:'aktueller Preis',vs_average:'vs Durchschnitt',times_bought_lbl:'gekauft',already_bought:'bereits gekauft',total_spent_lbl:'gesamt',total_expense:'Gesamtausgaben',consider_alternatives:'Alternativen prüfen',
 no_significant_increase:'Kein Produkt mit deutlichem Preisanstieg',no_significant_decrease:'Kein Produkt mit deutlichem Preisrückgang',no_high_spend_increase:'Kein teures Produkt mit Preisanstieg',no_volatile:'Keine volatilen Produkte',no_price_change:'Keine Preisänderung beim letzten Einkauf',
 purchases_lbl:'Einkäufe',per_purchase:'Einkauf',price_per_kg:'Preis/kg',price_lbl:'Preis',cat_lbl:'Kat',bought_lbl:'Gekauft',freq_lbl:'Freq',total_lbl:'Gesamt',min_lbl:'Min',max_lbl:'Max',var_lbl:'Var',stores_lbl:'Filialen',ch_items:'Artikel',
 wd_mon:'Mo',wd_tue:'Di',wd_wed:'Mi',wd_thu:'Do',wd_fri:'Fr',wd_sat:'Sa',wd_sun:'So',
@@ -580,7 +580,7 @@ de:{'Carnes & Peixes':'Fleisch & Fisch','Laticínios & Ovos':'Milch & Eier','Doc
 function tc(cat){return (CAT_TR[curLang]||{})[cat]||cat}
 // Category emoji fallback for products without images
 const CAT_EMOJI={'Carnes & Peixes':'🥩','Laticínios & Ovos':'🥛','Doces & Snacks':'🍫','Bebidas':'🥤','Outros':'🛒','Higiene & Limpeza':'🧹','Molhos & Condimentos':'🫙','Legumês & Verduras':'🥬','Frutas':'🍎','Padaria & Massas':'🍞','Frios & Embutidos':'🧀','Congelados & Prontos':'🧊','Ração & Pets':'🐾','Temperos & Especiarias':'🌿'};
-const PROD_EMOJI={'EIER FH WEISS':'🥚','EIER FH RES 10ER':'🥚','EIER BH M-L':'🥚','BIO EIER 6ER OKT':'🥚','EIER FH RES S-L':'🥚','TEMPO DUO FEUCHT':'🧻','CROISSANT 4ER':'🥐'};
+const PROD_EMOJI={'EIER FH WEISS':'🥚','EIER FH RES 10ER':'🥚','EIER BH M-L':'🥚','BIO EIER 6ER OKT':'🥚','EIER FH RES S-L':'🥚','TEMPO DUO FEUCHT':'🧻','TEMPO FEUCHT NF':'🧻','TEMPO FEUCHT':'🧻','TEMPO TASCHENT.':'🧻','CROISSANT 4ER':'🥐'};
 function catEmoji(cat,name){return (name&&PROD_EMOJI[name])||CAT_EMOJI[cat]||'🛒'}
 // ====== End i18n ======
 
@@ -727,9 +727,10 @@ let html=results.map(p=>{
 const im=p.iu?`<img src="${p.iu}">`:`<div class="ani" style="font-size:22px;display:flex;align-items:center;justify-content:center">${catEmoji(p.cat,p.n)}</div>`;
 const u=p.kg?'/kg':'';
 const dc=p.desc||p.fn||'';
+const boughtTag=`<span class="atg" style="background:#e8f5e9;color:#2e7d32">✓ ${t('already_bought')}</span>`;
 const tags=(p.tg||[]).filter(t=>t.includes(ql)).slice(0,3).map(t=>`<span class="atg hl">${t}</span>`).join('')+
 (p.tg||[]).filter(t=>!t.includes(ql)).slice(0,2).map(t=>`<span class="atg">${t}</span>`).join('');
-return`<div class="aci" onclick="addToCart('${p.n.replace(/'/g,"\\'")}')">${im}<div class="aif"><div class="anm">${p.n}</div><div class="adc">${dc}</div><div class="afq">${p.tb}x ${t('times_bought_lbl')} &middot; ${tc(p.cat)} ${tags?'&middot; '+tags:''}</div></div><div class="apr">\u20ac${p.lp.toFixed(2)}${u}</div></div>`}).join('');
+return`<div class="aci" onclick="addToCart('${p.n.replace(/'/g,"\\'")}')">${im}<div class="aif"><div class="anm">${p.n}</div><div class="adc">${dc}</div><div class="afq">${p.tb}x ${t('times_bought_lbl')} &middot; ${tc(p.cat)} &middot; ${boughtTag}${tags?' '+tags:''}</div></div><div class="apr">\u20ac${p.lp.toFixed(2)}${u}</div></div>`}).join('');
 if(q.length>=2){
 html+=`<div class="aapi" onclick="searchRewe('${q.replace(/'/g,"\\'")}')" title="${t('search_rewe')}"><span class="rewe">REWE</span> <span class="ext">${t('search_rewe')} "${q}" ${t('search_rewe_ext')} \u2192</span></div>`;
 }
