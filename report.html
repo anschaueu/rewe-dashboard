@@ -149,7 +149,7 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 </head>
 <body>
 <div class="hdr"><div class="hdr-top"><h1>REWE eBon Dashboard</h1><div class="lang-toggle"><button class="lang-btn active" onclick="setLang('pt')">PT</button><button class="lang-btn" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('de')">DE</button></div></div>
-<div class="sub"><span data-i18n="header_sub">01.07.2024 - 04.04.2026 &middot; 165 compras &middot; 712 produtos &middot; 21 meses</span></div></div>
+<div class="sub"><span data-i18n="header_sub">01.07.2024 - 07.04.2026 &middot; 166 compras &middot; 720 produtos &middot; 22 meses</span></div></div>
 <div class="ctn">
 <div class="tabs">
 <div class="tab on" data-t="ov" data-i18n="tab_overview">Visão Geral</div>
@@ -168,11 +168,11 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 <!-- OVERVIEW -->
 <div class="tc on" id="t-ov">
 <div class="cards">
-<div class="cd"><div class="lb" data-i18n="total_spent">Total Gasto</div><div class="vl">&euro;8,267.97</div></div>
-<div class="cd"><div class="lb" data-i18n="monthly_avg">Média Mensal</div><div class="vl">&euro;393.71</div></div>
-<div class="cd"><div class="lb" data-i18n="avg_receipt">Ticket Médio</div><div class="vl">&euro;50.11</div></div>
-<div class="cd"><div class="lb" data-i18n="purchases">Compras</div><div class="vl">165</div><div class="dt" data-i18n="items_count">2785 itens</div></div>
-<div class="cd"><div class="lb" data-i18n="products">Produtos</div><div class="vl">712</div></div>
+<div class="cd"><div class="lb" data-i18n="total_spent">Total Gasto</div><div class="vl">&euro;8.310,48</div></div>
+<div class="cd"><div class="lb" data-i18n="monthly_avg">Média Mensal</div><div class="vl">&euro;377,75</div></div>
+<div class="cd"><div class="lb" data-i18n="avg_receipt">Ticket Médio</div><div class="vl">&euro;50,06</div></div>
+<div class="cd"><div class="lb" data-i18n="purchases">Compras</div><div class="vl">166</div><div class="dt" data-i18n="items_count">1967 itens</div></div>
+<div class="cd"><div class="lb" data-i18n="products">Produtos</div><div class="vl">720</div></div>
 <div class="cd" id="mostBoughtCard"><div class="lb" data-i18n="most_bought">Mais Comprado</div><div style="display:flex;align-items:center;gap:6px"><img id="mostBoughtImg" src="" style="width:28px;height:28px;border-radius:4px;object-fit:contain;display:none"><div class="vl sm">PROTEINPUDD. SCH</div></div><div class="dt">314x</div></div>
 <div class="cd tip" data-tip-i18n="tip_forecast" data-tip="Projeção anual com base no ritmo atual"><div class="lb" data-i18n="annual_forecast">Projeção Anual</div><div class="vl sm">&euro;4,700.64</div><div class="dt">&euro;12.88<span data-i18n="per_day">/dia</span></div></div>
 <div class="cd tip" data-tip-i18n="tip_frequency" data-tip="Intervalo médio entre compras"><div class="lb" data-i18n="shop_frequency">Freq. Compras</div><div class="vl sm" data-i18n="every_4d">a cada 4d</div><div class="dt" data-i18n="max_gap">max 87d sem ir</div></div>
@@ -388,7 +388,7 @@ button,input[type=checkbox],input[type=button],.crm,.lang-btn,.tab,.qr-fab{touch
 const LANG={
 pt:{
 tab_overview:'Visão Geral',tab_shopping:'Lista Compras',tab_products:'Produtos',tab_stores:'Filiais',tab_receipts:'Recibos',tab_report:'Relatório',tab_trends:'Tendências',tab_basket:'Cesta Base',tab_export:'Exportar',
-header_sub:'01.07.2024 - 04.04.2026 \u00b7 165 compras \u00b7 712 produtos \u00b7 21 meses',
+header_sub:'01.07.2024 - 07.04.2026 · 166 compras · 720 produtos · 22 meses',
 total_spent:'Total Gasto',monthly_avg:'Média Mensal',avg_receipt:'Ticket Médio',purchases:'Compras',products:'Produtos',most_bought:'Mais Comprado',annual_forecast:'Projeção Anual',shop_frequency:'Freq. Compras',every_4d:'a cada 4d',max_gap:'max 87d sem ir',items_count:'2785 itens',
 monthly_budget:'Orçamento Mensal',budget_desc:'Meta: \u20ac500/mês. Edite abaixo.',budget_label:'Meta: \u20ac',
 over_budget:'acima da meta',filter_all:'Todo período',filter_2026:'2026',filter_2025:'2025',filter_6m:'Últimos 6 meses',filter_3m:'Últimos 3 meses',
@@ -445,7 +445,7 @@ basket_index_desc:'Custo dos seus 20 produtos mais comprados ao longo do tempo. 
 },
 en:{
 tab_overview:'Overview',tab_shopping:'Shopping List',tab_products:'Products',tab_stores:'Stores',tab_receipts:'Receipts',tab_report:'Report',tab_trends:'Trends',tab_basket:'Basket Index',tab_export:'Export',
-header_sub:'07/01/2024 - 04/04/2026 \u00b7 165 purchases \u00b7 712 products \u00b7 21 months',
+header_sub:'01.07.2024 - 07.04.2026 · 166 compras · 720 produtos · 22 meses',
 total_spent:'Total Spent',monthly_avg:'Monthly Average',avg_receipt:'Avg. Receipt',purchases:'Purchases',products:'Products',most_bought:'Most Bought',annual_forecast:'Annual Forecast',shop_frequency:'Shop Frequency',every_4d:'every 4d',max_gap:'max 87d gap',items_count:'2785 items',
 monthly_budget:'Monthly Budget',budget_desc:'Target: \u20ac500/month. Edit below.',budget_label:'Target: \u20ac',
 over_budget:'over budget',filter_all:'All time',filter_2026:'2026',filter_2025:'2025',filter_6m:'Last 6 months',filter_3m:'Last 3 months',
@@ -502,7 +502,7 @@ basket_index_desc:'Cost of your top 20 most purchased products over time. Shown 
 },
 de:{
 tab_overview:'Übersicht',tab_shopping:'Einkaufsliste',tab_products:'Produkte',tab_stores:'Filialen',tab_receipts:'Belege',tab_report:'Bericht',tab_trends:'Trends',tab_basket:'Warenkorb-Index',tab_export:'Exportieren',
-header_sub:'01.07.2024 - 04.04.2026 \u00b7 165 Einkäufe \u00b7 712 Produkte \u00b7 21 Monate',
+header_sub:'01.07.2024 - 07.04.2026 · 166 compras · 720 produtos · 22 meses',
 total_spent:'Gesamtausgaben',monthly_avg:'Monatsdurchschnitt',avg_receipt:'Ø Einkauf',purchases:'Einkäufe',products:'Produkte',most_bought:'Meistgekauft',annual_forecast:'Jahresprognose',shop_frequency:'Einkaufsrhythmus',every_4d:'alle 4 Tage',max_gap:'max 87T Pause',items_count:'2785 Artikel',
 monthly_budget:'Monatsbudget',budget_desc:'Ziel: \u20ac500/Monat. Anpassen:',budget_label:'Ziel: \u20ac',
 over_budget:'über Budget',filter_all:'Gesamtzeitraum',filter_2026:'2026',filter_2025:'2025',filter_6m:'Letzte 6 Monate',filter_3m:'Letzte 3 Monate',
