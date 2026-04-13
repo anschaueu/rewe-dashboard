@@ -581,7 +581,7 @@ function tc(cat){return (CAT_TR[curLang]||{})[cat]||cat}
 const CAT_EMOJI={'Carnes & Peixes':'🥩','Laticínios & Ovos':'🥛','Doces & Snacks':'🍫','Bebidas':'🥤','Outros':'🛒','Higiene & Limpeza':'🧹','Molhos & Condimentos':'🫙','Legumês & Verduras':'🥬','Frutas':'🍎','Padaria & Massas':'🍞','Frios & Embutidos':'🧀','Congelados & Prontos':'🧊','Ração & Pets':'🐾','Temperos & Especiarias':'🌿'};
 const PROD_EMOJI={'EIER FH WEISS':'🥚','EIER FH RES 10ER':'🥚','EIER BH M-L':'🥚','BIO EIER 6ER OKT':'🥚','EIER FH RES S-L':'🥚','TEMPO DUO FEUCHT':'🧻','TEMPO FEUCHT NF':'🧻','TEMPO FEUCHT':'🧻','TEMPO TASCHENT.':'🧻','CROISSANT 4ER':'🥐'};
 const FRUIT_KW={'BANANE':'🍌','APFEL':'🍎','ORANGE':'🍊','MANDARIN':'🍊','ZITRONE':'🍋','LIMETTE':'🍋','MANGO':'🥭','ERDBEERE':'🍓','ERDBEEREN':'🍓','TRAUBE':'🍇','ANANAS':'🍍','AVOCADO':'🥑','BIRNE':'🍐','NEKTARINE':'🍑','PFIRSICH':'🍑','MELONE':'🍈','CANTALOUPE':'🍈','GRAPEFRUIT':'🍊','PFLAUME':'🍑'};
-function catEmoji(cat,name){if(name&&PROD_EMOJI[name])return PROD_EMOJI[name];if(name&&cat==='Frutas'){const u=name.toUpperCase();for(const[k,e]of Object.entries(FRUIT_KW))if(u.includes(k))return e}return CAT_EMOJI[cat]||'🛒'}
+function catEmoji(cat,name){if(name&&PROD_EMOJI[name])return PROD_EMOJI[name];if(name){const u=name.toUpperCase();for(const[k,e]of Object.entries(FRUIT_KW))if(u.includes(k))return e}return CAT_EMOJI[cat]||'🛒'}
 // ====== End i18n ======
 
 const fbApp=firebase.initializeApp({apiKey:"AIzaSyBERY390wjQD4CCGwgz1pAfw48-jjsKTX8",authDomain:"rewe-dashboard.firebaseapp.com",projectId:"rewe-dashboard",databaseURL:"https://rewe-dashboard-default-rtdb.europe-west1.firebasedatabase.app",storageBucket:"rewe-dashboard.firebasestorage.app",messagingSenderId:"517022269032",appId:"1:517022269032:web:0daa0155e7d404f5cc45dd"});
