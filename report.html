@@ -1139,7 +1139,7 @@ setLang(curLang);
     if(parseInt(el.style.height)>=42){
       txt.textContent='Atualizando...';
       el.style.height='44px';
-      setTimeout(function(){location.reload()},300);
+      setTimeout(function(){location.href=location.pathname+'?r='+Date.now()},300);
     }else{el.style.height='0'}
   });
 })();
